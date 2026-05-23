@@ -129,7 +129,7 @@ jobs:
           if [ "$EMBED_FONT" = "true" ]; then
             FONT_PATH="/tmp/IRANSansWeb.ttf"
             echo "⬇️ دریافت فونت فارسی..."
-            curl -sL "https://raw.githubusercontent.com/nikzad-avasam/notifications/main/assets/IRANSansWeb.ttf" -o "$FONT_PATH"
+            curl -sL "https://github.com/mahdi-marjani-moghadam/wg/blob/bf01f79257b3329feab7d5b818e6d62d56e8e7fd/DOCUMENT/theme/css/fonts/IRANSans/ttf/IRANSansWeb.ttf" -o "$FONT_PATH"
             if [ -f "$FONT_PATH" ]; then
               echo "✅ فونت دریافت شد"
             else
