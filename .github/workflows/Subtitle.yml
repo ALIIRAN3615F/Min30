@@ -33,16 +33,10 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: 🌐 راه‌اندازی WARP
-        run: |
-          docker run -d --name warp --restart=always -p 1080:1080 --cap-add NET_ADMIN --sysctl net.ipv6.conf.all.disable_ipv6=0 --sysctl net.ipv4.conf.all.src_valid_mark=1 -v warp-data:/var/lib/cloudflare-warp caomingjun/warp
-          sleep 10
-          echo "✅ WARP آماده"
-
       - name: 📥 نصب وابستگی‌ها
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y python3-pip zip curl jq
+          sudo apt-get install -y python3-pip zip curl jq bc
           pip3 install --upgrade yt-dlp
           yt-dlp --version
 
@@ -56,121 +50,198 @@ jobs:
         run: |
           set -euo pipefail
 
+          # ========== CONFIG ==========
           BACKUP_DIR="/tmp/sub_backup_$$"
           mkdir -p "$BACKUP_DIR" subtitles
+          FONT_FILE="/tmp/IRANSansWeb.ttf"
 
-          # اگر فونت خواسته بود، دانلود کن
-          if [ "${EMBED_FONT}" = "true" ]; then
-            FONT_FILE="/tmp/IRANSansWeb.ttf"
-            curl -sL "https://github.com/mahdi-marjani-moghadam/wg/blob/bf01f79257b3329feab7d5b818e6d62d56e8e7fd/DOCUMENT/theme/css/fonts/IRANSans/ttf/IRANSansWeb.ttf" -o "$FONT_FILE" \
-              && echo "✅ فونت دریافت شد" \
-              || { echo "⚠️ فونت دریافت نشد"; EMBED_FONT="false"; }
-          fi
-
-          # YT-DLP با خروجی امن روی VIDEO ID
-          # این‌جوری اسم فایل هیچ‌وقت فاصله و کاراکتر عجیب نداره
-          YT_DLP_BASE="yt-dlp --skip-download --no-playlist --retries 3 --no-check-certificates --progress --newline"
-          YT_DLP_ARGS="--proxy socks5://127.0.0.1:1080 --extractor-args youtube:player_client=mweb,android_vr,android"
-
-          # تابع کمکی برای دانلود زیرنویس یک ویدیو
-          download_one() {
-            local URL="$1" VID_DIR="$2"
-            # از video id برای نام فایل استفاده کن تا امن باشه
-            $YT_DLP_BASE $YT_DLP_ARGS \
-              --write-sub --sub-lang fa,en \
-              --write-auto-sub --sub-lang fa,en \
-              --output "${VID_DIR}/%(id)s" \
-              "$URL" 2>&1 || true
+          # ========== HELPERS ==========
+          start_warp() {
+            docker rm -f warp 2>/dev/null || true
+            docker run -d --name warp --restart=always -p 1080:1080 \
+              --cap-add NET_ADMIN \
+              --sysctl net.ipv6.conf.all.disable_ipv6=0 \
+              --sysctl net.ipv4.conf.all.src_valid_mark=1 \
+              -v warp-data:/var/lib/cloudflare-warp \
+              caomingjun/warp 2>/dev/null
+            sleep 12
+            if curl -s --max-time 5 --socks5 127.0.0.1:1080 https://www.youtube.com/ > /dev/null 2>&1; then
+              echo "✅ WARP وصل شد"
+              return 0
+            else
+              echo "⚠️ WARP آماده نشد، ادامه بدون پروکسی..."
+              return 1
+            fi
           }
 
+          stop_warp() {
+            docker stop warp 2>/dev/null
+            docker rm warp 2>/dev/null
+            true
+          }
+
+          # دانلود زیرنویس با کلاینت ios (نیاز به PO Token نداره)
+          # ریتلای ۳ بار با backoff
+          try_download_subs() {
+            local URL="$1" OUT_DIR="$2" USE_PROXY="$3"
+            local RETRY=0 MAX_RETRY=4 WAIT=5
+            local PROXY_ARG=""
+            [ "$USE_PROXY" = "true" ] && PROXY_ARG="--proxy socks5://127.0.0.1:1080"
+
+            while [ $RETRY -lt $MAX_RETRY ]; do
+              echo ""
+              echo "   🎯 تلاش $(($RETRY+1))/$MAX_RETRY (پروکسی: $USE_PROXY, delay: ${WAIT}s)"
+
+              yt-dlp --skip-download --no-playlist --no-cache-dir \
+                --no-check-certificates --newline \
+                --sleep-requests 2 --sleep-interval 3 --max-sleep-interval 15 \
+                --socket-timeout 30 \
+                $PROXY_ARG \
+                --extractor-args "youtube:player_client=ios,android,web_embedded" \
+                --user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15" \
+                --write-sub --sub-lang "fa.*,en.*" \
+                --write-auto-sub --sub-lang "fa.*,en.*" \
+                --output "${OUT_DIR}/%(id)s.%(ext)s" \
+                "$URL" 2>&1
+
+              local EXIT_CODE=$?
+              local FOUND=$(find "$OUT_DIR" -type f \( -name "*.vtt" -o -name "*.srt" \) 2>/dev/null | wc -l)
+
+              if [ "$FOUND" -gt 0 ]; then
+                echo "   ✅ ${FOUND} فایل زیرنویس دریافت شد"
+                return 0
+              fi
+
+              # اگر 429 یا خطای ریت‌لیمیت بود
+              if grep -qi "429\|too many requests\|rate limit" "$OUT_DIR/../ytdlp_*.log" 2>/dev/null || [ $EXIT_CODE -ne 0 ]; then
+                echo "   ⚠️ خطا / ریت‌لیمیت - ${WAIT}s صبر..."
+                sleep $WAIT
+                WAIT=$((WAIT * 2))
+                [ $WAIT -gt 60 ] && WAIT=60
+
+                # اگر پروکسی فعال بود، WARP رو ریست کن
+                if [ "$USE_PROXY" = "true" ] && [ $RETRY -ge 2 ]; then
+                  echo "   🔄 ریستارت WARP برای IP جدید..."
+                  docker restart warp 2>/dev/null
+                  sleep 15
+                fi
+              else
+                echo "   ❌ زیرنویس موجود نیست (نه ریت‌لیمیت)"
+                return 1
+              fi
+
+              RETRY=$((RETRY+1))
+            done
+            return 1
+          }
+
+          # ========== FONT ==========
+          EMBED="${EMBED_FONT:-false}"
+          if [ "$EMBED" = "true" ]; then
+            curl -sL "https://github.com/mahdi-marjani-moghadam/wg/blob/bf01f79257b3329feab7d5b818e6d62d56e8e7fd/DOCUMENT/theme/css/fonts/IRANSans/ttf/IRANSansWeb.ttf" -o "$FONT_FILE" \
+              && echo "✅ فونت دریافت شد" \
+              || { echo "⚠️ فونت دریافت نشد"; EMBED="false"; }
+          fi
+
+          # ========== MAIN LOOP ==========
           INDEX=0
           for URL in ${YT_URLS}; do
             INDEX=$((INDEX+1))
             echo ""
             echo "============================================================"
-            echo "🔗 پردازش $INDEX : $URL"
+            echo "🔗 ویدیو $INDEX : $URL"
             echo "============================================================"
 
-            # استخراج video ID برای ساخت پوشه موقت
-            VID_ID=$(echo "$URL" | grep -oP '(?<=v=)[^&]+' || echo "unknown_${INDEX}")
-            TMP_DIR="tmp_subs_${VID_ID}"
+            # استخراج video ID
+            VID_ID=$(echo "$URL" | grep -oP '(?<=v=)[a-zA-Z0-9_-]+' || echo "vid_${INDEX}")
+            TMP_DIR="tmp_subs_${VID_ID}_$$"
             mkdir -p "$TMP_DIR"
 
-            # دانلود کن
-            download_one "$URL" "$TMP_DIR"
+            # ====== شروع WARP ======
+            USE_PROXY="false"
+            if start_warp; then
+              USE_PROXY="true"
+            fi
 
-            # ببین چی دانلود شده
-            mapfile -t SUB_FILES < <(find "$TMP_DIR" -type f \( -name "*.vtt" -o -name "*.srt" \) -print0 2>/dev/null || true)
+            # ====== دانلود ======
+            SUCCESS=false
+            if try_download_subs "$URL" "$TMP_DIR" "$USE_PROXY"; then
+              SUCCESS=true
+            elif [ "$USE_PROXY" = "true" ]; then
+              # با پروکسی نشد → یکبار دیگه بدون پروکسی
+              echo "   🔄 تلاش بدون پروکسی..."
+              stop_warp
+              USE_PROXY="false"
+              if try_download_subs "$URL" "$TMP_DIR" "false"; then
+                SUCCESS=true
+              fi
+            fi
 
-            # اگر زیرنویس نداشت، رد شو
-            if [ ${#SUB_FILES[@]} -eq 0 ]; then
+            if [ "$SUCCESS" = "false" ]; then
               echo "❌ هیچ زیرنویسی برای این ویدیو پیدا نشد"
+              stop_warp
               rm -rf "$TMP_DIR"
               continue
             fi
 
-            echo "📄 ${#SUB_FILES[@]} فایل زیرنویس دریافت شد"
-
-            # استفاده از video id برای نام پوشه نهایی (کاملاً امن)
+            # ====== بسته‌بندی ======
             SAFE_ID=$(echo "$VID_ID" | tr -cd 'a-zA-Z0-9_-')
             FINAL_FOLDER="${SAFE_ID}_$(date +%s)"
             FINAL_PATH="${BACKUP_DIR}/${FINAL_FOLDER}"
             mkdir -p "$FINAL_PATH"
 
-            # کپی فایل‌ها با find -exec (بدون مشکل فاصله و کاراکتر خاص)
+            # کپی زیرنویس‌ها (find -exec = امن در برابر فاصله)
             find "$TMP_DIR" -type f \( -name "*.vtt" -o -name "*.srt" \) -exec cp {} "$FINAL_PATH/" \;
 
-            # اضافه کردن فونت به پوشه (اگر خواسته شده)
-            if [ "${EMBED_FONT}" = "true" ] && [ -f "$FONT_FILE" ]; then
+            # فونت
+            if [ "$EMBED" = "true" ] && [ -f "$FONT_FILE" ]; then
               cp "$FONT_FILE" "$FINAL_PATH/"
             fi
 
-            # زیپ کردن همه فایل‌های داخل پوشه
+            # زیپ
             cd "$FINAL_PATH"
             zip -j subtitle.zip ./* 2>/dev/null
-            # حذف فایل‌های اصلی و فقط zip نگه دار
             find . -type f ! -name "subtitle.zip" -delete
             cd - > /dev/null
 
-            # ساخت README
-            FOLDER_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${FINAL_FOLDER}', safe=''))")
-            RAW_LINK="https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/subtitles/${FOLDER_ENCODED}/subtitle.zip"
+            # README
+            FOLDER_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${FINAL_FOLDER}', safe=''))")
+            RAW_LINK="https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/subtitles/${FOLDER_ENC}/subtitle.zip"
             {
-              echo "# 📄 زیرنویس ویدیو ${URL}"
+              echo "# 📄 زیرنویس"
               echo ""
               echo "| # | فایل | لینک |"
               echo "|---|------|------|"
               echo "| 1 | \`subtitle.zip\` | [دانلود]($RAW_LINK) |"
               echo ""
+              echo "📺 منبع: $URL"
+              echo ""
               echo "---"
               echo "*ساخته شده توسط avasam.ir*"
-              [ "${EMBED_FONT}" = "true" ] && echo "" && echo "🔤 فونت IRANSans داخل پکیج قرار دارد."
+              [ "$EMBED" = "true" ] && echo "" && echo "🔤 فونت IRANSans داخل پکیج قرار دارد."
             } > "$FINAL_PATH/README.md"
 
-            echo "✅ ذخیره شد در: ${FINAL_FOLDER}"
+            echo "✅ ${FINAL_FOLDER} ذخیره شد"
+            echo "${FINAL_FOLDER}|$URL" >> /tmp/sub_info.txt
 
-            # پاکسازی پوشه موقت
+            stop_warp
             rm -rf "$TMP_DIR"
           done
 
-          # ذخیره مسیر بکاپ برای مرحله بعد
           echo "$BACKUP_DIR" > /tmp/backup_dir_path.txt
-
-      - name: 🛑 توقف WARP
-        if: always()
-        run: docker stop warp 2>/dev/null; docker rm warp 2>/dev/null; true
+          touch /tmp/sub_info.txt
 
       - name: 📤 بارگذاری در ریپازیتوری
+        if: always()
         env:
           REPO_OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.event.repository.name }}
           BRANCH: ${{ github.ref_name }}
         run: |
-          BACKUP_DIR=$(cat /tmp/backup_dir_path.txt)
+          BACKUP_DIR="/tmp/sub_backup_$$"
 
-          # اگر چیزی دانلود نشده بود
           if [ ! -d "$BACKUP_DIR" ] || [ -z "$(find "$BACKUP_DIR" -type f 2>/dev/null)" ]; then
-            echo "⚠️ چیزی برای آپلود وجود ندارد"
+            echo "⚠️ چیزی برای آپلود نیست"
             git fetch origin "$BRANCH" 2>/dev/null || true
             git reset --hard origin/"$BRANCH" 2>/dev/null || true
             mkdir -p subtitles
@@ -185,23 +256,25 @@ jobs:
           git reset --hard origin/"$BRANCH"
           mkdir -p subtitles
 
-          # کپی کل محتوا (باز هم با find برای امنیت فایل‌های با فاصله)
           find "$BACKUP_DIR" -mindepth 1 -maxdepth 1 -exec cp -r {} subtitles/ \;
 
-          # بازسازی فهرست
           MASTER_README="subtitles/README.md"
-          echo "# 📋 فهرست زیرنویس‌ها" > "$MASTER_README"
-          echo "" >> "$MASTER_README"
-          echo "| # | پوشه | لینک |" >> "$MASTER_README"
-          echo "|---|-------|------|" >> "$MASTER_README"
+          {
+            echo "# 📋 فهرست زیرنویس‌ها"
+            echo ""
+            echo "| # | پوشه | منبع |"
+            echo "|---|-------|------|"
+          } > "$MASTER_README"
+
           n=0
           for folder in subtitles/*/; do
             [ -d "$folder" ] || continue
             fname="$(basename "$folder")"
             [ ! -f "$folder/README.md" ] && continue
             n=$((n+1))
+            SRC_URL=$(grep "$fname" /tmp/sub_info.txt 2>/dev/null | cut -d'|' -f2 || echo "-")
             fenc="$(python3 -c "import urllib.parse; print(urllib.parse.quote('${fname}', safe=''))")"
-            echo "| $n | ${fname} | [مشاهده](https://github.com/${REPO_OWNER}/${REPO_NAME}/tree/${BRANCH}/subtitles/${fenc}) |" >> "$MASTER_README"
+            echo "| $n | [${fname}](https://github.com/${REPO_OWNER}/${REPO_NAME}/tree/${BRANCH}/subtitles/${fenc}) | ${SRC_URL} |" >> "$MASTER_README"
           done
 
           git add -f subtitles/
@@ -218,3 +291,7 @@ jobs:
               git diff --cached --quiet || git commit -m "[AVASAM] Subtitle download [skip ci]"
             done
           fi
+
+      - name: 🧹 پاکسازی
+        if: always()
+        run: docker rm -f warp 2>/dev/null; true
