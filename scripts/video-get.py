@@ -247,50 +247,262 @@ def process_video(url, quality, password, backup_dir, repo_owner, repo_name, bra
     shutil.rmtree(tmp_dir, ignore_errors=True)
     return video_info
 
+
+def check_fa_subs(subtitle_dir):
+    """Check if any Persian subtitle files exist"""
+    patterns = ["*.fa.vtt", "*.fa.srt", "*.fa-IR.vtt", "*.fa-IR.srt",
+                "*.Persian.vtt", "*.Persian.srt", "*[fa]*.vtt", "*[fa]*.srt"]
+    for pattern in patterns:
+        found = list(Path(subtitle_dir).glob(pattern))
+        if found:
+            return True
+    # broader check
+    for f in Path(subtitle_dir).iterdir():
+        if f.is_file() and ("fa" in f.name.lower() or "persian" in f.name.lower()):
+            return True
+    return False
+
+
+def check_en_subs(subtitle_dir):
+    """Check if any English subtitle files exist"""
+    patterns = ["*.en.vtt", "*.en.srt", "*.en-US.vtt", "*.en-US.srt"]
+    for pattern in patterns:
+        if list(Path(subtitle_dir).glob(pattern)):
+            return True
+    return False
+
+
+def run_sub_command(cmd, subtitle_dir, label=""):
+    """Run a subtitle download command and return True if subs were downloaded"""
+    print(f"  → {label}")
+    try:
+        result = subprocess.run(cmd, check=False, capture_output=False)
+    except Exception as e:
+        print(f"    Error: {e}")
+        return False
+    subs = list(Path(subtitle_dir).glob("*.vtt")) + list(Path(subtitle_dir).glob("*.srt"))
+    return len(subs) > 0
+
+
 def download_subtitles(url, folder_path, folder_name, repo_owner, repo_name, branch):
     subtitle_dir = f"{folder_path}/subtitle"
     os.makedirs(subtitle_dir, exist_ok=True)
     out_tmpl = f"{subtitle_dir}/%(title)s"
 
-    def sub_download(mode):
-        sub_flags = {
-            "all": ["--write-sub", "--sub-langs", "fa,en"],
-            "auto-both": ["--write-auto-sub", "--sub-langs", "en,fa"],
-        }
-        flags = sub_flags.get(mode, sub_flags["all"])
-        common = ["--sub-format", "vtt/srt/best", "--convert-subs", "vtt", "--skip-download", "--no-playlist", "--no-check-certificates", "--output", out_tmpl]
-        proxy = ["--proxy", "socks5://127.0.0.1:1080"]
+    proxy = ["--proxy", "socks5://127.0.0.1:1080"]
+    common = [
+        "--sub-format", "vtt/srt/best",
+        "--convert-subs", "vtt",
+        "--skip-download",
+        "--no-playlist",
+        "--no-check-certificates",
+        "--output", out_tmpl
+    ]
 
-        for method in range(1, 9):
-            methods = {
-                1: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github"] + flags + common + [url],
-                2: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:npm"] + flags + common + [url],
-                3: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=web,mweb,android_vr", "--js-runtimes", "deno", "--remote-components", "ejs:github"] + flags + common + [url],
-                4: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=mweb"] + flags + common + [url],
-                5: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=android_vr"] + flags + common + [url],
-                6: ["yt-dlp", "--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github"] + flags + common + [url],
-                7: ["yt-dlp", "--extractor-args", "youtube:player_client=mweb"] + flags + common + [url],
-                8: ["yt-dlp"] + proxy + ["--extractor-args", "youtube:player_client=android"] + flags + common + [url],
-            }
-            subprocess.run(methods[method], check=False)
-            subs = list(Path(subtitle_dir).glob("*.vtt")) + list(Path(subtitle_dir).glob("*.srt"))
-            if subs:
-                return True
-        return False
+    # ── ALL subtitle methods to try ──────────────────────────────────────────
+    # Each entry: (label, command_list)
+    sub_methods = [
 
-    sub_download("all")
-    en_count = len(list(Path(subtitle_dir).glob("*.en.vtt")) + list(Path(subtitle_dir).glob("*.en.srt")))
-    fa_count = len(list(Path(subtitle_dir).glob("*.fa.vtt")) + list(Path(subtitle_dir).glob("*.fa.srt")))
-    if en_count == 0 or fa_count == 0:
-        sub_download("auto-both")
+        # ── MANUAL SUBS fa+en ────────────────────────────────────────────────
+        ("manual fa+en | web+deno+github | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
 
-    subs = list(Path(subtitle_dir).iterdir())
-    if not subs:
+        ("manual fa+en | web+deno+npm | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:npm",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | web+mweb+android_vr+deno | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web,mweb,android_vr",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | mweb | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=mweb",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | android_vr | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android_vr",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | android | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | web+deno+github | no-proxy",
+         ["yt-dlp"] +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual fa+en | mweb | no-proxy",
+         ["yt-dlp"] +
+         ["--extractor-args", "youtube:player_client=mweb",
+          "--write-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        # ── AUTO-GENERATED SUBS fa+en ────────────────────────────────────────
+        ("auto fa+en | web+deno+github | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | web+deno+npm | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:npm",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | web+mweb+android_vr+deno | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web,mweb,android_vr",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | mweb | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=mweb",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | android_vr | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android_vr",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | android | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | web+deno+github | no-proxy",
+         ["yt-dlp"] +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("auto fa+en | mweb | no-proxy",
+         ["yt-dlp"] +
+         ["--extractor-args", "youtube:player_client=mweb",
+          "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        # ── MANUAL+AUTO COMBINED fa+en ───────────────────────────────────────
+        ("manual+auto fa+en | web+mweb+android_vr | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web,mweb,android_vr",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-sub", "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual+auto fa+en | android_vr | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android_vr",
+          "--write-sub", "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual+auto fa+en | android | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android",
+          "--write-sub", "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        ("manual+auto fa+en | mweb | no-proxy",
+         ["yt-dlp"] +
+         ["--extractor-args", "youtube:player_client=mweb",
+          "--write-sub", "--write-auto-sub", "--sub-langs", "fa,fa-IR,en,en-US"] +
+         common + [url]),
+
+        # ── ALL SUBS fallback ────────────────────────────────────────────────
+        ("all-subs | web+deno+github | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=web",
+          "--js-runtimes", "deno", "--remote-components", "ejs:github",
+          "--write-sub", "--write-auto-sub", "--all-subs"] +
+         common + [url]),
+
+        ("all-subs | android_vr | proxy",
+         ["yt-dlp"] + proxy +
+         ["--extractor-args", "youtube:player_client=android_vr",
+          "--write-sub", "--write-auto-sub", "--all-subs"] +
+         common + [url]),
+    ]
+
+    print(f"\n{'='*60}")
+    print(f"🔠 Starting subtitle download for: {url}")
+    print(f"{'='*60}")
+
+    fa_found = False
+    en_found = False
+
+    for i, (label, cmd) in enumerate(sub_methods, 1):
+        # If we already have both fa and en, we're done
+        if fa_found and en_found:
+            print(f"\n✅ Both fa and en subtitles found — stopping.")
+            break
+
+        # If fa is found but en is missing, skip fa-only retries and keep going for en
+        print(f"\n[Method {i}/{len(sub_methods)}] {label}")
+
+        run_sub_command(cmd, subtitle_dir, label)
+        time.sleep(1)
+
+        fa_now = check_fa_subs(subtitle_dir)
+        en_now = check_en_subs(subtitle_dir)
+
+        if fa_now and not fa_found:
+            print(f"    ✅ Persian (fa) subtitle found!")
+            fa_found = True
+        if en_now and not en_found:
+            print(f"    ✅ English (en) subtitle found!")
+            en_found = True
+
+        if not fa_now and not en_now:
+            print(f"    ❌ No new subtitles found with this method.")
+
+    # ── Summary ──────────────────────────────────────────────────────────────
+    print(f"\n{'='*60}")
+    print(f"📝 Subtitle download summary:")
+    print(f"   Persian (fa): {'✅ Found' if fa_found else '❌ Not found (may not exist on YouTube)'}")
+    print(f"   English (en): {'✅ Found' if en_found else '❌ Not found'}")
+
+    all_subs = list(Path(subtitle_dir).glob("*.vtt")) + list(Path(subtitle_dir).glob("*.srt"))
+    if not all_subs:
+        print(f"   No subtitles downloaded — skipping zip.")
+        print(f"{'='*60}\n")
         shutil.rmtree(subtitle_dir, ignore_errors=True)
         return
 
+    print(f"   Total files: {len(all_subs)}")
+    for s in all_subs:
+        print(f"     - {s.name}")
+    print(f"{'='*60}\n")
+
+    # ── Zip subtitles ─────────────────────────────────────────────────────────
     zip_path = f"{folder_path}/subtitle.zip"
-    subprocess.run(["zip", "-j", zip_path] + [str(s) for s in subs], check=False)
+    subprocess.run(["zip", "-j", zip_path] + [str(s) for s in all_subs], check=False)
     shutil.rmtree(subtitle_dir, ignore_errors=True)
 
     folder_enc = urlencode(folder_name)
@@ -306,6 +518,7 @@ def download_subtitles(url, folder_path, folder_name, repo_owner, repo_name, bra
             content += sub_section
         with open(readme_path, 'w') as f:
             f.write(content)
+
 
 def main():
     urls = os.environ.get('YT_URLS', '').split()
