@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 RANDOM_WORDS = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "theta", "kappa", "lambda", "sigma", "omega", "nova", "star", "moon", "sun", "sky", "cloud", "river", "ocean", "mountain"]
-SPLIT_MB = 45
+SPLIT_MB = 95
 SPLIT_BYTES = SPLIT_MB * 1024 * 1024
 
 def sanitize_name(name):
@@ -41,13 +41,13 @@ def get_format(quality):
     formats = {
         "audio": "bestaudio/bestaudio*/best",
         "best": "bv*+ba/b",
-        "2160": "bestvideo[height<=2160]+bestaudio/bestvideo[height<=2160]*+bestaudio*/bestvideo+bestaudio/best",
-        "4k": "bestvideo[height<=2160]+bestaudio/bestvideo[height<=2160]*+bestaudio*/bestvideo+bestaudio/best",
-        "1440": "bestvideo[height<=1440]+bestaudio/bestvideo[height<=1440]*+bestaudio*/bestvideo+bestaudio/best",
-        "2k": "bestvideo[height<=1440]+bestaudio/bestvideo[height<=1440]*+bestaudio*/bestvideo+bestaudio/best",
-        "1080": "bestvideo[height<=1080]+bestaudio/bestvideo[height<=1080]*+bestaudio*/bestvideo+bestaudio/best",
-        "720": "bestvideo[height<=720]+bestaudio/bestvideo[height<=720]*+bestaudio*/bestvideo+bestaudio/best",
-        "480": "bestvideo[height<=480]+bestaudio/bestvideo[height<=480]*+bestaudio*/bestvideo+bestaudio/best",
+        "2160": "bestvideo[height>=2000][height<=2160]+bestaudio/bestvideo[height<=2160]+bestaudio/best",
+        "4k": "bestvideo[height>=2000][height<=2160]+bestaudio/bestvideo[height<=2160]+bestaudio/best",
+        "1440": "bestvideo[height>=1400][height<=1440]+bestaudio/bestvideo[height<=1440]+bestaudio/best",
+        "2k": "bestvideo[height>=1400][height<=1440]+bestaudio/bestvideo[height<=1440]+bestaudio/best",
+        "1080": "bestvideo[height>=1000][height<=1080]+bestaudio/bestvideo[height<=1080]+bestaudio/best",
+        "720": "bestvideo[height>=700][height<=720]+bestaudio/bestvideo[height<=720]+bestaudio/best",
+        "480": "bestvideo[height>=450][height<=480]+bestaudio/bestvideo[height<=480]+bestaudio/best",
     }
     return formats.get(quality, formats["best"])
 
@@ -72,16 +72,17 @@ def download_video(method, url, tmp_dir, fmt, quality):
     proxy = ["--proxy", "socks5://127.0.0.1:1080"]
     ua_chrome = ["--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"]
     ua_android = ["--user-agent", "Mozilla/5.0 (Linux; Android 12; SM-S906N Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36"]
+    sort_opt = ["--format-sort", "res,vcodec:h264"] if quality != "audio" else []
 
     methods = {
-        1: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github"] + ua_chrome + ["--add-header", "Accept-Language:en-US,en;q=0.9", url],
-        2: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:npm"] + ua_chrome + ["--add-header", "Accept-Language:en-US,en;q=0.9", url],
-        3: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=web,mweb,android_vr", "--js-runtimes", "deno", "--remote-components", "ejs:github", url],
-        4: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=mweb", url],
-        5: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=android_vr", url],
-        6: ["yt-dlp", "--format", fmt] + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github", url],
-        7: ["yt-dlp", "--format", fmt] + common + ["--extractor-args", "youtube:player_client=mweb", url],
-        8: ["yt-dlp"] + proxy + ["--format", fmt] + common + ["--extractor-args", "youtube:player_client=android"] + ua_android + [url],
+        1: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github"] + ua_chrome + ["--add-header", "Accept-Language:en-US,en;q=0.9", url],
+        2: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:npm"] + ua_chrome + ["--add-header", "Accept-Language:en-US,en;q=0.9", url],
+        3: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=web,mweb,android_vr", "--js-runtimes", "deno", "--remote-components", "ejs:github", url],
+        4: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=mweb", url],
+        5: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=android_vr", url],
+        6: ["yt-dlp", "--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=web", "--js-runtimes", "deno", "--remote-components", "ejs:github", url],
+        7: ["yt-dlp", "--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=mweb", url],
+        8: ["yt-dlp"] + proxy + ["--format", fmt] + sort_opt + common + ["--extractor-args", "youtube:player_client=android"] + ua_android + [url],
     }
     print(f"Trying download method {method}...")
     try:
@@ -145,19 +146,33 @@ def process_video(url, quality, password, backup_dir, repo_owner, repo_name, bra
     fmt = get_format(quality)
 
     success = False
+    best_height = 0
+    best_method = None
+
     for method in range(1, 9):
         if download_video(method, url, tmp_dir, fmt, quality):
             quality_ok = True
-            if quality not in ["best", "audio"]:
-                for f in Path(tmp_dir).glob("*.mp4"):
-                    h = get_video_height(str(f))
-                    if h and h < int(quality) - 150:
-                        print(f"Method {method} delivered {h}p instead of {quality}p — rejecting...")
-                        quality_ok = False
-                        f.unlink()
+            current_height = 0
+            for f in Path(tmp_dir).glob("*.mp4"):
+                h = get_video_height(str(f))
+                if h:
+                    current_height = max(current_height, h)
+                    if quality == "best":
+                        if h < 720 and method < 8:
+                            print(f"Method {method} delivered {h}p — trying next method for better quality...")
+                            quality_ok = False
+                            f.unlink()
+                    elif quality != "audio":
+                        if h < int(quality) - 150:
+                            print(f"Method {method} delivered {h}p instead of {quality}p — rejecting...")
+                            quality_ok = False
+                            f.unlink()
             if quality_ok:
+                if quality == "best" and current_height > best_height:
+                    best_height = current_height
+                    best_method = method
                 success = True
-                print(f"Download successful with method {method}!")
+                print(f"Download successful with method {method}! ({current_height}p)")
                 break
         print(f"Method {method} failed, waiting 3 seconds...")
         time.sleep(3)
@@ -193,11 +208,11 @@ def process_video(url, quality, password, backup_dir, repo_owner, repo_name, bra
         if size > SPLIT_BYTES:
             archive_base = f"{folder_path}/{final_folder}"
             if password:
-                subprocess.run(["7z", "a", "-tzip", f"-v{SPLIT_MB}m", f"-p{password}", "-mx=0", f"{archive_base}.zip", str(filepath)])
+                subprocess.run(["rar", "a", "-m0", f"-v{SPLIT_MB}m", f"-hp{password}", f"{archive_base}.rar", str(filepath)])
             else:
-                subprocess.run(["zip", "-0", "-s", f"{SPLIT_MB}m", f"{archive_base}.zip", str(filepath)])
+                subprocess.run(["rar", "a", "-m0", f"-v{SPLIT_MB}m", f"{archive_base}.rar", str(filepath)])
 
-            parts = sorted(Path(folder_path).glob("*.z*"))
+            parts = sorted(list(Path(folder_path).glob("*.rar")) + list(Path(folder_path).glob("*.r[0-9][0-9]")))
             total_size = sum(p.stat().st_size for p in parts)
             links = []
             for p in parts:
@@ -207,16 +222,16 @@ def process_video(url, quality, password, backup_dir, repo_owner, repo_name, bra
 
             create_readme(folder_path, filename_no_ext, url, quality, {
                 'count': len(parts), 'size_mb': f"{total_size/1024/1024:.2f}",
-                'main_zip': f"{final_folder}.zip", 'links': links
+                'main_zip': f"{final_folder}.rar", 'links': links
             }, bool(password), True)
         else:
             if password:
-                subprocess.run(["zip", "-0", "-P", password, f"{folder_path}/{final_folder}.zip", str(filepath)])
-                file_enc = urlencode(f"{final_folder}.zip")
-                links = [{'name': f"{final_folder}.zip", 'url': f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{branch}/videos/{folder_encoded}/{file_enc}"}]
+                subprocess.run(["rar", "a", "-m0", f"-hp{password}", f"{folder_path}/{final_folder}.rar", str(filepath)])
+                file_enc = urlencode(f"{final_folder}.rar")
+                links = [{'name': f"{final_folder}.rar", 'url': f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{branch}/videos/{folder_encoded}/{file_enc}"}]
                 create_readme(folder_path, filename_no_ext, url, quality, {
                     'count': 1, 'size_mb': f"{size/1024/1024:.2f}",
-                    'main_zip': f"{final_folder}.zip", 'links': links
+                    'main_zip': f"{final_folder}.rar", 'links': links
                 }, True, False)
             else:
                 shutil.copy(filepath, f"{folder_path}/{final_folder}.{ext}")
