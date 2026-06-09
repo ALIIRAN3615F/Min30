@@ -250,15 +250,17 @@ def process_video(url, quality, password, backup_dir, repo_owner, repo_name, bra
 
 def check_fa_subs(subtitle_dir):
     """Check if any Persian subtitle files exist"""
-    patterns = ["*.fa.vtt", "*.fa.srt", "*.fa-IR.vtt", "*.fa-IR.srt",
-                "*.Persian.vtt", "*.Persian.srt", "*[fa]*.vtt", "*[fa]*.srt"]
-    for pattern in patterns:
+    # Only match exact language code patterns like .fa. or .fa-IR.
+    exact_patterns = ["*.fa.vtt", "*.fa.srt", "*.fa-IR.vtt", "*.fa-IR.srt",
+                      "*.Persian.vtt", "*.Persian.srt"]
+    for pattern in exact_patterns:
         found = list(Path(subtitle_dir).glob(pattern))
         if found:
             return True
-    # broader check
+    # Regex check: must have .fa. or .fa- as a language tag (not just any 'fa' substring)
+    fa_re = re.compile(r'\.(fa|fa-IR|Persian)\.(vtt|srt)$', re.IGNORECASE)
     for f in Path(subtitle_dir).iterdir():
-        if f.is_file() and ("fa" in f.name.lower() or "persian" in f.name.lower()):
+        if f.is_file() and fa_re.search(f.name):
             return True
     return False
 
