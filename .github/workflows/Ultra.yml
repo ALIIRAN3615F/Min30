@@ -78,7 +78,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip ffmpeg zip p7zip-full curl jq bc unzip
+          sudo apt-get install -y python3-pip ffmpeg zip p7zip-full curl jq bc unzip rar
           curl -fsSL https://deno.land/install.sh | sh
           export DENO_INSTALL="$HOME/.deno"
           export PATH="$DENO_INSTALL/bin:$PATH"
