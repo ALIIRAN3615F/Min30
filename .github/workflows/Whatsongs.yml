@@ -1,0 +1,155 @@
+name: WhatSong - Music Detector
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  detect:
+    if: contains(github.event.issue.title, '[song]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install shazamio yt-dlp requests
+
+      - name: Detect song (All-in-YAML)
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python - << 'PYEOF'
+          import os, re, asyncio, subprocess, sys, requests
+          from shazamio import Shazam
+
+          body = os.environ.get("ISSUE_BODY", "") or ""
+
+          # ---------- استخراج لینک از متن issue ----------
+          url_match = re.search(r'(https?://[^\s)\]]+)', body)
+          url = url_match.group(1) if url_match else None
+          print(f"::notice::URL یافت‌شده: {url}")
+
+          AUDIO = "sample_full"
+          CLIP  = "sample.mp3"
+
+          def write_result(text):
+              open("result.txt", "w", encoding="utf-8").write(text)
+
+          # ---------- روش ۱: دانلود از لینک‌های پشتیبانی‌شده‌ی yt-dlp ----------
+          def try_ytdlp(u):
+              try:
+                  subprocess.run([
+                      "yt-dlp", "-x", "--audio-format", "mp3",
+                      "--no-playlist", "-o", f"{AUDIO}.%(ext)s", u
+                  ], check=True)
+                  for ext in ("mp3", "m4a", "webm", "opus"):
+                      f = f"{AUDIO}.{ext}"
+                      if os.path.exists(f):
+                          return f
+              except Exception as e:
+                  print(f"::warning::yt-dlp شکست خورد: {e}")
+              return None
+
+          # ---------- روش ۲: دانلود مستقیم فایل صوتی (mp3/wav/...) ----------
+          def try_direct(u):
+              try:
+                  r = requests.get(u, timeout=60, stream=True)
+                  ct = r.headers.get("Content-Type", "")
+                  if r.status_code == 200 and ("audio" in ct or u.lower().endswith(
+                      (".mp3", ".wav", ".m4a", ".ogg", ".flac", ".aac"))):
+                      f = f"{AUDIO}.dl"
+                      with open(f, "wb") as fp:
+                          for chunk in r.iter_content(8192):
+                              fp.write(chunk)
+                      return f
+              except Exception as e:
+                  print(f"::warning::دانلود مستقیم شکست خورد: {e}")
+              return None
+
+          # ---------- برش ۲۰ ثانیه با ffmpeg ----------
+          def make_clip(src):
+              try:
+                  subprocess.run([
+                      "ffmpeg", "-y", "-i", src,
+                      "-t", "20", "-ar", "44100", "-ac", "2",
+                      "-acodec", "libmp3lame", CLIP
+                  ], check=True)
+                  return os.path.exists(CLIP)
+              except Exception as e:
+                  print(f"::warning::ffmpeg شکست خورد: {e}")
+                  return False
+
+          # ---------- تشخیص با Shazam ----------
+          async def recognize():
+              shazam = Shazam()
+              out = await shazam.recognize(CLIP)
+              return out.get("track")
+
+          # ---------- اجرای زنجیره‌ی روش‌ها ----------
+          def run():
+              if not url:
+                  write_result("⚠️ هیچ لینکی در متن issue پیدا نشد. لطفاً یک لینک یوتیوب/ساندکلاد یا فایل صوتی مستقیم بذار.")
+                  return
+
+              src = try_ytdlp(url) or try_direct(url)
+              if not src:
+                  write_result("❌ نتونستم صدا رو از این لینک استخراج کنم.")
+                  return
+
+              if not make_clip(src):
+                  write_result("❌ خطا در پردازش صدا (ffmpeg).")
+                  return
+
+              track = asyncio.run(recognize())
+              if not track:
+                  write_result("⚠️ آهنگی شناسایی نشد. شاید کیفیت صدا پایینه یا تو دیتابیس Shazam نیست.")
+                  return
+
+              title  = track.get("title", "نامشخص")
+              artist = track.get("subtitle", "نامشخص")
+              cover  = track.get("images", {}).get("coverart", "")
+
+              # لینک‌های مفید از بخش‌های Shazam
+              links = []
+              for sec in track.get("sections", []):
+                  for m in sec.get("metadata", []):
+                      links.append(f"- **{m.get('title','')}:** {m.get('text','')}")
+
+              body_out  = f"## 🎵 آهنگ پیدا شد!\n\n"
+              body_out += f"**عنوان:** {title}\n\n"
+              body_out += f"**خواننده:** {artist}\n\n"
+              if links:
+                  body_out += "### اطلاعات بیشتر\n" + "\n".join(links) + "\n\n"
+              if cover:
+                  body_out += f"![cover]({cover})\n"
+              write_result(body_out)
+
+          run()
+          PYEOF
+
+      - name: Show result (debug)
+        run: cat result.txt || echo "no result"
+
+      - name: Comment result on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = "⚠️ نتیجه‌ای تولید نشد.";
+            try { body = fs.readFileSync('result.txt', 'utf8'); } catch (e) {}
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
