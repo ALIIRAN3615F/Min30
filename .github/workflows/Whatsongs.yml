@@ -1,4 +1,5 @@
-name: WhatSong - Music Detector
+name: 🎵 تشخیص خودکار آهنگ (WhatSong)
+
 on:
   issues:
     types: [opened, edited]
@@ -8,148 +9,541 @@ permissions:
   contents: read
 
 jobs:
-  detect:
-    if: contains(github.event.issue.title, '[song]')
+  detect-song:
+    name: تشخیص آهنگ از لینک
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    if: contains(github.event.issue.title, '[song]')
 
-      - name: Setup Python
+    steps:
+      # ─────────────────────────────────────────────
+      # ۱. نصب وابستگی‌های سیستمی
+      # ─────────────────────────────────────────────
+      - name: 📦 نصب ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          echo "::notice::✅ ffmpeg با موفقیت نصب شد."
+
+      # ─────────────────────────────────────────────
+      # ۲. راه‌اندازی پایتون ۳.۱۱
+      # ─────────────────────────────────────────────
+      - name: 🐍 راه‌اندازی پایتون 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
+      # ─────────────────────────────────────────────
+      # ۳. نصب کتابخانه‌های پایتون
+      # ─────────────────────────────────────────────
+      - name: 📚 نصب shazamio، yt-dlp و requests
         run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          pip install shazamio yt-dlp requests
+          pip install --quiet --upgrade pip
+          pip install --quiet shazamio yt-dlp requests aiohttp asyncio
+          echo "::notice::✅ کتابخانه‌های پایتون نصب شدند."
 
-      - name: Detect song (All-in-YAML)
+      # ─────────────────────────────────────────────
+      # ۴. اجرای منطق اصلی تشخیص آهنگ (All-in-Python)
+      # ─────────────────────────────────────────────
+      - name: 🎵 استخراج لینک، دانلود و تشخیص آهنگ
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           python - << 'PYEOF'
-          import os, re, asyncio, subprocess, sys, requests
-          from shazamio import Shazam
+          import os
+          import re
+          import sys
+          import asyncio
+          import subprocess
+          import json
+          from pathlib import Path
 
-          body = os.environ.get("ISSUE_BODY", "") or ""
+          # ══════════════════════════════════════════
+          # تابع کمکی: چاپ پیام‌های GitHub Actions
+          # ══════════════════════════════════════════
+          def gha_notice(msg: str):
+              print(f"::notice::{msg}", flush=True)
 
-          # ---------- استخراج لینک از متن issue ----------
-          url_match = re.search(r'(https?://[^\s)\]]+)', body)
-          url = url_match.group(1) if url_match else None
-          print(f"::notice::URL یافت‌شده: {url}")
+          def gha_warning(msg: str):
+              print(f"::warning::{msg}", flush=True)
 
-          AUDIO = "sample_full"
-          CLIP  = "sample.mp3"
+          def gha_error(msg: str):
+              print(f"::error::{msg}", flush=True)
 
-          def write_result(text):
-              open("result.txt", "w", encoding="utf-8").write(text)
-
-          # ---------- روش ۱: دانلود از لینک‌های پشتیبانی‌شده‌ی yt-dlp ----------
-          def try_ytdlp(u):
-              try:
-                  subprocess.run([
-                      "yt-dlp", "-x", "--audio-format", "mp3",
-                      "--no-playlist", "-o", f"{AUDIO}.%(ext)s", u
-                  ], check=True)
-                  for ext in ("mp3", "m4a", "webm", "opus"):
-                      f = f"{AUDIO}.{ext}"
-                      if os.path.exists(f):
-                          return f
-              except Exception as e:
-                  print(f"::warning::yt-dlp شکست خورد: {e}")
+          # ══════════════════════════════════════════
+          # مرحله ۱: استخراج لینک از متن Issue
+          # ══════════════════════════════════════════
+          def extract_link(text: str) -> str | None:
+              """استخراج اولین URL معتبر از متن Issue."""
+              if not text:
+                  return None
+              url_pattern = re.compile(
+                  r'https?://'
+                  r'(?:[a-zA-Z0-9\-._~:/?#\[\]@!$&\'()*+,;=%]+)'
+              )
+              matches = url_pattern.findall(text)
+              if matches:
+                  gha_notice(f"🔗 لینک پیدا شد: {matches[0]}")
+                  return matches[0]
               return None
 
-          # ---------- روش ۲: دانلود مستقیم فایل صوتی (mp3/wav/...) ----------
-          def try_direct(u):
+          # ══════════════════════════════════════════
+          # مرحله ۲-الف: دانلود با yt-dlp (روش اول)
+          # ══════════════════════════════════════════
+          def download_with_ytdlp(url: str, output_path: str = "audio_raw") -> str | None:
+              """دانلود صدا از یوتیوب، ساندکلاد و دیگر پلتفرم‌ها با yt-dlp."""
               try:
-                  r = requests.get(u, timeout=60, stream=True)
-                  ct = r.headers.get("Content-Type", "")
-                  if r.status_code == 200 and ("audio" in ct or u.lower().endswith(
-                      (".mp3", ".wav", ".m4a", ".ogg", ".flac", ".aac"))):
-                      f = f"{AUDIO}.dl"
-                      with open(f, "wb") as fp:
-                          for chunk in r.iter_content(8192):
-                              fp.write(chunk)
-                      return f
+                  gha_notice(f"⬇️  در حال دانلود با yt-dlp از: {url}")
+                  cmd = [
+                      "yt-dlp",
+                      "--no-playlist",
+                      "--extract-audio",
+                      "--audio-format", "mp3",
+                      "--audio-quality", "0",
+                      "--output", f"{output_path}.%(ext)s",
+                      "--no-warnings",
+                      "--quiet",
+                      url
+                  ]
+                  result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+                  if result.returncode == 0:
+                      # جستجوی فایل خروجی
+                      for ext in ["mp3", "m4a", "webm", "ogg", "opus", "wav"]:
+                          candidate = f"{output_path}.{ext}"
+                          if Path(candidate).exists():
+                              gha_notice(f"✅ دانلود با yt-dlp موفق بود: {candidate}")
+                              return candidate
+                  gha_warning(f"⚠️  yt-dlp خطا داشت: {result.stderr[:200]}")
+                  return None
+              except subprocess.TimeoutExpired:
+                  gha_warning("⚠️  yt-dlp: زمان دانلود به پایان رسید (timeout).")
+                  return None
               except Exception as e:
-                  print(f"::warning::دانلود مستقیم شکست خورد: {e}")
-              return None
+                  gha_warning(f"⚠️  yt-dlp خطای غیرمنتظره: {e}")
+                  return None
 
-          # ---------- برش ۲۰ ثانیه با ffmpeg ----------
-          def make_clip(src):
+          # ══════════════════════════════════════════
+          # مرحله ۲-ب: دانلود مستقیم فایل صوتی (fallback)
+          # ══════════════════════════════════════════
+          def download_direct(url: str, output_path: str = "audio_direct") -> str | None:
+              """دانلود مستقیم فایل صوتی (mp3/wav/m4a/ogg/flac) با requests."""
+              import requests
+              AUDIO_EXTENSIONS = re.compile(r'\.(mp3|wav|m4a|ogg|flac|aac|opus)(\?.*)?$', re.IGNORECASE)
+              if not AUDIO_EXTENSIONS.search(url):
+                  gha_warning("⚠️  لینک مستقیم فایل صوتی تشخیص داده نشد.")
+                  return None
               try:
-                  subprocess.run([
-                      "ffmpeg", "-y", "-i", src,
-                      "-t", "20", "-ar", "44100", "-ac", "2",
-                      "-acodec", "libmp3lame", CLIP
-                  ], check=True)
-                  return os.path.exists(CLIP)
+                  gha_notice(f"⬇️  در حال دانلود مستقیم از: {url}")
+                  headers = {"User-Agent": "Mozilla/5.0 (WhatSong-Bot/1.0)"}
+                  response = requests.get(url, headers=headers, timeout=60, stream=True)
+                  response.raise_for_status()
+                  # تشخیص پسوند از URL
+                  ext_match = re.search(r'\.(mp3|wav|m4a|ogg|flac|aac|opus)', url, re.IGNORECASE)
+                  ext = ext_match.group(1).lower() if ext_match else "mp3"
+                  out_file = f"{output_path}.{ext}"
+                  with open(out_file, "wb") as f:
+                      for chunk in response.iter_content(chunk_size=8192):
+                          f.write(chunk)
+                  if Path(out_file).stat().st_size > 1024:
+                      gha_notice(f"✅ دانلود مستقیم موفق بود: {out_file}")
+                      return out_file
+                  gha_warning("⚠️  فایل دانلود شده خالی یا ناقص است.")
+                  return None
               except Exception as e:
-                  print(f"::warning::ffmpeg شکست خورد: {e}")
-                  return False
+                  gha_warning(f"⚠️  دانلود مستقیم ناموفق بود: {e}")
+                  return None
 
-          # ---------- تشخیص با Shazam ----------
-          async def recognize():
+          # ══════════════════════════════════════════
+          # مرحله ۳: ساخت کلیپ ۲۰ ثانیه با ffmpeg
+          # ══════════════════════════════════════════
+          def make_clip(input_file: str, output_file: str = "clip.mp3",
+                        start: int = 30, duration: int = 20) -> str | None:
+              """ساخت کلیپ کوتاه و نرمال‌سازی با ffmpeg."""
+              try:
+                  gha_notice(f"✂️  در حال ساخت کلیپ {duration} ثانیه‌ای با ffmpeg...")
+                  # ابتدا مدت فایل را بررسی کن
+                  probe_cmd = [
+                      "ffprobe", "-v", "quiet",
+                      "-print_format", "json",
+                      "-show_format", input_file
+                  ]
+                  probe_result = subprocess.run(probe_cmd, capture_output=True, text=True)
+                  total_duration = 0
+                  if probe_result.returncode == 0:
+                      probe_data = json.loads(probe_result.stdout)
+                      total_duration = float(probe_data.get("format", {}).get("duration", 0))
+                  # اگر فایل کوتاه‌تر از start است، از ابتدا شروع کن
+                  if total_duration > 0 and total_duration < start + duration:
+                      start = max(0, int(total_duration // 3))
+                  cmd = [
+                      "ffmpeg", "-y",
+                      "-i", input_file,
+                      "-ss", str(start),
+                      "-t", str(duration),
+                      "-ar", "44100",         # sample rate: 44100 Hz
+                      "-ac", "2",             # استریو
+                      "-af", "loudnorm",      # نرمال‌سازی صدا
+                      "-c:a", "libmp3lame",
+                      "-q:a", "2",
+                      output_file
+                  ]
+                  result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+                  if result.returncode == 0 and Path(output_file).exists():
+                      size_kb = Path(output_file).stat().st_size // 1024
+                      gha_notice(f"✅ کلیپ ساخته شد: {output_file} ({size_kb} KB)")
+                      return output_file
+                  gha_warning(f"⚠️  ffmpeg خطا داشت: {result.stderr[-300:]}")
+                  return None
+              except subprocess.TimeoutExpired:
+                  gha_warning("⚠️  ffmpeg: ساخت کلیپ بیش از حد طول کشید.")
+                  return None
+              except Exception as e:
+                  gha_warning(f"⚠️  ffmpeg خطای غیرمنتظره: {e}")
+                  return None
+
+          # ══════════════════════════════════════════
+          # مرحله ۴: تشخیص آهنگ با shazamio
+          # (تمام متدهای موجود)
+          # ══════════════════════════════════════════
+          async def recognize_from_file(file_path: str) -> dict | None:
+              """تشخیص آهنگ از فایل صوتی."""
+              from shazamio import Shazam
+              try:
+                  gha_notice(f"🔍 در حال تشخیص آهنگ از فایل: {file_path}")
+                  shazam = Shazam()
+                  out = await shazam.recognize(file_path)
+                  if out and out.get("track"):
+                      gha_notice("✅ آهنگ شناسایی شد (متد: recognize از فایل).")
+                      return out
+                  gha_warning("⚠️  shazamio: آهنگی از فایل شناسایی نشد.")
+                  return None
+              except Exception as e:
+                  gha_warning(f"⚠️  خطا در recognize فایل: {e}")
+                  return None
+
+          async def recognize_song_by_url(audio_url: str) -> dict | None:
+              """تشخیص آهنگ مستقیماً از URL (اگر shazamio پشتیبانی کند)."""
+              from shazamio import Shazam
+              try:
+                  gha_notice(f"🌐 تلاش تشخیص مستقیم از URL با shazamio...")
+                  shazam = Shazam()
+                  # این متد در برخی نسخه‌های shazamio موجود است
+                  if hasattr(shazam, "recognize_url"):
+                      out = await shazam.recognize_url(audio_url)
+                  elif hasattr(shazam, "recognize_song"):
+                      out = await shazam.recognize_song(audio_url)
+                  else:
+                      gha_notice("ℹ️  recognize_url در این نسخه موجود نیست، رد شد.")
+                      return None
+                  if out and out.get("track"):
+                      gha_notice("✅ آهنگ از URL شناسایی شد.")
+                      return out
+                  return None
+              except Exception as e:
+                  gha_warning(f"⚠️  خطا در recognize_url: {e}")
+                  return None
+
+          async def recognize_with_timestamps(file_path: str) -> dict | None:
+              """تشخیص آهنگ با چند بازه زمانی مختلف (اگر اولی ناموفق بود)."""
+              from shazamio import Shazam
+              import aiofiles
               shazam = Shazam()
-              out = await shazam.recognize(CLIP)
-              return out.get("track")
+              # بررسی وجود متد recognize_bytes یا recognize_stream
+              for start_sec in [0, 30, 60, 90]:
+                  try:
+                      clip = f"try_clip_{start_sec}.mp3"
+                      result = make_clip(file_path, clip, start=start_sec, duration=20)
+                      if not result:
+                          continue
+                      gha_notice(f"🔍 تلاش تشخیص از ثانیه {start_sec}...")
+                      out = await shazam.recognize(clip)
+                      if out and out.get("track"):
+                          gha_notice(f"✅ آهنگ در ثانیه {start_sec} شناسایی شد.")
+                          return out
+                  except Exception as e:
+                      gha_warning(f"⚠️  تشخیص در ثانیه {start_sec} ناموفق: {e}")
+                      continue
+              return None
 
-          # ---------- اجرای زنجیره‌ی روش‌ها ----------
-          def run():
+          async def get_top_charts(country_code: str = "IR") -> list:
+              """دریافت لیست پرطرفدارترین آهنگ‌ها (برای اطمینان از اتصال Shazam)."""
+              from shazamio import Shazam
+              try:
+                  shazam = Shazam()
+                  charts = await shazam.top_country_tracks(country_code, limit=1)
+                  if charts:
+                      gha_notice("✅ اتصال به Shazam برقرار است.")
+                      return charts
+              except Exception as e:
+                  gha_warning(f"⚠️  خطا در بررسی اتصال Shazam: {e}")
+              return []
+
+          async def get_track_details(track_id: str) -> dict | None:
+              """دریافت جزئیات کامل یک آهنگ با شناسه Shazam."""
+              from shazamio import Shazam
+              try:
+                  shazam = Shazam()
+                  if hasattr(shazam, "track_about"):
+                      details = await shazam.track_about(track_id)
+                      return details
+                  elif hasattr(shazam, "song_about"):
+                      details = await shazam.song_about(track_id)
+                      return details
+              except Exception as e:
+                  gha_warning(f"⚠️  خطا در دریافت جزئیات track: {e}")
+              return None
+
+          # ══════════════════════════════════════════
+          # مرحله ۵: استخراج اطلاعات از نتیجه Shazam
+          # ══════════════════════════════════════════
+          def parse_shazam_result(data: dict) -> dict:
+              """استخراج کامل اطلاعات آهنگ از پاسخ shazamio."""
+              track = data.get("track", {})
+              result = {
+                  "title": track.get("title", "نامشخص"),
+                  "artist": track.get("subtitle", "نامشخص"),
+                  "genre": "",
+                  "album": "",
+                  "label": "",
+                  "release_date": "",
+                  "cover": "",
+                  "shazam_url": "",
+                  "apple_music": "",
+                  "spotify": "",
+                  "youtube": "",
+                  "lyrics_url": "",
+                  "extra_links": [],
+              }
+              # کاور
+              images = track.get("images", {})
+              result["cover"] = (
+                  images.get("coverarthq") or
+                  images.get("coverart") or
+                  images.get("background") or ""
+              )
+              # لینک Shazam
+              result["shazam_url"] = track.get("url", "")
+              # استخراج از sections
+              for section in track.get("sections", []):
+                  stype = section.get("type", "")
+                  # متادیتا
+                  if stype == "SONG":
+                      for meta in section.get("metadata", []):
+                          title_key = meta.get("title", "").lower()
+                          text_val = meta.get("text", "")
+                          if "album" in title_key:
+                              result["album"] = text_val
+                          elif "label" in title_key:
+                              result["label"] = text_val
+                          elif "released" in title_key or "release" in title_key:
+                              result["release_date"] = text_val
+                  # ژانر
+                  if stype == "ARTIST":
+                      for meta in section.get("metadata", []):
+                          if "genre" in meta.get("title", "").lower():
+                              result["genre"] = meta.get("text", "")
+                  # لیریکس
+                  if stype == "LYRICS":
+                      for tab in section.get("tabname", []):
+                          pass
+                      footer = section.get("footer", "")
+                  # لینک‌های بیشتر
+                  if stype == "VIDEO":
+                      for vid in section.get("videos", []):
+                          url = vid.get("url") or vid.get("uri", "")
+                          if url and "youtube" in url.lower():
+                              result["youtube"] = url
+                              break
+
+              # استخراج از hub (Apple Music, Spotify, …)
+              hub = track.get("hub", {})
+              for action in hub.get("actions", []):
+                  if action.get("type") == "uri":
+                      uri = action.get("uri", "")
+                      if "spotify" in uri.lower():
+                          result["spotify"] = uri
+              for option in hub.get("options", []):
+                  for act in option.get("actions", []):
+                      if act.get("type") == "uri":
+                          uri = act.get("uri", "")
+                          if "music.apple" in uri.lower():
+                              result["apple_music"] = uri
+                          elif "spotify" in uri.lower():
+                              result["spotify"] = uri
+
+              # لینک‌های خارجی از providers
+              for provider in data.get("providers", []):
+                  actions = provider.get("actions", [])
+                  caption = provider.get("caption", "")
+                  for act in actions:
+                      uri = act.get("uri", "")
+                      if uri:
+                          result["extra_links"].append(f"{caption}: {uri}")
+
+              return result
+
+          # ══════════════════════════════════════════
+          # مرحله ۶: تولید خروجی متنی و فایل result.txt
+          # ══════════════════════════════════════════
+          def build_result_text(info: dict, url: str) -> str:
+              lines = [
+                  "## 🎵 نتیجه تشخیص آهنگ",
+                  "",
+                  f"| فیلد | مقدار |",
+                  f"|------|-------|",
+                  f"| 🎼 عنوان | **{info['title']}** |",
+                  f"| 🎤 خواننده | **{info['artist']}** |",
+              ]
+              if info["album"]:
+                  lines.append(f"| 💿 آلبوم | {info['album']} |")
+              if info["genre"]:
+                  lines.append(f"| 🎸 ژانر | {info['genre']} |")
+              if info["release_date"]:
+                  lines.append(f"| 📅 تاریخ انتشار | {info['release_date']} |")
+              if info["label"]:
+                  lines.append(f"| 🏷️ لیبل | {info['label']} |")
+              lines.append("")
+              if info["cover"]:
+                  lines.append(f"![کاور آهنگ]({info['cover']})")
+                  lines.append("")
+              lines.append("### 🔗 لینک‌ها")
+              if info["shazam_url"]:
+                  lines.append(f"- 🔵 [Shazam]({info['shazam_url']})")
+              if info["apple_music"]:
+                  lines.append(f"- 🍎 [Apple Music]({info['apple_music']})")
+              if info["spotify"]:
+                  lines.append(f"- 🟢 [Spotify]({info['spotify']})")
+              if info["youtube"]:
+                  lines.append(f"- 🔴 [YouTube]({info['youtube']})")
+              for lnk in info["extra_links"][:5]:
+                  lines.append(f"- 🌐 {lnk}")
+              lines += [
+                  "",
+                  "---",
+                  f"*تشخیص توسط [WhatSong Bot](https://github.com) · لینک اصلی: {url}*",
+              ]
+              return "\n".join(lines)
+
+          # ══════════════════════════════════════════
+          # اجرای اصلی (async main)
+          # ══════════════════════════════════════════
+          async def main():
+              issue_body  = os.environ.get("ISSUE_BODY", "")
+              issue_title = os.environ.get("ISSUE_TITLE", "")
+
+              gha_notice(f"📋 عنوان Issue: {issue_title}")
+
+              # ── استخراج لینک ──
+              url = extract_link(issue_body) or extract_link(issue_title)
               if not url:
-                  write_result("⚠️ هیچ لینکی در متن issue پیدا نشد. لطفاً یک لینک یوتیوب/ساندکلاد یا فایل صوتی مستقیم بذار.")
-                  return
+                  gha_error("❌ هیچ لینکی در متن Issue پیدا نشد.")
+                  fail_msg = (
+                      "## ❌ خطا در تشخیص آهنگ\n\n"
+                      "لینکی در متن Issue یافت نشد.\n"
+                      "لطفاً یک لینک یوتیوب، ساندکلاد یا فایل صوتی مستقیم وارد کنید."
+                  )
+                  Path("result.txt").write_text(fail_msg, encoding="utf-8")
+                  sys.exit(0)
 
-              src = try_ytdlp(url) or try_direct(url)
-              if not src:
-                  write_result("❌ نتونستم صدا رو از این لینک استخراج کنم.")
-                  return
+              # ── بررسی اتصال Shazam ──
+              await get_top_charts("IR")
 
-              if not make_clip(src):
-                  write_result("❌ خطا در پردازش صدا (ffmpeg).")
-                  return
+              # ── مرحله ۲: دانلود (ytdlp → fallback) ──
+              raw_audio = None
 
-              track = asyncio.run(recognize())
-              if not track:
-                  write_result("⚠️ آهنگی شناسایی نشد. شاید کیفیت صدا پایینه یا تو دیتابیس Shazam نیست.")
-                  return
+              # روش اول: yt-dlp
+              raw_audio = download_with_ytdlp(url, "audio_ytdlp")
 
-              title  = track.get("title", "نامشخص")
-              artist = track.get("subtitle", "نامشخص")
-              cover  = track.get("images", {}).get("coverart", "")
+              # روش دوم (fallback): دانلود مستقیم
+              if not raw_audio:
+                  gha_notice("🔄 روش اول ناموفق بود؛ تلاش با دانلود مستقیم...")
+                  raw_audio = download_direct(url, "audio_direct")
 
-              # لینک‌های مفید از بخش‌های Shazam
-              links = []
-              for sec in track.get("sections", []):
-                  for m in sec.get("metadata", []):
-                      links.append(f"- **{m.get('title','')}:** {m.get('text','')}")
+              if not raw_audio:
+                  gha_error("❌ دانلود فایل صوتی با هر دو روش ناموفق بود.")
+                  fail_msg = (
+                      "## ❌ خطا در دانلود فایل صوتی\n\n"
+                      f"لینک `{url}` با yt-dlp و دانلود مستقیم قابل دسترسی نبود.\n"
+                      "مطمئن شوید لینک معتبر و عمومی است."
+                  )
+                  Path("result.txt").write_text(fail_msg, encoding="utf-8")
+                  sys.exit(0)
 
-              body_out  = f"## 🎵 آهنگ پیدا شد!\n\n"
-              body_out += f"**عنوان:** {title}\n\n"
-              body_out += f"**خواننده:** {artist}\n\n"
-              if links:
-                  body_out += "### اطلاعات بیشتر\n" + "\n".join(links) + "\n\n"
-              if cover:
-                  body_out += f"![cover]({cover})\n"
-              write_result(body_out)
+              # ── مرحله ۳: ساخت کلیپ ──
+              clip = make_clip(raw_audio, "clip.mp3", start=30, duration=20)
+              if not clip:
+                  gha_warning("⚠️  ساخت کلیپ ناموفق بود؛ تلاش با فایل اصلی...")
+                  clip = raw_audio   # تلاش با فایل خام
 
-          run()
+              # ── مرحله ۴: تشخیص آهنگ (همه متدها) ──
+              shazam_data = None
+
+              # متد A: تشخیص از فایل
+              shazam_data = await recognize_from_file(clip)
+
+              # متد B: اگر ناموفق، تشخیص از URL مستقیم
+              if not shazam_data:
+                  shazam_data = await recognize_song_by_url(url)
+
+              # متد C: اگر هنوز ناموفق، تشخیص با چند بازه زمانی
+              if not shazam_data:
+                  gha_notice("🔄 تلاش با بازه‌های زمانی مختلف...")
+                  shazam_data = await recognize_with_timestamps(raw_audio)
+
+              if not shazam_data:
+                  gha_error("❌ آهنگ با هیچ روشی توسط Shazam شناسایی نشد.")
+                  fail_msg = (
+                      "## ❌ آهنگ شناسایی نشد\n\n"
+                      f"فایل صوتی از لینک `{url}` دانلود شد ولی Shazam آهنگی تشخیص نداد.\n"
+                      "شاید این فایل موسیقی نیست، یا کیفیت صدا کافی نیست."
+                  )
+                  Path("result.txt").write_text(fail_msg, encoding="utf-8")
+                  sys.exit(0)
+
+              # ── مرحله ۵: دریافت جزئیات بیشتر ──
+              track_id = shazam_data.get("track", {}).get("key", "")
+              if track_id:
+                  extra = await get_track_details(str(track_id))
+                  if extra and extra.get("track"):
+                      # ادغام اطلاعات بیشتر
+                      for k, v in extra.get("track", {}).items():
+                          if k not in shazam_data["track"] or not shazam_data["track"][k]:
+                              shazam_data["track"][k] = v
+
+              # ── مرحله ۶: استخراج و ذخیره نتیجه ──
+              info = parse_shazam_result(shazam_data)
+              result_text = build_result_text(info, url)
+              Path("result.txt").write_text(result_text, encoding="utf-8")
+
+              gha_notice(f"🎉 آهنگ شناسایی شد: {info['title']} — {info['artist']}")
+              # خلاصه برای GitHub Actions Summary
+              summary_line = f"### 🎵 {info['title']} · {info['artist']}"
+              with open(os.environ.get("GITHUB_STEP_SUMMARY", "/dev/null"), "a") as sf:
+                  sf.write(summary_line + "\n")
+
+          asyncio.run(main())
           PYEOF
 
-      - name: Show result (debug)
-        run: cat result.txt || echo "no result"
-
-      - name: Comment result on issue
+      # ─────────────────────────────────────────────
+      # ۵. درج کامنت روی Issue
+      # ─────────────────────────────────────────────
+      - name: 💬 ارسال نتیجه به‌عنوان کامنت Issue
+        if: always()
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            let body = "⚠️ نتیجه‌ای تولید نشد.";
-            try { body = fs.readFileSync('result.txt', 'utf8'); } catch (e) {}
+            let body;
+            try {
+              body = fs.readFileSync('result.txt', 'utf8');
+            } catch (e) {
+              body = '## ❌ خطای داخلی\n\nفایل نتیجه یافت نشد. لاگ‌های Actions را بررسی کنید.';
+            }
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body
+              body: body
             });
+            core.notice('✅ کامنت با موفقیت روی Issue درج شد.');
