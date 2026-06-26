@@ -1,4 +1,4 @@
-# THE_PINK_VALLEY_-_ENG
+# THE_PINK_VALLEY_-_ENG.rar - Download Failed
 
 ---
 
@@ -6,27 +6,29 @@
 
 | Property | Value |
 |----------|-------|
-| **Original File** | `THE_PINK_VALLEY_-_ENG.rar` |
-| **Total Size** | **2 parts** - **168.31 MB** |
-| **Status** | **Complete (100%)** |
-| **Password Protected** | **NO** |
+| **File** | `THE_PINK_VALLEY_-_ENG.rar` |
+| **URL** | https://fmt5.dl.dbolical.com/dl/2024/11/21/THE_PINK_VALLEY_-_ENG.rar?st=eKLy-GRfu0VMqM1twe06QQ==&e=1782495890 |
+| **Date** | 2026-06-26 17:50:55 UTC |
+| **Status** | **FAILED** |
 
 ---
 
-## Download Links
+## Error Details
 
-| # | File | Link |
-|---|------|------|
-| 1 | `THE_PINK_VALLEY_-_ENG.z01` | [Download](https://github.com/ALIIRAN3615F/Min30/raw/main/downloads/THE_PINK_VALLEY_-_ENG/THE_PINK_VALLEY_-_ENG.z01) |
-| 2 | `THE_PINK_VALLEY_-_ENG.zip` | [Download](https://github.com/ALIIRAN3615F/Min30/raw/main/downloads/THE_PINK_VALLEY_-_ENG/THE_PINK_VALLEY_-_ENG.zip) |
+```
+Download failed after 3 attempts. Last error: #=#=#                                                                          ######################################################################## 100.0%curl: (22) The requested URL returned error: 403
+```
 
 ---
 
-## How to Extract
+## Possible Solutions
 
-1. **Download all parts** (`.zip`, `.z01`, `.z02`...)
-2. **Open** `THE_PINK_VALLEY_-_ENG.zip` with WinRAR, 7-Zip, Ark, or any standard zip tool
-3. **Extract** — all parts combine automatically
+- Check if the URL is correct and accessible
+- The file may have been removed or moved
+- The server may require authentication
+- For SourceForge: Try using the direct download link
+- Some servers block automated downloads (403 Forbidden)
+- Try again later if it is a temporary server issue
 
 ---
 
