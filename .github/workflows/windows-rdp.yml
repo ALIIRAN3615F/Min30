@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 360
 
     steps:
-      - name: 1. Install Desktop and RDP
+      - name: 1. Install Desktop, RDP and Chrome Dependencies
         shell: bash
         run: |
           set -eu
@@ -31,7 +31,8 @@ jobs:
             iproute2 \
             procps \
             grep \
-            sed
+            sed \
+            wget
 
       - name: 2. Create User and Configure Desktop
         shell: bash
@@ -73,8 +74,6 @@ jobs:
 
           chown xrdp:xrdp /run/xrdp
 
-          echo "User and XFCE session configured."
-
       - name: 3. Start XRDP
         shell: bash
         run: |
@@ -83,23 +82,15 @@ jobs:
           mkdir -p /run/xrdp
           chown xrdp:xrdp /run/xrdp
 
-          # Start the daemons directly; no systemd required.
           /usr/sbin/xrdp-sesman
           /usr/sbin/xrdp
 
           sleep 3
 
-          echo "===== XRDP LISTENER ====="
           if ! ss -ltnp | grep -q ':3389'; then
-            echo "ERROR: XRDP is not listening on port 3389."
-            echo "===== XRDP LOG ====="
-            cat /var/log/xrdp.log 2>/dev/null || true
-            echo "===== SESMAN LOG ====="
-            cat /var/log/xrdp-sesman.log 2>/dev/null || true
+            echo "XRDP failed to listen on port 3389."
             exit 1
           fi
-
-          ss -ltnp | grep ':3389'
 
       - name: 4. Install and Connect Tailscale
         shell: bash
@@ -120,7 +111,7 @@ jobs:
           tailscaled \
             --tun=userspace-networking \
             --socket=/var/run/tailscale/tailscaled.sock \
-            > /tmp/tailscaled.log 2>&1 &
+            >/tmp/tailscaled.log 2>&1 &
 
           for i in $(seq 1 30); do
             if tailscale \
@@ -139,58 +130,58 @@ jobs:
 
           sleep 5
 
-          echo "===== TAILSCALE STATUS ====="
-          tailscale \
-            --socket=/var/run/tailscale/tailscaled.sock \
-            status
-
-          echo "===== TAILSCALE IP ====="
+          echo "=========================================="
+          echo "       DEBIAN CLOUD RDP"
+          echo "=========================================="
+          echo "Tailscale IP:"
           tailscale \
             --socket=/var/run/tailscale/tailscaled.sock \
             ip -4
-
-      - name: 5. Diagnostics and Keep Alive
-        shell: bash
-        run: |
-          set -u
-
-          echo "=========================================="
-          echo "        DEBIAN CLOUD RDP"
-          echo "=========================================="
           echo "Username: NvDAdmin"
           echo "Password: P@ssw0rd1qazXSW@#"
           echo "RDP Port: 3389"
           echo "=========================================="
 
-          echo "===== LISTENING PORTS ====="
-          ss -ltnp || true
+      - name: 5. Install Google Chrome
+        shell: bash
+        run: |
+          set -eu
 
-          echo "===== XRDP LOG ====="
-          tail -n 100 /var/log/xrdp.log 2>/dev/null || true
+          wget -O /tmp/google-chrome.deb \
+            https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-          echo "===== SESMAN LOG ====="
-          tail -n 100 /var/log/xrdp-sesman.log 2>/dev/null || true
+          apt-get install -y /tmp/google-chrome.deb
 
-          echo "===== TAILSCALED LOG ====="
-          tail -n 60 /tmp/tailscaled.log 2>/dev/null || true
+          mkdir -p /home/NvDAdmin/.config/google-chrome
+          chown -R NvDAdmin:NvDAdmin /home/NvDAdmin/.config
 
-          for i in $(seq 1 350); do
-            sleep 60
-            echo "[$i/350] Runner is running."
+      - name: 6. Launch Chrome and Keep Alive
+        shell: bash
+        run: |
+          set -eu
 
-            if [ $((i % 5)) -eq 0 ]; then
-              echo "===== XRDP ====="
-              tail -n 30 /var/log/xrdp.log 2>/dev/null || true
-
-              echo "===== SESMAN ====="
-              tail -n 40 /var/log/xrdp-sesman.log 2>/dev/null || true
-
-              echo "===== PROCESSES ====="
-              ps aux | grep -E \
-                'xrdp|Xorg|xfce|Xsession|tailscaled' |
-                grep -v grep || true
-
-              echo "===== PORT 3389 ====="
-              ss -ltnp | grep ':3389' || true
+          # Wait for the RDP graphical session to become available.
+          for i in $(seq 1 60); do
+            if pgrep -u NvDAdmin -f 'xfce4-session|xfce4-session' >/dev/null; then
+              break
             fi
+            sleep 2
+          done
+
+          # Launch Chrome in the user's graphical session.
+          runuser -u NvDAdmin -- \
+            env DISPLAY=:10 \
+            google-chrome-stable \
+            --no-sandbox \
+            --disable-gpu \
+            --no-first-run \
+            --no-default-browser-check \
+            --user-data-dir=/home/NvDAdmin/.config/google-chrome \
+            >/home/NvDAdmin/chrome.log 2>&1 &
+
+          echo "Chrome launch command submitted."
+
+          for i in $(seq 1 2000); do
+            sleep 60
+            echo "[$i/2000] Debian RDP is running."
           done
