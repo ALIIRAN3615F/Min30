@@ -1,4 +1,4 @@
-
+```yaml
 name: Debian Cloud RDP
 
 on:
@@ -16,12 +16,12 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y \
-            xfce4 xfce4-goodies xrdp dbus-x11 sudo curl ca-certificates
+            xfce4 xfce4-goodies xorgxrdp xrdp \
+            dbus-x11 dbus sudo curl ca-certificates \
+            iproute2 procps
 
-
-      - name: 2. Create Admin Account
+      - name: 2. Create Admin Account & Configure XRDP
         run: |
-          apt-get install -y xfce4 xfce4-goodies xorgxrdp xrdp dbus-x11
           useradd -m -s /bin/bash NvDAdmin || true
           echo 'NvDAdmin:P@ssw0rd1qazXSW@#' | chpasswd
           usermod -aG sudo,ssl-cert NvDAdmin
@@ -33,48 +33,79 @@ jobs:
           mkdir -p /run/dbus
           dbus-daemon --system --fork || true
 
-          service xrdp restart
+          adduser xrdp ssl-cert || true
+          chown root:ssl-cert /etc/xrdp/key.pem
+          chmod 640 /etc/xrdp/key.pem
 
-          echo "XRDP session configured for NvDAdmin"
+          install -d -o xrdp -g xrdp /run/xrdp
+          service xrdp-sesman start
+          service xrdp start
 
+          echo "XRDP configured for NvDAdmin"
 
       - name: 3. Install & Connect Tailscale VPN
         env:
           TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
         run: |
+          if [ -z "$TAILSCALE_AUTHKEY" ]; then
+            echo "ERROR: TAILSCALE_AUTHKEY secret is missing."
+            exit 1
+          fi
+
           curl -fsSL https://tailscale.com/install.sh | sh
-          tailscaled --tun=userspace-networking &
-          sleep 5
-          tailscale up \
-            --auth-key="$TAILSCALE_AUTHKEY" \
+
+          mkdir -p /var/run/tailscale
+          tailscaled \
+            --tun=userspace-networking \
+            --socket=/var/run/tailscale/tailscaled.sock \
+            > /tmp/tailscaled.log 2>&1 &
+
+          for i in $(seq 1 30); do
+            if tailscale --socket=/var/run/tailscale/tailscaled.sock status >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+          done
+
+          tailscale \
+            --socket=/var/run/tailscale/tailscaled.sock \
+            up --auth-key="$TAILSCALE_AUTHKEY" \
             --hostname="debian-rdp-server"
+
           sleep 8
-          ts_ip=$(tailscale ip -4)
 
-      - name: 4. TEST & Debug RDP
+          echo "Tailscale status:"
+          tailscale --socket=/var/run/tailscale/tailscaled.sock status
+
+          echo "Tailscale IP:"
+          tailscale --socket=/var/run/tailscale/tailscaled.sock ip -4
+
+      - name: 4. RDP Diagnostics
         run: |
-          for i in $(seq 1 10); do
-            sleep 60
-            echo "========== XRDP DEBUG $i =========="
-            echo "----- XRDP LOG -----"
-            tail -n 80 /var/log/xrdp.log 2>/dev/null || true
-            echo "----- SESMAN LOG -----"
-            tail -n 120 /var/log/xrdp-sesman.log 2>/dev/null || true
-            echo "----- RUNNING PROCESSES -----"
-            ps aux | grep -E 'xrdp|Xorg|xfce|Xsession' | grep -v grep || true
-          done
+          echo "===== XRDP SERVICES ====="
+          service xrdp status || true
+          service xrdp-sesman status || true
 
-          echo "=================================================="
-          echo "  >>> DEBIAN RDP ENVIRONMENT <<<"
-          echo "  Tailscale IP : $ts_ip"
-          echo "  Username     : NvDAdmin"
-          echo "  Password     : P@ssw0rd1qazXSW@#"
-          echo "  RDP Port     : 3389"
-          echo "=================================================="
+          echo "===== XRDP TLS KEY ====="
+          ls -l /etc/xrdp/cert.pem /etc/xrdp/key.pem || true
 
-      - name: 4. TEST
-        run: |
-          for i in $(seq 1 2880); do
+          echo "===== XRDP LOG ====="
+          tail -n 100 /var/log/xrdp.log 2>/dev/null || true
+
+          echo "===== SESMAN LOG ====="
+          tail -n 100 /var/log/xrdp-sesman.log 2>/dev/null || true
+
+          echo "===== LISTENING PORTS ====="
+          ss -lntp || true
+
+          echo "===== KEEP RUNNER ALIVE ====="
+          for i in $(seq 1 360); do
             sleep 60
-            echo "[$i/2880] Server running..."
+            echo "[$i/360] Runner running..."
+
+            if [ $((i % 5)) -eq 0 ]; then
+              tail -n 30 /var/log/xrdp.log 2>/dev/null || true
+              tail -n 30 /var/log/xrdp-sesman.log 2>/dev/null || true
+            fi
           done
+```
