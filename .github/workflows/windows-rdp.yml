@@ -18,14 +18,25 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -y \
             xfce4 xfce4-goodies xrdp dbus-x11 sudo curl ca-certificates
 
+
       - name: 2. Create Admin Account
         run: |
+          apt-get install -y xfce4 xfce4-goodies xorgxrdp xrdp dbus-x11
           useradd -m -s /bin/bash NvDAdmin || true
           echo 'NvDAdmin:P@ssw0rd1qazXSW@#' | chpasswd
-          usermod -aG sudo NvDAdmin
+          usermod -aG sudo,ssl-cert NvDAdmin
+
           echo 'startxfce4' > /home/NvDAdmin/.xsession
           chown NvDAdmin:NvDAdmin /home/NvDAdmin/.xsession
-          service xrdp start
+          chmod 644 /home/NvDAdmin/.xsession
+
+          mkdir -p /run/dbus
+          dbus-daemon --system --fork || true
+
+          service xrdp restart
+
+          echo "XRDP session configured for NvDAdmin"
+
 
       - name: 3. Install & Connect Tailscale VPN
         env:
