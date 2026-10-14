@@ -7,47 +7,50 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: debian:trixie
     timeout-minutes: 360
 
     steps:
-      - name: 1. Install Debian
+      - name: 1. Install Desktop & RDP
         run: |
-          sudo apt-get update
-          sudo apt-get install -y curl wget sudo openssh-server
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            xfce4 xfce4-goodies xrdp dbus-x11 sudo curl ca-certificates
 
-      - name: 2. Install Desktop and RDP
+      - name: 2. Create Admin Account
         run: |
-          sudo apt-get install -y xfce4 xfce4-goodies xrdp
-          sudo systemctl enable --now xrdp
+          useradd -m -s /bin/bash NvDAdmin || true
+          echo 'NvDAdmin:P@ssw0rd1qazXSW@#' | chpasswd
+          usermod -aG sudo NvDAdmin
+          echo 'startxfce4' > /home/NvDAdmin/.xsession
+          chown NvDAdmin:NvDAdmin /home/NvDAdmin/.xsession
+          service xrdp start
 
-      - name: 3. Create Admin Account
-        run: |
-          sudo useradd -m -s /bin/bash NvDAdmin || true
-          echo 'NvDAdmin:CHANGE_THIS_PASSWORD' | sudo chpasswd
-          sudo usermod -aG sudo NvDAdmin
-          sudo adduser xrdp ssl-cert || true
-
-      - name: 4. Install & Connect Tailscale
+      - name: 3. Install & Connect Tailscale VPN
         env:
           TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
         run: |
           curl -fsSL https://tailscale.com/install.sh | sh
-          sudo tailscale up --auth-key="$TAILSCALE_AUTHKEY" --hostname="debian-rdp-server"
-
+          tailscaled --tun=userspace-networking &
+          sleep 5
+          tailscale up \
+            --auth-key="$TAILSCALE_AUTHKEY" \
+            --hostname="debian-rdp-server"
           sleep 8
+          ts_ip=$(tailscale ip -4)
 
-          TS_IP=$(tailscale ip -4)
+          echo "=================================================="
+          echo "  >>> DEBIAN RDP ENVIRONMENT <<<"
+          echo "  Tailscale IP : $ts_ip"
+          echo "  Username     : NvDAdmin"
+          echo "  Password     : P@ssw0rd1qazXSW@#"
+          echo "  RDP Port     : 3389"
+          echo "=================================================="
 
-          echo "=========================================="
-          echo "Debian RDP Server"
-          echo "Tailscale IP: $TS_IP"
-          echo "Username: NvDAdmin"
-          echo "RDP Port: 3389"
-          echo "=========================================="
-
-      - name: 5. Keep Runner Alive
+      - name: 4. TEST
         run: |
           for i in $(seq 1 2880); do
             sleep 60
-            echo "[$i/2880] Runner running..."
+            echo "[$i/2880] Server running..."
           done
