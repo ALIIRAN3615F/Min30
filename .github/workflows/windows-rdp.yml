@@ -51,6 +51,19 @@ jobs:
           sleep 8
           ts_ip=$(tailscale ip -4)
 
+      - name: 4. TEST & Debug RDP
+        run: |
+          for i in $(seq 1 10); do
+            sleep 60
+            echo "========== XRDP DEBUG $i =========="
+            echo "----- XRDP LOG -----"
+            tail -n 80 /var/log/xrdp.log 2>/dev/null || true
+            echo "----- SESMAN LOG -----"
+            tail -n 120 /var/log/xrdp-sesman.log 2>/dev/null || true
+            echo "----- RUNNING PROCESSES -----"
+            ps aux | grep -E 'xrdp|Xorg|xfce|Xsession' | grep -v grep || true
+          done
+
           echo "=================================================="
           echo "  >>> DEBIAN RDP ENVIRONMENT <<<"
           echo "  Tailscale IP : $ts_ip"
