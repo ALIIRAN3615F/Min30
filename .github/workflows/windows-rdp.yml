@@ -1,4 +1,4 @@
-```yaml
+
 name: Debian Cloud RDP
 
 on:
@@ -51,4 +51,3 @@ jobs:
             sleep 60
             echo "[$i/2880] Runner running..."
           done
-```
