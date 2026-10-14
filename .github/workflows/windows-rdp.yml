@@ -1,4 +1,4 @@
-```yaml
+
 name: Debian Cloud RDP
 
 on:
@@ -108,4 +108,4 @@ jobs:
               tail -n 30 /var/log/xrdp-sesman.log 2>/dev/null || true
             fi
           done
-```
+
