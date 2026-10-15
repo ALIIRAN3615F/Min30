@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_PAT }}
-          ref: ${{ github.ref_name }}
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -34,7 +31,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          mkdir -p "$RUNNER_TEMP/eaglan-download" .eaglan-data
+          mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
             'https://download1585.mediafire.com/xrxnj0tioz6gf18Pd27WqeUimmp42wrT7jYPllDZUqIrYNWTrjNx_RjQtvgHfONXuyMqwO3FmnyW2v9wcT8HxsMlXZxT6qK7V2p2Jd9WPaA3JAm9tFpBNrOhbmw4kZ1xa_rqG6VNVRNN2fUwyOx16vsZWasKgwUstUlXnmdB_4cU/92a333eltq41enr/eaglan-host-linux.zip' \
@@ -66,10 +63,10 @@ jobs:
         with:
           authkey: ${{ secrets.TS_AUTHKEY }}
 
-      - name: Start host and save world
+      - name: Start host, save world, and restart workflow
         shell: bash
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           cd "$EAGLAN_PROJECT_DIR"
@@ -114,13 +111,13 @@ jobs:
           tailscale serve --bg http://127.0.0.1:8090
           tailscale serve status
 
-          echo "Host UI is available through the Tailscale HTTPS address above."
-          echo "Select or import your world and click Host."
+          echo "Open the Tailscale HTTPS address above."
+          echo "Select or import your world, then click Host."
 
-          # Keep the current session below the GitHub Actions time limit.
+          # Run for 5 hours 35 minutes, below the job timeout.
           sleep 335m
 
-          echo "Stopping Eaglan for world persistence..."
+          echo "Stopping Eaglan to save the world..."
           kill -TERM "$UI_PID" 2>/dev/null || true
 
           for _ in $(seq 1 60); do
@@ -131,15 +128,16 @@ jobs:
           done
 
           if kill -0 "$UI_PID" 2>/dev/null; then
-            echo "WARNING: UI process did not stop gracefully."
-            kill -KILL "$UI_PID" 2>/dev/null || true
+            echo "ERROR: UI did not exit gracefully; refusing to commit potentially inconsistent world data."
+            cat "$RUNNER_TEMP/eaglan-ui.log"
+            exit 1
           fi
 
           wait "$UI_PID" || true
           tailscale serve reset >/dev/null 2>&1 || true
 
-          # Commit the saved world data into the repository.
           cd "$GITHUB_WORKSPACE"
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -152,13 +150,10 @@ jobs:
             echo "No world data changes to commit."
           fi
 
-          # Start the next workflow run after the save and push.
-          curl --fail-with-body --silent --show-error \
-            -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_PAT" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/eaglan-host.yml/dispatches" \
-            -d "{\"ref\":\"$GITHUB_REF_NAME\"}"
+          # Dispatch the next run using the built-in GITHUB_TOKEN.
+          gh api \
+            --method POST \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/eaglan-host.yml/dispatches" \
+            -f ref="$GITHUB_REF_NAME"
 
-          echo "World save completed; next workflow run requested."
+          echo "Save completed; next workflow run requested."
