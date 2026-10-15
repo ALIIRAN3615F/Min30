@@ -32,6 +32,11 @@ jobs:
             'https://download1472.mediafire.com/7upnm1vm8sfg-Tg4C0UVgZdr_jbpyJBGzbUqB0vaTM0RkG13u74FG5P-5j4jFqjLC4Dzy_Zvy6sZTbVUhGBzEjwOOCxqNZ_iKtiJqy3hluRS-QvK8wu4b6hOF9mnlfzzuU5hPg6sDqa6BBoOIgqBSlvzd5QMm5MnKzqNgxPzA5GkNA/wak1e6dmdwnpzge/eaglan-host-linux%282%29.zip' \
             -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
+          echo "========== ZIP VALIDATION =========="
+          ls -lh "$RUNNER_TEMP/eaglan-host-linux.zip"
+          file "$RUNNER_TEMP/eaglan-host-linux.zip"
+          unzip -t "$RUNNER_TEMP/eaglan-host-linux.zip"
+
           unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
             -d "$RUNNER_TEMP/eaglan-download"
 
@@ -75,26 +80,35 @@ jobs:
 
           mkdir -p "$EAGLAN_DATA"
 
+          UI_PID=""
+          cleanup() {
+            echo "========== CLEANUP =========="
+            if [[ -n "$UI_PID" ]]; then
+              kill -TERM "$UI_PID" 2>/dev/null || true
+              for _ in $(seq 1 10); do
+                kill -0 "$UI_PID" 2>/dev/null || break
+                sleep 1
+              done
+              kill -KILL "$UI_PID" 2>/dev/null || true
+              wait "$UI_PID" 2>/dev/null || true
+            fi
+            sudo tailscale serve reset >/dev/null 2>&1 || true
+            echo "========== LAST 200 UI LOG LINES =========="
+            tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
           echo "========== SYSTEM =========="
           uname -a
           node --version
           npm --version
+          tailscale version
           echo "PROJECT=$EAGLAN_PROJECT_DIR"
           echo "DATA=$EAGLAN_DATA"
 
           echo "========== START EAGLAN =========="
           node cli.js ui > "$RUNNER_TEMP/eaglan-ui.log" 2>&1 &
           UI_PID=$!
-
-          cleanup() {
-            echo "========== CLEANUP =========="
-            kill -TERM "$UI_PID" 2>/dev/null || true
-            sleep 3
-            sudo tailscale serve reset >/dev/null 2>&1 || true
-            echo "========== LAST 200 UI LOG LINES =========="
-            tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" 2>/dev/null || true
-          }
-          trap cleanup EXIT
 
           READY=0
           for i in $(seq 1 45); do
@@ -112,16 +126,15 @@ jobs:
               echo "UI_PROCESS=EXITED"
               break
             fi
-
             sleep 2
           done
 
           echo "========== UI PROCESS =========="
           ps -p "$UI_PID" -o pid,stat,etime,args || true
+
           echo "========== LISTENING PORTS =========="
           sudo ss -ltnp || true
-          echo "========== LOCAL CURL ERROR =========="
-          cat "$RUNNER_TEMP/eaglan-curl.log" 2>/dev/null || true
+
           echo "========== EAGLAN LOG =========="
           cat "$RUNNER_TEMP/eaglan-ui.log" || true
 
@@ -133,15 +146,7 @@ jobs:
           echo "========== TAILSCALE STATUS =========="
           tailscale status || true
           tailscale ip -4 || true
-
-          echo "========== CONFIGURE SERVE =========="
-          if ! sudo tailscale serve --bg http://127.0.0.1:8090; then
-            echo "RESULT=TAILSCALE_SERVE_FAILED"
-            sudo tailscale serve status || true
-            exit 1
-          fi
-
-          sudo tailscale serve status || true
+          tailscale netcheck || true
 
           TS_DNS="$(tailscale status --json | node -e '
             let s = "";
@@ -159,22 +164,45 @@ jobs:
 
           if [[ -z "$TS_DNS" ]]; then
             echo "RESULT=TAILSCALE_DNS_MISSING"
-          else
-            echo "========== HTTPS TEST =========="
-            curl -v --connect-timeout 10 --max-time 20 \
-              -o /dev/null \
-              "https://$TS_DNS/" \
-              2>&1 || echo "HTTPS_TEST_FAILED"
-
-            echo "========== HTTP TEST AGAIN =========="
-            curl -v --connect-timeout 5 --max-time 10 \
-              -o /dev/null \
-              http://127.0.0.1:8090/ \
-              2>&1 || echo "LOCAL_HTTP_TEST_FAILED"
+            exit 1
           fi
 
+          echo "========== RESET OLD SERVE CONFIG =========="
+          sudo tailscale serve reset || true
+
+          echo "========== CONFIGURE SERVE =========="
+          if ! sudo tailscale serve --bg http://127.0.0.1:8090; then
+            echo "RESULT=TAILSCALE_SERVE_FAILED"
+            sudo tailscale serve status || true
+            exit 1
+          fi
+
+          echo "========== SERVE STATUS =========="
+          sudo tailscale serve status || true
+          sudo tailscale serve status --json || true
+
+          echo "========== CERTIFICATE CHECK =========="
+          sudo tailscale cert "$TS_DNS" \
+            > "$RUNNER_TEMP/tailscale-cert.log" 2>&1
+          CERT_RESULT=$?
+          cat "$RUNNER_TEMP/tailscale-cert.log"
+          echo "CERT_COMMAND_EXIT=$CERT_RESULT"
+
+          echo "========== HTTPS TEST =========="
+          curl -v --connect-timeout 10 --max-time 20 \
+            -o /dev/null \
+            "https://$TS_DNS/" \
+            2>&1 || echo "HTTPS_TEST_FAILED"
+
+          echo "========== LOCAL HTTP TEST =========="
+          curl -v --connect-timeout 5 --max-time 10 \
+            -o /dev/null \
+            http://127.0.0.1:8090/ \
+            2>&1 || echo "LOCAL_HTTP_TEST_FAILED"
+
           echo "========== KEEP SERVER RUNNING =========="
-          echo "Open the HTTPS address above while this job is In progress."
+          echo "Open this URL while the workflow is running:"
+          echo "https://$TS_DNS/"
 
           for i in $(seq 1 50); do
             if ! kill -0 "$UI_PID" 2>/dev/null; then
@@ -193,4 +221,3 @@ jobs:
           done
 
           echo "RESULT=DEBUG_WINDOW_FINISHED"
-
