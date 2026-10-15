@@ -1,4 +1,4 @@
-```yaml
+
       - name: DEBUG Eaglan and Tailscale HTTPS
         shell: bash
         run: |
@@ -131,4 +131,4 @@
 
           echo "RESULT=EAGLAN_PROCESS_EXITED"
           exit 1
-```
+
