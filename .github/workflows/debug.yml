@@ -57,15 +57,45 @@ jobs:
         run: |
           set -euo pipefail
           cd "$EAGLAN_PROJECT_DIR"
+
           node --version
           npm --version
           npm ci --omit=dev
+
           node -e "require('node:sqlite'); console.log('SQLITE_OK')"
 
       - name: Connect to Tailscale
         uses: tailscale/github-action@v3
         with:
           authkey: ${{ secrets.TS_AUTHKEY }}
+
+      - name: Diagnose Tailscale daemon
+        shell: bash
+        run: |
+          echo "========== TAILSCALED PROCESS =========="
+          ps auxww | grep '[t]ailscaled' || true
+
+          echo "========== TAILSCALE SERVICE =========="
+          systemctl status tailscaled --no-pager || true
+
+          echo "========== TAILSCALE STATE DIRECTORIES =========="
+          sudo ls -la \
+            /var/lib/tailscale \
+            /var/cache/tailscale \
+            /var/run/tailscale \
+            /run/tailscale \
+            /var/lib \
+            2>&1 || true
+
+          echo "========== TAILSCALE ENVIRONMENT =========="
+          sudo systemctl show tailscaled \
+            -p ExecStart \
+            -p Environment \
+            -p FragmentPath \
+            --no-pager 2>&1 || true
+
+          echo "========== TAILSCALE STATUS =========="
+          tailscale status || true
 
       - name: Debug Eaglan HTTP and Tailscale HTTPS
         shell: bash
@@ -250,4 +280,3 @@ jobs:
           done
 
           echo "RESULT=DEBUG_WINDOW_FINISHED"
-
