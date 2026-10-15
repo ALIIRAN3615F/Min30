@@ -1,0 +1,28 @@
+{
+  "mode": "export",
+  "world": "Imported World",
+  "displayName": "Imported World",
+  "exportFile": "/home/runner/work/Min30/Min30/.eaglan-data/exports/Imported World-2026-10-15T13-13-08-410Z.epk",
+  "exportFormat": "epk",
+  "config": {
+    "relays": [
+      "wss://relay.eaglercraft.net/",
+      "wss://relay.lax1dude.net/",
+      "wss://relay.shhnowisnottheti.me/",
+      "wss://relay.deev.is/",
+      "wss://relay.mcjs.link/",
+      "wss://relay.webmc.xyz/",
+      "wss://relay.neurosama.place/",
+      "wss://relay.webmc.fun/"
+    ],
+    "ownerName": "HeadlessHost",
+    "hidden": false,
+    "lanWorldName": "Survival",
+    "lanGamemode": 0,
+    "lanCheats": false,
+    "difficulty": 2,
+    "viewDistance": 4,
+    "maxHeapMb": 2048,
+    "uiPort": 8090
+  }
+}
