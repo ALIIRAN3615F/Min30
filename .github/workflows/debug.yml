@@ -81,21 +81,28 @@ jobs:
           mkdir -p "$EAGLAN_DATA"
 
           UI_PID=""
+
           cleanup() {
             echo "========== CLEANUP =========="
+
             if [[ -n "$UI_PID" ]]; then
               kill -TERM "$UI_PID" 2>/dev/null || true
+
               for _ in $(seq 1 10); do
                 kill -0 "$UI_PID" 2>/dev/null || break
                 sleep 1
               done
+
               kill -KILL "$UI_PID" 2>/dev/null || true
               wait "$UI_PID" 2>/dev/null || true
             fi
+
             sudo tailscale serve reset >/dev/null 2>&1 || true
+
             echo "========== LAST 200 UI LOG LINES =========="
             tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" 2>/dev/null || true
           }
+
           trap cleanup EXIT
 
           echo "========== SYSTEM =========="
@@ -103,6 +110,7 @@ jobs:
           node --version
           npm --version
           tailscale version
+
           echo "PROJECT=$EAGLAN_PROJECT_DIR"
           echo "DATA=$EAGLAN_DATA"
 
@@ -111,6 +119,7 @@ jobs:
           UI_PID=$!
 
           READY=0
+
           for i in $(seq 1 45); do
             if curl -sS -f --connect-timeout 2 --max-time 5 \
               http://127.0.0.1:8090/ \
@@ -126,6 +135,7 @@ jobs:
               echo "UI_PROCESS=EXITED"
               break
             fi
+
             sleep 2
           done
 
@@ -182,23 +192,41 @@ jobs:
           sudo tailscale serve status --json || true
 
           echo "========== CERTIFICATE CHECK =========="
+
+          set +e
           sudo tailscale cert "$TS_DNS" \
             > "$RUNNER_TEMP/tailscale-cert.log" 2>&1
           CERT_RESULT=$?
+          set -e
+
           cat "$RUNNER_TEMP/tailscale-cert.log"
           echo "CERT_COMMAND_EXIT=$CERT_RESULT"
 
           echo "========== HTTPS TEST =========="
+
+          set +e
           curl -v --connect-timeout 10 --max-time 20 \
             -o /dev/null \
             "https://$TS_DNS/" \
-            2>&1 || echo "HTTPS_TEST_FAILED"
+            > "$RUNNER_TEMP/https-test.log" 2>&1
+          HTTPS_RESULT=$?
+          set -e
+
+          cat "$RUNNER_TEMP/https-test.log"
+          echo "HTTPS_CURL_EXIT=$HTTPS_RESULT"
 
           echo "========== LOCAL HTTP TEST =========="
+
+          set +e
           curl -v --connect-timeout 5 --max-time 10 \
             -o /dev/null \
             http://127.0.0.1:8090/ \
-            2>&1 || echo "LOCAL_HTTP_TEST_FAILED"
+            > "$RUNNER_TEMP/local-http-test.log" 2>&1
+          LOCAL_RESULT=$?
+          set -e
+
+          cat "$RUNNER_TEMP/local-http-test.log"
+          echo "LOCAL_HTTP_CURL_EXIT=$LOCAL_RESULT"
 
           echo "========== KEEP SERVER RUNNING =========="
           echo "Open this URL while the workflow is running:"
@@ -212,6 +240,7 @@ jobs:
             fi
 
             echo "HEALTH_CHECK=$i"
+
             curl -sS --connect-timeout 3 --max-time 5 \
               -o /dev/null \
               -w "LOCAL_HTTP_CODE=%{http_code}\n" \
@@ -221,3 +250,4 @@ jobs:
           done
 
           echo "RESULT=DEBUG_WINDOW_FINISHED"
+
