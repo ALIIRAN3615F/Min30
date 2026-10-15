@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://download1585.mediafire.com/xrxnj0tioz6gf18Pd27WqeUimmp42wrT7jYPllDZUqIrYNWTrjNx_RjQtvgHfONXuyMqwO3FmnyW2v9wcT8HxsMlXZxT6qK7V2p2Jd9WPaA3JAm9tFpBNrOhbmw4kZ1xa_rqG6VNVRNN2fUwyOx16vsZWasKgwUstUlXnmdB_4cU/92a333eltq41enr/eaglan-host-linux.zip' \
+            'https://download1472.mediafire.com/sfqqdq1gyswg7srljXNpkFk2uEUNsmdt1yeOo4w0i4PzntXBSsbAqJcosiCal9snFj4bqucsjpu5uQ5ncsI9ME5CYOUk5oQf5Z-YsShW9VUT_gG5NESalnKMrjszkk1n5IrET3gOrMSsG-dWTDRHugIKC6IqhiyLQ8k8pkRvO6nYPQ/wak1e6dmdwnpzge/eaglan-host-linux%282%29.zip' \
             -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
           unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
