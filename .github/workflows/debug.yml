@@ -1,0 +1,134 @@
+```yaml
+      - name: DEBUG Eaglan and Tailscale HTTPS
+        shell: bash
+        run: |
+          set -uo pipefail
+          cd "$EAGLAN_PROJECT_DIR"
+
+          export PORT=8090
+          export BIND=127.0.0.1
+          export EAGLAN_DATA="$GITHUB_WORKSPACE/.eaglan-data"
+          export EAGLAN_STOP_HOST_ON_EXIT=1
+
+          mkdir -p "$EAGLAN_DATA"
+
+          echo "========== ENVIRONMENT =========="
+          node --version
+          npm --version
+          echo "Project: $EAGLAN_PROJECT_DIR"
+          echo "Data: $EAGLAN_DATA"
+          echo "Runner: $RUNNER_OS"
+
+          echo "========== START EAGLAN =========="
+          node cli.js ui > "$RUNNER_TEMP/eaglan-ui.log" 2>&1 &
+          UI_PID=$!
+
+          cleanup() {
+            echo "========== CLEANUP =========="
+            kill -TERM "$UI_PID" 2>/dev/null || true
+            sleep 3
+            sudo tailscale serve reset 2>/dev/null || true
+            echo "========== FINAL EAGLAN LOG =========="
+            tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          READY=0
+          for i in $(seq 1 45); do
+            if curl -fsS --connect-timeout 2 --max-time 5 \
+              http://127.0.0.1:8090/ \
+              -o "$RUNNER_TEMP/eaglan-response.html" \
+              2>"$RUNNER_TEMP/eaglan-curl.log"; then
+              READY=1
+              echo "HTTP_READY=YES attempt=$i"
+              break
+            fi
+
+            if ! kill -0 "$UI_PID" 2>/dev/null; then
+              echo "UI_PROCESS=DEAD"
+              break
+            fi
+
+            sleep 2
+          done
+
+          echo "========== UI DIAGNOSTICS =========="
+          echo "UI_PID=$UI_PID"
+          ps -p "$UI_PID" -o pid,stat,etime,args || true
+          ss -ltnp 2>&1 | grep -E '8090|State' || true
+          echo "--- Local curl error ---"
+          cat "$RUNNER_TEMP/eaglan-curl.log" 2>/dev/null || true
+          echo "--- Eaglan log ---"
+          tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" || true
+
+          if [[ "$READY" != 1 ]]; then
+            echo "RESULT=EAGLAN_HTTP_START_FAILED"
+            exit 1
+          fi
+
+          echo "========== TAILSCALE STATUS =========="
+          tailscale status || true
+          tailscale ip -4 || true
+
+          echo "========== CONFIGURE HTTPS =========="
+          if ! sudo tailscale serve --bg http://127.0.0.1:8090; then
+            echo "RESULT=TAILSCALE_SERVE_CONFIGURATION_FAILED"
+            sudo tailscale serve status || true
+            exit 1
+          fi
+
+          sudo tailscale serve status || true
+
+          TS_DNS="$(tailscale status --json | node -e '
+            let s = "";
+            process.stdin.on("data", d => s += d);
+            process.stdin.on("end", () => {
+              try {
+                process.stdout.write(
+                  (JSON.parse(s).Self.DNSName || "").replace(/\.$/, "")
+                );
+              } catch {}
+            });
+          ')"
+
+          echo "TAILSCALE_DNS=$TS_DNS"
+
+          if [[ -z "$TS_DNS" ]]; then
+            echo "RESULT=TAILSCALE_DNS_NAME_NOT_FOUND"
+          else
+            echo "========== HTTPS TEST: VERIFIED TLS =========="
+            if curl -sS --connect-timeout 10 --max-time 20 \
+              -o /dev/null \
+              -w 'HTTPS_CODE=%{http_code} CONNECT=%{time_connect} TLS=%{time_appconnect}\n' \
+              "https://$TS_DNS/"; then
+              echo "HTTPS_VERIFIED=YES"
+            else
+              echo "HTTPS_VERIFIED=NO"
+              echo "========== HTTPS TEST: IGNORE CERT VALIDATION =========="
+              curl -k -sS --connect-timeout 10 --max-time 20 \
+                -o /dev/null \
+                -w 'HTTPS_INSECURE_CODE=%{http_code} CONNECT=%{time_connect} TLS=%{time_appconnect}\n' \
+                "https://$TS_DNS/" || true
+            fi
+          fi
+
+          echo "========== DIAGNOSTIC RESULT =========="
+          echo "EAGLAN_HTTP_READY=YES"
+          echo "TAILSCALE_SERVE_CONFIGURED=CHECK_LOG_ABOVE"
+          echo "Keep this workflow running while testing the URL."
+
+          while kill -0 "$UI_PID" 2>/dev/null; do
+            sleep 30
+            echo "========== PERIODIC HEALTH CHECK =========="
+            date -u
+            curl -sS --connect-timeout 3 --max-time 5 \
+              -o /dev/null \
+              -w 'LOCAL_HTTP_CODE=%{http_code}\n' \
+              http://127.0.0.1:8090/ || true
+            sudo tailscale serve status || true
+            tail -n 30 "$RUNNER_TEMP/eaglan-ui.log" || true
+          done
+
+          echo "RESULT=EAGLAN_PROCESS_EXITED"
+          exit 1
+```
