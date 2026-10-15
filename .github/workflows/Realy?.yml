@@ -84,7 +84,7 @@ jobs:
           cleanup() {
             kill -TERM "$UI_PID" 2>/dev/null || true
             sleep 3
-            tailscale serve reset >/dev/null 2>&1 || true
+            sudo tailscale serve reset >/dev/null 2>&1 || true
           }
           trap cleanup EXIT INT TERM
 
@@ -108,8 +108,8 @@ jobs:
             exit 1
           fi
 
-          tailscale serve --bg http://127.0.0.1:8090
-          tailscale serve status
+          sudo tailscale serve --bg http://127.0.0.1:8090
+          sudo tailscale serve status
 
           echo "Open the Tailscale HTTPS address above."
           echo "Select or import your world, then click Host."
