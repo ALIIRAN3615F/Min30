@@ -64,10 +64,13 @@ jobs:
 
           node -e "require('node:sqlite'); console.log('SQLITE_OK')"
 
+
       - name: Connect to Tailscale
         uses: tailscale/github-action@v3
         with:
           authkey: ${{ secrets.TS_AUTHKEY }}
+          statedir: /tmp/tailscale-state
+
 
       - name: Diagnose Tailscale daemon
         shell: bash
