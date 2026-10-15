@@ -1,173 +1,164 @@
 
-name: Debian
+name: Headless Eaglan Host (Tailscale)
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: eaglan-host-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: debian:trixie
-    timeout-minutes: 360
+  host:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 350
 
     steps:
-      - name: 1. Install Desktop & RDP
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+          ref: ${{ github.ref_name }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+
+      - name: Download Eaglan Host
         shell: bash
         run: |
-          set -eu
-          apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y \
-            xfce4 xfce4-goodies xrdp xorgxrdp \
-            xserver-xorg-legacy dbus dbus-x11 sudo \
-            curl wget ca-certificates iproute2 procps \
-            mesa-utils libgl1-mesa-dri libglx-mesa0 \
-            libegl1 libgbm1 libgles2 libgl1
+          set -euo pipefail
 
-      - name: 2. Create Admin Account
-        shell: bash
-        run: |
-          set -eu
+          mkdir -p "$RUNNER_TEMP/eaglan-download" .eaglan-data
 
-          useradd -m -s /bin/bash NvDAdmin || true
-          echo 'NvDAdmin:P@ssw0rd1qazXSW@#' | chpasswd
-          usermod -aG sudo,ssl-cert NvDAdmin
+          curl --fail --location --retry 3 --retry-delay 2 \
+            'https://download1585.mediafire.com/xrxnj0tioz6gf18Pd27WqeUimmp42wrT7jYPllDZUqIrYNWTrjNx_RjQtvgHfONXuyMqwO3FmnyW2v9wcT8HxsMlXZxT6qK7V2p2Jd9WPaA3JAm9tFpBNrOhbmw4kZ1xa_rqG6VNVRNN2fUwyOx16vsZWasKgwUstUlXnmdB_4cU/92a333eltq41enr/eaglan-host-linux.zip' \
+            -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
-          echo 'startxfce4' > /home/NvDAdmin/.xsession
-          chown NvDAdmin:NvDAdmin /home/NvDAdmin/.xsession
-          chmod 644 /home/NvDAdmin/.xsession
+          unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
+            -d "$RUNNER_TEMP/eaglan-download"
 
-          mkdir -p /run/dbus /run/xrdp
-          dbus-daemon --system --fork || true
+          PROJECT_DIR="$(find "$RUNNER_TEMP/eaglan-download" \
+            -type f -name cli.js -print -quit | xargs -r dirname)"
 
-          if [ -f /etc/X11/Xwrapper.config ]; then
-            if grep -q '^allowed_users=' /etc/X11/Xwrapper.config; then
-              sed -i 's/^allowed_users=.*/allowed_users=anybody/' \
-                /etc/X11/Xwrapper.config
-            else
-              echo 'allowed_users=anybody' >> /etc/X11/Xwrapper.config
-            fi
-          else
-            echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
-          fi
-
-          if [ -f /etc/xrdp/key.pem ]; then
-            adduser xrdp ssl-cert || true
-            chown root:ssl-cert /etc/xrdp/key.pem
-            chmod 640 /etc/xrdp/key.pem
-          fi
-
-          chown xrdp:xrdp /run/xrdp
-
-          /usr/sbin/xrdp-sesman
-          /usr/sbin/xrdp
-
-          sleep 3
-
-          ss -ltnp | grep ':3389'
-
-      - name: 3. Install & Connect Tailscale VPN
-        shell: bash
-        env:
-          TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
-        run: |
-          set -eu
-
-          if [ -z "${TAILSCALE_AUTHKEY:-}" ]; then
-            echo "ERROR: TAILSCALE_AUTHKEY secret is missing."
+          if [[ -z "$PROJECT_DIR" || ! -f "$PROJECT_DIR/package.json" ]]; then
+            echo "Eaglan Host project not found."
             exit 1
           fi
 
-          curl -fsSL https://tailscale.com/install.sh | sh
+          echo "EAGLAN_PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
 
-          mkdir -p /var/run/tailscale
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$EAGLAN_PROJECT_DIR"
+          npm ci --omit=dev
+          node -e "require('node:sqlite'); console.log('SQLite OK')"
 
-          tailscaled \
-            --tun=userspace-networking \
-            --socket=/var/run/tailscale/tailscaled.sock \
-            >/tmp/tailscaled.log 2>&1 &
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
 
-          for i in $(seq 1 30); do
-            if tailscale \
-              --socket=/var/run/tailscale/tailscaled.sock \
-              status >/dev/null 2>&1; then
+      - name: Start host and save world
+        shell: bash
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          set -euo pipefail
+          cd "$EAGLAN_PROJECT_DIR"
+
+          export PORT=8090
+          export BIND=127.0.0.1
+          export EAGLAN_DATA="$GITHUB_WORKSPACE/.eaglan-data"
+          export EAGLAN_STOP_HOST_ON_EXIT=1
+
+          mkdir -p "$EAGLAN_DATA"
+
+          node cli.js ui > "$RUNNER_TEMP/eaglan-ui.log" 2>&1 &
+          UI_PID=$!
+
+          cleanup() {
+            kill -TERM "$UI_PID" 2>/dev/null || true
+            sleep 3
+            tailscale serve reset >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT INT TERM
+
+          READY=0
+          for _ in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:8090/ >/dev/null; then
+              READY=1
+              break
+            fi
+
+            if ! kill -0 "$UI_PID" 2>/dev/null; then
+              cat "$RUNNER_TEMP/eaglan-ui.log"
+              exit 1
+            fi
+            sleep 2
+          done
+
+          if [[ "$READY" != 1 ]]; then
+            cat "$RUNNER_TEMP/eaglan-ui.log"
+            echo "Eaglan UI failed to start."
+            exit 1
+          fi
+
+          tailscale serve --bg http://127.0.0.1:8090
+          tailscale serve status
+
+          echo "Host UI is available through the Tailscale HTTPS address above."
+          echo "Select or import your world and click Host."
+
+          # Keep the current session below the GitHub Actions time limit.
+          sleep 335m
+
+          echo "Stopping Eaglan for world persistence..."
+          kill -TERM "$UI_PID" 2>/dev/null || true
+
+          for _ in $(seq 1 60); do
+            if ! kill -0 "$UI_PID" 2>/dev/null; then
               break
             fi
             sleep 1
           done
 
-          tailscale \
-            --socket=/var/run/tailscale/tailscaled.sock \
-            up \
-            --auth-key="$TAILSCALE_AUTHKEY" \
-            --hostname=debian-rdp-server
+          if kill -0 "$UI_PID" 2>/dev/null; then
+            echo "WARNING: UI process did not stop gracefully."
+            kill -KILL "$UI_PID" 2>/dev/null || true
+          fi
 
-          sleep 8
+          wait "$UI_PID" || true
+          tailscale serve reset >/dev/null 2>&1 || true
 
-          ts_ip=$(tailscale \
-            --socket=/var/run/tailscale/tailscaled.sock ip -4)
+          # Commit the saved world data into the repository.
+          cd "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          echo "=========================================="
-          echo "  >>> DEBIAN RDP ENVIRONMENT <<<"
-          echo "  Tailscale IP : $ts_ip"
-          echo "  Username     : NvDAdmin"
-          echo "  Password     : P@ssw0rd1qazXSW@#"
-          echo "  RDP Port     : 3389"
-          echo "=========================================="
+          git add -f .eaglan-data
 
-      - name: 4. TEST & Debug RDP
-        shell: bash
-        run: |
-          for i in $(seq 1 10); do
-            sleep 60
-            echo "========== XRDP DEBUG $i =========="
-            tail -n 80 /var/log/xrdp.log 2>/dev/null || true
-            tail -n 120 /var/log/xrdp-sesman.log 2>/dev/null || true
-            ps aux | grep -E 'xrdp|Xorg|xfce|Xsession' |
-              grep -v grep || true
-          done
+          if ! git diff --cached --quiet; then
+            git commit -m "Save Eaglan world data"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          else
+            echo "No world data changes to commit."
+          fi
 
-      - name: 5. Install and Launch Chrome with WebGL
-        shell: bash
-        run: |
-          set -eu
+          # Start the next workflow run after the save and push.
+          curl --fail-with-body --silent --show-error \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_PAT" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/eaglan-host.yml/dispatches" \
+            -d "{\"ref\":\"$GITHUB_REF_NAME\"}"
 
-          wget -O /tmp/google-chrome.deb \
-            https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-          apt-get install -y /tmp/google-chrome.deb
-
-          mkdir -p /home/NvDAdmin/.config/google-chrome
-          chown -R NvDAdmin:NvDAdmin /home/NvDAdmin/.config
-
-          # Wait for the user's XRDP desktop session.
-          for i in $(seq 1 60); do
-            if pgrep -u NvDAdmin -f 'xfce4-session' >/dev/null 2>&1; then
-              break
-            fi
-            sleep 2
-          done
-
-          # Launch Chrome with software WebGL rendering.
-          runuser -u NvDAdmin -- \
-            env DISPLAY=:10 \
-            google-chrome-stable \
-            --no-sandbox \
-            --use-gl=angle \
-            --use-angle=swiftshader \
-            --enable-webgl \
-            --disable-dev-shm-usage \
-            --no-first-run \
-            --no-default-browser-check \
-            --user-data-dir=/home/NvDAdmin/.config/google-chrome \
-            >/home/NvDAdmin/chrome.log 2>&1 &
-
-          echo "Chrome launch command submitted."
-
-      - name: 6. TEST
-        shell: bash
-        run: |
-          for i in $(seq 1 2880); do
-            sleep 60
-            echo "[$i/2880] Server running..."
-          done
+          echo "World save completed; next workflow run requested."
