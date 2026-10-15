@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://download1472.mediafire.com/sfqqdq1gyswg7srljXNpkFk2uEUNsmdt1yeOo4w0i4PzntXBSsbAqJcosiCal9snFj4bqucsjpu5uQ5ncsI9ME5CYOUk5oQf5Z-YsShW9VUT_gG5NESalnKMrjszkk1n5IrET3gOrMSsG-dWTDRHugIKC6IqhiyLQ8k8pkRvO6nYPQ/wak1e6dmdwnpzge/eaglan-host-linux%282%29.zip' \
+            'https://download1472.mediafire.com/n602k9hmdyrgf1MrxmllaiVEnvLFLCnRSgljuQHNe6WS5AmYtTnAMhXdFoftpRD_jyvDDuU8rf3mQaomz4fNRY1-y2kdMAlO2x1nsSE6RUWJouejJdL-E1eH3CBjqZDjYDzt1oHPyCDbn8sgh3WBEc-FQ8ZT-USQ9p_Vwb-pN2nOog/wak1e6dmdwnpzge/eaglan-host-linux%282%29.zip' \
             -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
           unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
@@ -55,6 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "$EAGLAN_PROJECT_DIR"
+
           npm ci --omit=dev
           node -e "require('node:sqlite'); console.log('SQLite OK')"
 
@@ -62,6 +63,7 @@ jobs:
         uses: tailscale/github-action@v3
         with:
           authkey: ${{ secrets.TS_AUTHKEY }}
+          statedir: /tmp/tailscale-state
 
       - name: Start host, save world, and restart workflow
         shell: bash
@@ -78,19 +80,27 @@ jobs:
 
           mkdir -p "$EAGLAN_DATA"
 
+          UI_PID=""
+
+          cleanup() {
+            if [[ -n "$UI_PID" ]]; then
+              kill -TERM "$UI_PID" 2>/dev/null || true
+              wait "$UI_PID" 2>/dev/null || true
+            fi
+
+            sudo tailscale serve reset >/dev/null 2>&1 || true
+          }
+
+          trap cleanup EXIT INT TERM
+
           node cli.js ui > "$RUNNER_TEMP/eaglan-ui.log" 2>&1 &
           UI_PID=$!
 
-          cleanup() {
-            kill -TERM "$UI_PID" 2>/dev/null || true
-            sleep 3
-            sudo tailscale serve reset >/dev/null 2>&1 || true
-          }
-          trap cleanup EXIT INT TERM
-
           READY=0
+
           for _ in $(seq 1 45); do
-            if curl -fsS http://127.0.0.1:8090/ >/dev/null; then
+            if curl -fsS --connect-timeout 2 --max-time 5 \
+              http://127.0.0.1:8090/ >/dev/null; then
               READY=1
               break
             fi
@@ -99,6 +109,7 @@ jobs:
               cat "$RUNNER_TEMP/eaglan-ui.log"
               exit 1
             fi
+
             sleep 2
           done
 
@@ -108,33 +119,59 @@ jobs:
             exit 1
           fi
 
-          sudo tailscale serve --bg http://127.0.0.1:8090
-          sudo tailscale serve status
+          TS_DNS="$(tailscale status --json | node -e '
+            let s = "";
+            process.stdin.on("data", d => s += d);
+            process.stdin.on("end", () => {
+              try {
+                process.stdout.write(
+                  (JSON.parse(s).Self.DNSName || "").replace(/\.$/, "")
+                );
+              } catch {}
+            });
+          ')"
 
-          echo "Open the Tailscale HTTPS address above."
+          if [[ -z "$TS_DNS" ]]; then
+            echo "Unable to determine Tailscale DNS name."
+            exit 1
+          fi
+
+          sudo tailscale serve reset
+          sudo tailscale serve --bg http://127.0.0.1:8090
+
+          echo "========== EAGLAN HOST READY =========="
+          echo "HTTPS_URL=https://$TS_DNS/"
+          echo "Open this address while the workflow is running."
+          echo "Tailscale must be connected on your client device."
           echo "Select or import your world, then click Host."
 
           # Run for 5 hours 35 minutes, below the job timeout.
           sleep 335m
 
           echo "Stopping Eaglan to save the world..."
+
           kill -TERM "$UI_PID" 2>/dev/null || true
+
+          GRACEFUL=0
 
           for _ in $(seq 1 60); do
             if ! kill -0 "$UI_PID" 2>/dev/null; then
+              GRACEFUL=1
               break
             fi
             sleep 1
           done
 
-          if kill -0 "$UI_PID" 2>/dev/null; then
-            echo "ERROR: UI did not exit gracefully; refusing to commit potentially inconsistent world data."
+          if [[ "$GRACEFUL" != 1 ]]; then
+            echo "ERROR: UI did not exit gracefully."
             cat "$RUNNER_TEMP/eaglan-ui.log"
             exit 1
           fi
 
           wait "$UI_PID" || true
-          tailscale serve reset >/dev/null 2>&1 || true
+          UI_PID=""
+
+          sudo tailscale serve reset >/dev/null 2>&1 || true
 
           cd "$GITHUB_WORKSPACE"
 
@@ -150,7 +187,6 @@ jobs:
             echo "No world data changes to commit."
           fi
 
-          # Dispatch the next run using the built-in GITHUB_TOKEN.
           gh api \
             --method POST \
             "repos/$GITHUB_REPOSITORY/actions/workflows/eaglan-host.yml/dispatches" \
