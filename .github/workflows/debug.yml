@@ -1,5 +1,68 @@
 
-      - name: DEBUG Eaglan and Tailscale HTTPS
+name: Eaglan Host Debug
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+
+      - name: Download Eaglan Host
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p "$RUNNER_TEMP/eaglan-download"
+
+          curl --fail --location --retry 3 --retry-delay 2 \
+            'https://download1472.mediafire.com/sfqqdq1gyswg7srljXNpkFk2uEUNsmdt1yeOo4w0i4PzntXBSsbAqJcosiCal9snFj4bqucsjpu5uQ5ncsI9ME5CYOUk5oQf5Z-YsShW9VUT_gG5NESalnKMrjszkk1n5IrET3gOrMSsG-dWTDRHugIKC6IqhiyLQ8k8pkRvO6nYPQ/wak1e6dmdwnpzge/eaglan-host-linux%282%29.zip' \
+            -o "$RUNNER_TEMP/eaglan-host-linux.zip"
+
+          unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
+            -d "$RUNNER_TEMP/eaglan-download"
+
+          PROJECT_DIR="$(find "$RUNNER_TEMP/eaglan-download" \
+            -type f -name cli.js -print -quit | xargs -r dirname)"
+
+          if [[ -z "$PROJECT_DIR" || ! -f "$PROJECT_DIR/package.json" ]]; then
+            echo "ERROR: Eaglan project not found"
+            find "$RUNNER_TEMP/eaglan-download" -maxdepth 4 -type f | head -100
+            exit 1
+          fi
+
+          echo "EAGLAN_PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
+          echo "PROJECT_DIR=$PROJECT_DIR"
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$EAGLAN_PROJECT_DIR"
+          node --version
+          npm --version
+          npm ci --omit=dev
+          node -e "require('node:sqlite'); console.log('SQLITE_OK')"
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+
+      - name: Debug Eaglan HTTP and Tailscale HTTPS
         shell: bash
         run: |
           set -uo pipefail
@@ -12,12 +75,12 @@
 
           mkdir -p "$EAGLAN_DATA"
 
-          echo "========== ENVIRONMENT =========="
+          echo "========== SYSTEM =========="
+          uname -a
           node --version
           npm --version
-          echo "Project: $EAGLAN_PROJECT_DIR"
-          echo "Data: $EAGLAN_DATA"
-          echo "Runner: $RUNNER_OS"
+          echo "PROJECT=$EAGLAN_PROJECT_DIR"
+          echo "DATA=$EAGLAN_DATA"
 
           echo "========== START EAGLAN =========="
           node cli.js ui > "$RUNNER_TEMP/eaglan-ui.log" 2>&1 &
@@ -27,42 +90,43 @@
             echo "========== CLEANUP =========="
             kill -TERM "$UI_PID" 2>/dev/null || true
             sleep 3
-            sudo tailscale serve reset 2>/dev/null || true
-            echo "========== FINAL EAGLAN LOG =========="
+            sudo tailscale serve reset >/dev/null 2>&1 || true
+            echo "========== LAST 200 UI LOG LINES =========="
             tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" 2>/dev/null || true
           }
           trap cleanup EXIT
 
           READY=0
           for i in $(seq 1 45); do
-            if curl -fsS --connect-timeout 2 --max-time 5 \
+            if curl -sS -f --connect-timeout 2 --max-time 5 \
               http://127.0.0.1:8090/ \
               -o "$RUNNER_TEMP/eaglan-response.html" \
               2>"$RUNNER_TEMP/eaglan-curl.log"; then
               READY=1
-              echo "HTTP_READY=YES attempt=$i"
+              echo "LOCAL_HTTP_READY=YES"
+              echo "READY_ATTEMPT=$i"
               break
             fi
 
             if ! kill -0 "$UI_PID" 2>/dev/null; then
-              echo "UI_PROCESS=DEAD"
+              echo "UI_PROCESS=EXITED"
               break
             fi
 
             sleep 2
           done
 
-          echo "========== UI DIAGNOSTICS =========="
-          echo "UI_PID=$UI_PID"
+          echo "========== UI PROCESS =========="
           ps -p "$UI_PID" -o pid,stat,etime,args || true
-          ss -ltnp 2>&1 | grep -E '8090|State' || true
-          echo "--- Local curl error ---"
+          echo "========== LISTENING PORTS =========="
+          sudo ss -ltnp || true
+          echo "========== LOCAL CURL ERROR =========="
           cat "$RUNNER_TEMP/eaglan-curl.log" 2>/dev/null || true
-          echo "--- Eaglan log ---"
-          tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" || true
+          echo "========== EAGLAN LOG =========="
+          cat "$RUNNER_TEMP/eaglan-ui.log" || true
 
           if [[ "$READY" != 1 ]]; then
-            echo "RESULT=EAGLAN_HTTP_START_FAILED"
+            echo "RESULT=LOCAL_HTTP_FAILED"
             exit 1
           fi
 
@@ -70,9 +134,9 @@
           tailscale status || true
           tailscale ip -4 || true
 
-          echo "========== CONFIGURE HTTPS =========="
+          echo "========== CONFIGURE SERVE =========="
           if ! sudo tailscale serve --bg http://127.0.0.1:8090; then
-            echo "RESULT=TAILSCALE_SERVE_CONFIGURATION_FAILED"
+            echo "RESULT=TAILSCALE_SERVE_FAILED"
             sudo tailscale serve status || true
             exit 1
           fi
@@ -94,41 +158,39 @@
           echo "TAILSCALE_DNS=$TS_DNS"
 
           if [[ -z "$TS_DNS" ]]; then
-            echo "RESULT=TAILSCALE_DNS_NAME_NOT_FOUND"
+            echo "RESULT=TAILSCALE_DNS_MISSING"
           else
-            echo "========== HTTPS TEST: VERIFIED TLS =========="
-            if curl -sS --connect-timeout 10 --max-time 20 \
+            echo "========== HTTPS TEST =========="
+            curl -v --connect-timeout 10 --max-time 20 \
               -o /dev/null \
-              -w 'HTTPS_CODE=%{http_code} CONNECT=%{time_connect} TLS=%{time_appconnect}\n' \
-              "https://$TS_DNS/"; then
-              echo "HTTPS_VERIFIED=YES"
-            else
-              echo "HTTPS_VERIFIED=NO"
-              echo "========== HTTPS TEST: IGNORE CERT VALIDATION =========="
-              curl -k -sS --connect-timeout 10 --max-time 20 \
-                -o /dev/null \
-                -w 'HTTPS_INSECURE_CODE=%{http_code} CONNECT=%{time_connect} TLS=%{time_appconnect}\n' \
-                "https://$TS_DNS/" || true
-            fi
+              "https://$TS_DNS/" \
+              2>&1 || echo "HTTPS_TEST_FAILED"
+
+            echo "========== HTTP TEST AGAIN =========="
+            curl -v --connect-timeout 5 --max-time 10 \
+              -o /dev/null \
+              http://127.0.0.1:8090/ \
+              2>&1 || echo "LOCAL_HTTP_TEST_FAILED"
           fi
 
-          echo "========== DIAGNOSTIC RESULT =========="
-          echo "EAGLAN_HTTP_READY=YES"
-          echo "TAILSCALE_SERVE_CONFIGURED=CHECK_LOG_ABOVE"
-          echo "Keep this workflow running while testing the URL."
+          echo "========== KEEP SERVER RUNNING =========="
+          echo "Open the HTTPS address above while this job is In progress."
 
-          while kill -0 "$UI_PID" 2>/dev/null; do
-            sleep 30
-            echo "========== PERIODIC HEALTH CHECK =========="
-            date -u
+          for i in $(seq 1 50); do
+            if ! kill -0 "$UI_PID" 2>/dev/null; then
+              echo "RESULT=UI_PROCESS_DIED"
+              tail -n 200 "$RUNNER_TEMP/eaglan-ui.log" || true
+              exit 1
+            fi
+
+            echo "HEALTH_CHECK=$i"
             curl -sS --connect-timeout 3 --max-time 5 \
               -o /dev/null \
-              -w 'LOCAL_HTTP_CODE=%{http_code}\n' \
+              -w "LOCAL_HTTP_CODE=%{http_code}\n" \
               http://127.0.0.1:8090/ || true
-            sudo tailscale serve status || true
-            tail -n 30 "$RUNNER_TEMP/eaglan-ui.log" || true
+
+            sleep 30
           done
 
-          echo "RESULT=EAGLAN_PROCESS_EXITED"
-          exit 1
+          echo "RESULT=DEBUG_WINDOW_FINISHED"
 
