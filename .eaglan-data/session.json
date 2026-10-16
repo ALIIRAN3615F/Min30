@@ -1,9 +1,7 @@
 {
-  "mode": "export",
+  "mode": "existing",
   "world": "Imported World",
   "displayName": "Imported World",
-  "exportFile": "/home/runner/work/Min30/Min30/.eaglan-data/exports/Imported World-2026-10-15T13-13-08-410Z.epk",
-  "exportFormat": "epk",
   "config": {
     "relays": [
       "wss://relay.eaglercraft.net/",
@@ -15,6 +13,14 @@
       "wss://relay.neurosama.place/",
       "wss://relay.webmc.fun/"
     ],
+    "mainCode": "",
+    "ownRelay": {
+      "enabled": false,
+      "port": 8091,
+      "bind": "0.0.0.0",
+      "publicUrl": ""
+    },
+    "codeRelays": [],
     "ownerName": "HeadlessHost",
     "hidden": false,
     "lanWorldName": "Survival",

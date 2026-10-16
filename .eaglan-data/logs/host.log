@@ -5717,3 +5717,996 @@
 [2026-10-15T13:13:11.382Z] [host] exported 'Imported World' (25182577 bytes) to /home/runner/work/Min30/Min30/.eaglan-data/exports/Imported World-2026-10-15T13-13-08-410Z.epk
 [2026-10-15T13:13:11.382Z] [host] shutting down: export finished
 [2026-10-15T13:13:11.403Z] [host] worker thread exited with code 1
+[2026-10-15T20:05:33.260Z] [host] daemon pid 2488 starting (mode=existing, world='Imported World')
+[2026-10-15T20:05:34.523Z] [server] WorkerMain: [INFO] eaglercraftx worker thread is starting...
+[2026-10-15T20:05:34.523Z] [runtime] [runtime] classes.js loaded, worker main() invoked
+[2026-10-15T20:05:34.524Z] [server] WorkerMain: [INFO] reading configuration
+[2026-10-15T20:05:34.558Z] [server] WorkerMain: [INFO] initializing server runtime
+[2026-10-15T20:05:34.561Z] [server] [08:05:34+559][main/INFO][ServerPlatformSingleplayer]: ES6 Shim Status: Disabled
+[2026-10-15T20:05:34.563Z] [server] [08:05:34+562][main/WARN][TeaVMBlobURLManager]: Warning: Same-origin fetch support detected as false, client will use data: urls instead of blob: urls
+[2026-10-15T20:05:34.585Z] [server] WorkerMain: [INFO] starting worker thread
+[2026-10-15T20:05:34.586Z] [server] [08:05:34+585][IntegratedServer/INFO][EaglerIntegratedServer]: Starting EaglercraftX integrated server worker...
+[2026-10-15T20:05:34.586Z] [host] integrated server worker is up
+[2026-10-15T20:05:34.678Z] [host] sent en_US locale (3066 strings) to integrated server
+[2026-10-15T20:05:34.678Z] [host] status -> loading-world
+[2026-10-15T20:05:37.275Z] [server] [08:05:37+273][IntegratedServer/INFO][EaglerIntegratedServer]: server owner: HeadlessHost
+[2026-10-15T20:05:37.275Z] [server] [08:05:37+274][IntegratedServer/INFO][EaglerIntegratedServer]: Starting integrated eaglercraft server version 1.8.8
+[2026-10-15T20:05:37.366Z] [host] world loaded
+[2026-10-15T20:05:37.367Z] [lan] Hosting through 8 relays at once: wss://relay.eaglercraft.net/, wss://relay.lax1dude.net/, wss://relay.shhnowisnottheti.me/, wss://relay.deev.is/, wss://relay.mcjs.link/, wss://relay.webmc.xyz/, wss://relay.neurosama.place/, wss://relay.webmc.fun/
+[2026-10-15T20:05:37.908Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 4s
+[2026-10-15T20:05:38.026Z] [lan] Relay [wss://relay.mcjs.link/] refused: HTTP 403 instead of a WebSocket upgrade; next try in 2 min
+[2026-10-15T20:05:38.031Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: hnkz6
+[2026-10-15T20:05:38.032Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:05:38.032Z] [host] World LAN open. Join code: hnkz6 (relay wss://relay.shhnowisnottheti.me/)
+[2026-10-15T20:05:38.033Z] [host] status -> hosting
+[2026-10-15T20:05:38.234Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: sz0mn
+[2026-10-15T20:05:38.235Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T20:05:38.235Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: sz0mn
+[2026-10-15T20:05:38.365Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 4s
+[2026-10-15T20:05:38.598Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: 2pckd
+[2026-10-15T20:05:38.640Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:05:38.640Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: 2pckd
+[2026-10-15T20:05:38.729Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: ae145
+[2026-10-15T20:05:38.730Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:05:38.730Z] [lan] Relay [wss://relay.webmc.xyz/] gave 13 STUN/TURN servers, none usable. The host uses the other relays' STUN/TURN for its side; players joining through this relay get none from it, so joining from another network may fail.
+[2026-10-15T20:05:38.730Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: ae145
+[2026-10-15T20:05:38.832Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: fy84g
+[2026-10-15T20:05:38.835Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:05:38.835Z] [lan] Relay [wss://relay.webmc.fun/] gave 13 STUN/TURN servers, none usable. The host uses the other relays' STUN/TURN for its side; players joining through this relay get none from it, so joining from another network may fail.
+[2026-10-15T20:05:38.835Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: fy84g
+[2026-10-15T20:05:42.391Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 12s
+[2026-10-15T20:05:43.082Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 12s
+[2026-10-15T20:05:49.417Z] [lan] Join code for players: 2pckd (via wss://relay.lax1dude.net/, a relay stock clients know)
+[2026-10-15T20:05:51.035Z] [host] Relays: 5 of 8 hosting this world (sz0mn on wss://relay.eaglercraft.net/, 2pckd on wss://relay.lax1dude.net/, hnkz6 on wss://relay.shhnowisnottheti.me/, ae145 on wss://relay.webmc.xyz/, fy84g on wss://relay.webmc.fun/); not available: wss://relay.deev.is/ (HTTP 502 instead of a WebSocket upgrade), wss://relay.mcjs.link/ (HTTP 403 instead of a WebSocket upgrade), wss://relay.neurosama.place/ (HTTP 530 instead of a WebSocket upgrade). Give players: 2pckd
+[2026-10-15T20:05:54.389Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 21s
+[2026-10-15T20:05:55.403Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 18s
+[2026-10-15T20:07:58.979Z] [lan] Relay [wss://relay.mcjs.link/] refused: HTTP 403 instead of a WebSocket upgrade; next try in 3 min
+[2026-10-15T20:08:03.989Z] [lan] New LAN client '9GDI45XIVQYZY5CB' via wss://relay.eaglercraft.net/
+[2026-10-15T20:08:05.757Z] [lan] [LAN 9GDI45XIVQYZY5CB] connection state: connecting
+[2026-10-15T20:08:11.269Z] [lan] [LAN 9GDI45XIVQYZY5CB] connection state: connected
+[2026-10-15T20:08:11.535Z] [lan] [LAN 9GDI45XIVQYZY5CB] connected, player channel opened
+[2026-10-15T20:08:11.993Z] [server] [08:08:11+992][IntegratedServer/INFO][Minecraft]: 9007199254740992[channel:9GDI45XIVQYZY5CB] logged in with entity id 1 at (-0.5, 67.0, -82.5)
+[2026-10-15T20:08:12.004Z] [server] [08:08:12+004][IntegratedServer/INFO][Minecraft]: 9007199254740992 joined the game
+[2026-10-15T20:08:12.831Z] [lan] New LAN client 'EW6HN8BFGFNQOT02' via wss://relay.eaglercraft.net/
+[2026-10-15T20:08:12.997Z] [lan] [LAN EW6HN8BFGFNQOT02] connection state: connecting
+[2026-10-15T20:08:18.140Z] [lan] [LAN EW6HN8BFGFNQOT02] connection state: connected
+[2026-10-15T20:08:18.398Z] [lan] [LAN EW6HN8BFGFNQOT02] connected, player channel opened
+[2026-10-15T20:08:18.473Z] [server] [08:08:18+472][IntegratedServer/INFO][Minecraft]: ClownFox[channel:EW6HN8BFGFNQOT02] logged in with entity id 43 at (3.5, 65.0, -67.5)
+[2026-10-15T20:08:18.474Z] [server] [08:08:18+474][IntegratedServer/INFO][Minecraft]: ClownFox joined the game
+[2026-10-15T20:08:59.893Z] [lan] New LAN client 'HQAH8UQB6P7LG95X' via wss://relay.eaglercraft.net/
+[2026-10-15T20:09:00.139Z] [lan] [LAN HQAH8UQB6P7LG95X] connection state: connecting
+[2026-10-15T20:09:05.177Z] [lan] [LAN HQAH8UQB6P7LG95X] connection state: connected
+[2026-10-15T20:09:05.389Z] [lan] [LAN HQAH8UQB6P7LG95X] connected, player channel opened
+[2026-10-15T20:09:05.402Z] [server] [08:09:05+402][IntegratedServer/INFO][Minecraft]: jeff[channel:HQAH8UQB6P7LG95X] logged in with entity id 280 at (-7.5, 67.0, -67.5)
+[2026-10-15T20:09:05.404Z] [server] [08:09:05+404][IntegratedServer/INFO][Minecraft]: jeff joined the game
+[2026-10-15T20:09:09.216Z] [lan] New LAN client 'OW460S79NFAMAEUN' via wss://relay.eaglercraft.net/
+[2026-10-15T20:09:09.353Z] [lan] [LAN OW460S79NFAMAEUN] connection state: connecting
+[2026-10-15T20:09:13.279Z] [lan] New LAN client '805AEKSIVI9SZ4IA' via wss://relay.eaglercraft.net/
+[2026-10-15T20:09:13.546Z] [lan] [LAN 805AEKSIVI9SZ4IA] connection state: connecting
+[2026-10-15T20:09:14.533Z] [lan] [LAN OW460S79NFAMAEUN] connection state: connected
+[2026-10-15T20:09:14.739Z] [lan] [LAN OW460S79NFAMAEUN] connected, player channel opened
+[2026-10-15T20:09:14.752Z] [server] [08:09:14+752][IntegratedServer/INFO][Minecraft]: Creeper_pvp_[channel:OW460S79NFAMAEUN] logged in with entity id 342 at (-6.5, 67.0, -84.5)
+[2026-10-15T20:09:14.753Z] [server] [08:09:14+753][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ joined the game
+[2026-10-15T20:09:16.866Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last relay ping 0s ago; last pong 14s ago (rtt 90 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:09:17.911Z] [lan] [LAN 805AEKSIVI9SZ4IA] connection state: connected
+[2026-10-15T20:09:20.667Z] [server] [08:09:20+667][IntegratedServer/INFO][Minecraft]: ClownFox has just earned the achievement [Taking Inventory]
+[2026-10-15T20:09:20.767Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: ue5x2
+[2026-10-15T20:09:20.767Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:09:20.768Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed hnkz6 -> ue5x2 (the relay issues a new code for every session)
+[2026-10-15T20:09:20.768Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: ue5x2
+[2026-10-15T20:09:21.308Z] [lan] [LAN 805AEKSIVI9SZ4IA] connected, player channel opened
+[2026-10-15T20:09:27.317Z] [server] [08:09:27+317][IntegratedServer/INFO][Minecraft]: DeevVigg[channel:805AEKSIVI9SZ4IA] logged in with entity id 388 at (90.5418327345407, 95.0, -241.30000001192093)
+[2026-10-15T20:09:27.318Z] [server] [08:09:27+318][IntegratedServer/INFO][Minecraft]: DeevVigg joined the game
+[2026-10-15T20:09:44.409Z] [lan] New LAN client 'JW7T90SA56NRX6D6' via wss://relay.eaglercraft.net/
+[2026-10-15T20:09:45.294Z] [lan] [LAN JW7T90SA56NRX6D6] connection state: connecting
+[2026-10-15T20:09:50.410Z] [lan] [LAN JW7T90SA56NRX6D6] connection state: connected
+[2026-10-15T20:09:51.098Z] [lan] [LAN JW7T90SA56NRX6D6] connected, player channel opened
+[2026-10-15T20:09:51.156Z] [server] [08:09:51+155][IntegratedServer/INFO][Minecraft]: E_04012[channel:JW7T90SA56NRX6D6] logged in with entity id 659 at (-3.5, 66.0, -76.5)
+[2026-10-15T20:09:51.157Z] [server] [08:09:51+157][IntegratedServer/INFO][Minecraft]: E_04012 joined the game
+[2026-10-15T20:10:07.454Z] [server] [08:10:07+453][IntegratedServer/INFO][Minecraft]: jeff fell from a high place
+[2026-10-15T20:10:21.908Z] [server] [08:10:21+908][IntegratedServer/INFO][Minecraft]: 9007199254740992 hit the ground too hard
+[2026-10-15T20:11:00.771Z] [lan] New LAN client '4BRKGAAUW0CQOEAE' via wss://relay.webmc.xyz/
+[2026-10-15T20:11:01.004Z] [lan] [LAN 4BRKGAAUW0CQOEAE] connection state: connecting
+[2026-10-15T20:11:13.775Z] [lan] [LAN 4BRKGAAUW0CQOEAE] handshake timed out
+[2026-10-15T20:11:13.775Z] [lan] [LAN 4BRKGAAUW0CQOEAE] connection state: closed
+[2026-10-15T20:11:15.467Z] [lan] ClientFailure for unknown client '4BRKGAAUW0CQOEAE' from wss://relay.webmc.xyz/
+[2026-10-15T20:11:19.616Z] [lan] New LAN client 'Y9XWB19851QBVN81' via wss://relay.webmc.fun/
+[2026-10-15T20:11:19.819Z] [lan] [LAN Y9XWB19851QBVN81] connection state: connecting
+[2026-10-15T20:11:20.303Z] [server] [08:11:20+302][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Taking Inventory]
+[2026-10-15T20:11:20.604Z] [server] [08:11:20+603][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Getting Wood]
+[2026-10-15T20:11:20.712Z] [lan] Relay [wss://relay.mcjs.link/] refused: HTTP 403 instead of a WebSocket upgrade; next try in 7 min
+[2026-10-15T20:11:31.203Z] [server] [08:11:31+203][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Taking Inventory]
+[2026-10-15T20:11:32.602Z] [server] [08:11:32+602][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Benchmarking]
+[2026-10-15T20:11:32.662Z] [lan] [LAN Y9XWB19851QBVN81] handshake timed out
+[2026-10-15T20:11:32.662Z] [lan] [LAN Y9XWB19851QBVN81] connection state: closed
+[2026-10-15T20:11:34.234Z] [lan] ClientFailure for unknown client 'Y9XWB19851QBVN81' from wss://relay.webmc.fun/
+[2026-10-15T20:11:36.809Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 0s ago; last pong 14s ago (rtt 240 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T20:11:40.594Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: qmbaa
+[2026-10-15T20:11:40.594Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:11:40.594Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed ue5x2 -> qmbaa (the relay issues a new code for every session)
+[2026-10-15T20:11:40.594Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: qmbaa
+[2026-10-15T20:11:44.752Z] [server] [08:11:44+751][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Time to Mine!]
+[2026-10-15T20:11:46.292Z] [lan] New LAN client 'WDCHN80S9N5249XP' via wss://relay.webmc.fun/
+[2026-10-15T20:11:46.453Z] [lan] [LAN WDCHN80S9N5249XP] connection state: connecting
+[2026-10-15T20:11:59.339Z] [lan] [LAN WDCHN80S9N5249XP] handshake timed out
+[2026-10-15T20:11:59.339Z] [lan] [LAN WDCHN80S9N5249XP] connection state: closed
+[2026-10-15T20:12:01.059Z] [lan] ClientFailure for unknown client 'WDCHN80S9N5249XP' from wss://relay.webmc.fun/
+[2026-10-15T20:12:02.751Z] [server] [08:12:02+751][IntegratedServer/INFO][Minecraft]: jeff has just earned the achievement [Taking Inventory]
+[2026-10-15T20:12:15.404Z] [server] [08:12:15+403][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Getting Wood]
+[2026-10-15T20:12:22.975Z] [lan] New LAN client 'G3G1BGZNHIN2NEPO' via wss://relay.webmc.fun/
+[2026-10-15T20:12:23.216Z] [lan] [LAN G3G1BGZNHIN2NEPO] connection state: connecting
+[2026-10-15T20:12:28.998Z] [server] [08:12:28+998][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Getting an Upgrade]
+[2026-10-15T20:12:32.439Z] [lan] [LAN 805AEKSIVI9SZ4IA] connection state: closed
+[2026-10-15T20:12:32.439Z] [lan] [LAN 805AEKSIVI9SZ4IA] connection state: closed
+[2026-10-15T20:12:32.439Z] [lan] [LAN 805AEKSIVI9SZ4IA] data channel closed
+[2026-10-15T20:12:32.439Z] [lan] [LAN 805AEKSIVI9SZ4IA] disconnected
+[2026-10-15T20:12:32.452Z] [server] [08:12:32+451][IntegratedServer/INFO][Minecraft]: DeevVigg lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:12:32.452Z] [server] [08:12:32+452][IntegratedServer/INFO][Minecraft]: DeevVigg left the game
+[2026-10-15T20:12:32.460Z] [host] server closed player channel '805AEKSIVI9SZ4IA'
+[2026-10-15T20:12:34.550Z] [server] [08:12:34+550][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Time to Strike!]
+[2026-10-15T20:12:35.993Z] [lan] [LAN G3G1BGZNHIN2NEPO] handshake timed out
+[2026-10-15T20:12:35.993Z] [lan] [LAN G3G1BGZNHIN2NEPO] connection state: closed
+[2026-10-15T20:12:37.653Z] [lan] ClientFailure for unknown client 'G3G1BGZNHIN2NEPO' from wss://relay.webmc.fun/
+[2026-10-15T20:12:38.736Z] [server] [08:12:38+736][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Hot Topic]
+[2026-10-15T20:12:46.522Z] [lan] New LAN client 'TL262KDR3X7FWEZZ' via wss://relay.eaglercraft.net/
+[2026-10-15T20:12:46.723Z] [lan] [LAN TL262KDR3X7FWEZZ] connection state: connecting
+[2026-10-15T20:12:47.305Z] [server] [08:12:47+304][IntegratedServer/INFO][Minecraft]: jeff was slain by ClownFox
+[2026-10-15T20:12:48.298Z] [lan] [LAN TL262KDR3X7FWEZZ] connection state: connected
+[2026-10-15T20:12:51.697Z] [lan] [LAN TL262KDR3X7FWEZZ] connected, player channel opened
+[2026-10-15T20:12:52.055Z] [server] [08:12:52+054][IntegratedServer/INFO][Minecraft]: DeevVigg[channel:TL262KDR3X7FWEZZ] logged in with entity id 2521 at (74.47693995428642, 101.10408037809304, -248.34020445255211)
+[2026-10-15T20:12:52.057Z] [server] [08:12:52+057][IntegratedServer/INFO][Minecraft]: DeevVigg joined the game
+[2026-10-15T20:12:55.802Z] [server] [08:12:55+801][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Monster Hunter]
+[2026-10-15T20:13:04.398Z] [server] [08:13:04+398][IntegratedServer/INFO][Minecraft]: 9007199254740992 was slain by Zombie
+[2026-10-15T20:13:05.409Z] [lan] [LAN TL262KDR3X7FWEZZ] connection state: closed
+[2026-10-15T20:13:05.409Z] [lan] [LAN TL262KDR3X7FWEZZ] connection state: closed
+[2026-10-15T20:13:05.409Z] [lan] [LAN TL262KDR3X7FWEZZ] data channel closed
+[2026-10-15T20:13:05.409Z] [lan] [LAN TL262KDR3X7FWEZZ] disconnected
+[2026-10-15T20:13:05.441Z] [server] [08:13:05+441][IntegratedServer/INFO][Minecraft]: DeevVigg lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:13:05.442Z] [server] [08:13:05+441][IntegratedServer/INFO][Minecraft]: DeevVigg left the game
+[2026-10-15T20:13:05.454Z] [host] server closed player channel 'TL262KDR3X7FWEZZ'
+[2026-10-15T20:13:12.465Z] [lan] New LAN client '54438M9HOKN60CZL' via wss://relay.eaglercraft.net/
+[2026-10-15T20:13:12.671Z] [lan] [LAN 54438M9HOKN60CZL] connection state: connecting
+[2026-10-15T20:13:14.238Z] [lan] [LAN 54438M9HOKN60CZL] connection state: connected
+[2026-10-15T20:13:16.449Z] [lan] New LAN client '1RQBHP9WAENPWJMW' via wss://relay.eaglercraft.net/
+[2026-10-15T20:13:16.715Z] [lan] [LAN 1RQBHP9WAENPWJMW] connection state: connecting
+[2026-10-15T20:13:17.042Z] [lan] [LAN 54438M9HOKN60CZL] connected, player channel opened
+[2026-10-15T20:13:17.602Z] [server] [08:13:17+602][IntegratedServer/INFO][Minecraft]: DeevVigg[channel:54438M9HOKN60CZL] logged in with entity id 2958 at (74.47693995428642, 101.0, -248.34020445255211)
+[2026-10-15T20:13:17.603Z] [server] [08:13:17+603][IntegratedServer/INFO][Minecraft]: DeevVigg joined the game
+[2026-10-15T20:13:22.062Z] [lan] [LAN 1RQBHP9WAENPWJMW] connection state: connected
+[2026-10-15T20:13:22.287Z] [lan] [LAN 1RQBHP9WAENPWJMW] connected, player channel opened
+[2026-10-15T20:13:22.299Z] [server] [08:13:22+299][IntegratedServer/INFO][Minecraft]: IDK_my_username[channel:1RQBHP9WAENPWJMW] logged in with entity id 3028 at (-13.5, 67.0, -84.5)
+[2026-10-15T20:13:22.300Z] [server] [08:13:22+300][IntegratedServer/INFO][Minecraft]: IDK_my_username joined the game
+[2026-10-15T20:13:41.951Z] [server] [08:13:41+951][IntegratedServer/INFO][Minecraft]: <jeff> team
+[2026-10-15T20:13:44.602Z] [server] [08:13:44+601][IntegratedServer/INFO][Minecraft]: jeff was slain by Creeper_pvp_
+[2026-10-15T20:13:52.818Z] [lan] [LAN HQAH8UQB6P7LG95X] data channel closed
+[2026-10-15T20:13:52.818Z] [lan] [LAN HQAH8UQB6P7LG95X] disconnected
+[2026-10-15T20:13:52.818Z] [lan] [LAN HQAH8UQB6P7LG95X] connection state: closed
+[2026-10-15T20:13:52.822Z] [server] [08:13:52+822][IntegratedServer/INFO][Minecraft]: jeff lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:13:52.823Z] [server] [08:13:52+823][IntegratedServer/INFO][Minecraft]: jeff left the game
+[2026-10-15T20:13:52.827Z] [host] server closed player channel 'HQAH8UQB6P7LG95X'
+[2026-10-15T20:14:10.751Z] [server] [08:14:10+751][IntegratedServer/INFO][Minecraft]: 9007199254740992 was pricked to death
+[2026-10-15T20:14:16.575Z] [lan] [LAN JW7T90SA56NRX6D6] data channel closed
+[2026-10-15T20:14:16.575Z] [lan] [LAN JW7T90SA56NRX6D6] disconnected
+[2026-10-15T20:14:16.575Z] [lan] [LAN JW7T90SA56NRX6D6] connection state: closed
+[2026-10-15T20:14:16.577Z] [server] [08:14:16+576][IntegratedServer/INFO][Minecraft]: E_04012 lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:14:16.577Z] [server] [08:14:16+577][IntegratedServer/INFO][Minecraft]: E_04012 left the game
+[2026-10-15T20:14:16.582Z] [host] server closed player channel 'JW7T90SA56NRX6D6'
+[2026-10-15T20:14:38.600Z] [server] [08:14:38+600][IntegratedServer/INFO][Minecraft]: ClownFox has just earned the achievement [Getting Wood]
+[2026-10-15T20:15:42.537Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last pong 20s ago (rtt 279 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:15:45.779Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 7n2rl
+[2026-10-15T20:15:45.780Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:15:45.780Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed ae145 -> 7n2rl (the relay issues a new code for every session)
+[2026-10-15T20:15:45.780Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 7n2rl
+[2026-10-15T20:16:02.531Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 2s ago; last pong 20s ago (rtt 324 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:16:02.531Z] [lan] Join code for players: qmbaa (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was 2pckd via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T20:16:02.532Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 4s ago; last pong 19s ago (rtt 852 ms); host event-loop delay max 22 ms over the last minute. 5 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:16:05.387Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: zk9jf
+[2026-10-15T20:16:05.426Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T20:16:05.426Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed sz0mn -> zk9jf (the relay issues a new code for every session)
+[2026-10-15T20:16:05.426Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: zk9jf
+[2026-10-15T20:16:05.981Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: e5kts
+[2026-10-15T20:16:06.033Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:16:06.033Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed 2pckd -> e5kts (the relay issues a new code for every session)
+[2026-10-15T20:16:06.033Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: e5kts
+[2026-10-15T20:16:09.348Z] [server] [08:16:09+348][IntegratedServer/INFO][Minecraft]: IDK_my_username was slain by ClownFox
+[2026-10-15T20:16:11.449Z] [server] [08:16:11+449][IntegratedServer/INFO][Minecraft]: <DeevVigg> World is lagging?
+[2026-10-15T20:16:15.226Z] [lan] [LAN 1RQBHP9WAENPWJMW] connection state: closed
+[2026-10-15T20:16:15.226Z] [lan] [LAN 1RQBHP9WAENPWJMW] connection state: closed
+[2026-10-15T20:16:15.226Z] [lan] [LAN 1RQBHP9WAENPWJMW] data channel closed
+[2026-10-15T20:16:15.226Z] [lan] [LAN 1RQBHP9WAENPWJMW] disconnected
+[2026-10-15T20:16:15.228Z] [server] [08:16:15+228][IntegratedServer/INFO][Minecraft]: IDK_my_username lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:16:15.228Z] [server] [08:16:15+228][IntegratedServer/INFO][Minecraft]: IDK_my_username left the game
+[2026-10-15T20:16:15.232Z] [host] server closed player channel '1RQBHP9WAENPWJMW'
+[2026-10-15T20:16:36.243Z] [server] [08:16:36+243][IntegratedServer/INFO][Minecraft]: ClownFox hit the ground too hard
+[2026-10-15T20:16:53.126Z] [server] [08:16:53+125][IntegratedServer/INFO][Minecraft]: DeevVigg hit the ground too hard
+[2026-10-15T20:16:57.053Z] [server] [08:16:57+053][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ was blown up by Creeper
+[2026-10-15T20:17:01.952Z] [server] [08:17:01+952][IntegratedServer/INFO][Minecraft]: 9007199254740992 fell from a high place
+[2026-10-15T20:17:05.176Z] [lan] [LAN 54438M9HOKN60CZL] connection state: closed
+[2026-10-15T20:17:05.176Z] [lan] [LAN 54438M9HOKN60CZL] connection state: closed
+[2026-10-15T20:17:05.176Z] [lan] [LAN 54438M9HOKN60CZL] data channel closed
+[2026-10-15T20:17:05.176Z] [lan] [LAN 54438M9HOKN60CZL] disconnected
+[2026-10-15T20:17:05.177Z] [server] [08:17:05+177][IntegratedServer/INFO][Minecraft]: DeevVigg lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:17:05.177Z] [server] [08:17:05+177][IntegratedServer/INFO][Minecraft]: DeevVigg left the game
+[2026-10-15T20:17:05.181Z] [host] server closed player channel '54438M9HOKN60CZL'
+[2026-10-15T20:17:49.285Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (11 failures in a row)
+[2026-10-15T20:18:27.387Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (11 failures in a row)
+[2026-10-15T20:18:29.096Z] [server] [08:18:29+096][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ has just earned the achievement [Cow Tipper]
+[2026-10-15T20:19:20.050Z] [lan] [LAN EW6HN8BFGFNQOT02] data channel closed
+[2026-10-15T20:19:20.050Z] [lan] [LAN EW6HN8BFGFNQOT02] disconnected
+[2026-10-15T20:19:20.052Z] [lan] [LAN EW6HN8BFGFNQOT02] connection state: closed
+[2026-10-15T20:19:20.052Z] [server] [08:19:20+052][IntegratedServer/INFO][Minecraft]: ClownFox lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:19:20.053Z] [server] [08:19:20+053][IntegratedServer/INFO][Minecraft]: ClownFox left the game
+[2026-10-15T20:19:20.058Z] [host] server closed player channel 'EW6HN8BFGFNQOT02'
+[2026-10-15T20:19:47.594Z] [server] [08:19:47+594][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Benchmarking]
+[2026-10-15T20:19:57.394Z] [server] [08:19:57+393][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Time to Strike!]
+[2026-10-15T20:21:16.384Z] [lan] [LAN OW460S79NFAMAEUN] connection state: closed
+[2026-10-15T20:21:16.384Z] [lan] [LAN OW460S79NFAMAEUN] connection state: closed
+[2026-10-15T20:21:16.384Z] [lan] [LAN OW460S79NFAMAEUN] data channel closed
+[2026-10-15T20:21:16.384Z] [lan] [LAN OW460S79NFAMAEUN] disconnected
+[2026-10-15T20:21:16.386Z] [server] [08:21:16+385][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T20:21:16.386Z] [server] [08:21:16+386][IntegratedServer/INFO][Minecraft]: Creeper_pvp_ left the game
+[2026-10-15T20:21:16.390Z] [host] server closed player channel 'OW460S79NFAMAEUN'
+[2026-10-15T20:21:49.993Z] [server] [08:21:49+993][IntegratedServer/INFO][Minecraft]: <9007199254740992> yo
+[2026-10-15T20:23:16.857Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 12 min; last relay ping 0s ago; last pong 9s ago (rtt 65 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:23:16.858Z] [lan] Join code for players: e5kts (via wss://relay.lax1dude.net/, a relay stock clients know); was qmbaa via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T20:23:20.599Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: nnm1q
+[2026-10-15T20:23:20.599Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:23:20.599Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed qmbaa -> nnm1q (the relay issues a new code for every session)
+[2026-10-15T20:23:20.599Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: nnm1q
+[2026-10-15T20:24:22.244Z] [server] [08:24:22+243][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Cow Tipper]
+[2026-10-15T20:25:22.956Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 20 min; last pong 15s ago (rtt 293 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:25:26.059Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: onvc1
+[2026-10-15T20:25:26.060Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:25:26.060Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed fy84g -> onvc1 (the relay issues a new code for every session)
+[2026-10-15T20:25:26.060Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: onvc1
+[2026-10-15T20:26:42.868Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11 min; last pong 15s ago (rtt 77 ms); host event-loop delay max 25 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T20:26:46.684Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 29elr
+[2026-10-15T20:26:46.685Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:26:46.685Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed 7n2rl -> 29elr (the relay issues a new code for every session)
+[2026-10-15T20:26:46.685Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 29elr
+[2026-10-15T20:26:47.394Z] [server] [08:26:47+393][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Monster Hunter]
+[2026-10-15T20:27:07.402Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11 min; last relay ping 7s ago; last pong 20s ago (rtt 29 ms); host event-loop delay max 25 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:27:07.402Z] [lan] Join code for players: zk9jf (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was e5kts via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T20:27:10.813Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: ybpu5
+[2026-10-15T20:27:10.851Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:27:10.851Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed e5kts -> ybpu5 (the relay issues a new code for every session)
+[2026-10-15T20:27:10.851Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: ybpu5
+[2026-10-15T20:30:50.344Z] [server] [08:30:50+344][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Time to Mine!]
+[2026-10-15T20:31:23.444Z] [server] [08:31:23+443][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Getting an Upgrade]
+[2026-10-15T20:37:04.041Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (21 failures in a row)
+[2026-10-15T20:39:52.413Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 13 min; last relay ping 12s ago; last pong 20s ago (rtt 101 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:39:53.774Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (21 failures in a row)
+[2026-10-15T20:39:55.225Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: arg6l
+[2026-10-15T20:39:55.259Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:39:55.260Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed ybpu5 -> arg6l (the relay issues a new code for every session)
+[2026-10-15T20:39:55.260Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: arg6l
+[2026-10-15T20:41:05.897Z] [server] [08:41:05+896][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Hot Topic]
+[2026-10-15T20:44:14.498Z] [server] [08:44:14+498][IntegratedServer/INFO][Minecraft]: 9007199254740992 has just earned the achievement [Acquire Hardware]
+[2026-10-15T20:44:42.654Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 18 min; last pong 15s ago (rtt 50 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:44:46.449Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: lcjdr
+[2026-10-15T20:44:46.450Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:44:46.450Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed 29elr -> lcjdr (the relay issues a new code for every session)
+[2026-10-15T20:44:46.450Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: lcjdr
+[2026-10-15T20:46:42.974Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 91 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:46:45.956Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: nifth
+[2026-10-15T20:46:45.956Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:46:45.957Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed lcjdr -> nifth (the relay issues a new code for every session)
+[2026-10-15T20:46:45.957Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: nifth
+[2026-10-15T20:47:55.661Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last relay ping 16s ago; last pong 18s ago (rtt 41 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T20:47:58.219Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: yvui4
+[2026-10-15T20:47:58.256Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:47:58.256Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed arg6l -> yvui4 (the relay issues a new code for every session)
+[2026-10-15T20:47:58.256Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: yvui4
+[2026-10-15T20:50:42.723Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 35 min; last relay ping 17s ago; last pong 15s ago (rtt 25 ms); host event-loop delay max 22 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 2s.
+[2026-10-15T20:50:42.723Z] [lan] Join code for players: nnm1q (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was zk9jf via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T20:50:45.438Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: d89lw
+[2026-10-15T20:50:45.473Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T20:50:45.473Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed zk9jf -> d89lw (the relay issues a new code for every session)
+[2026-10-15T20:50:45.473Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: d89lw
+[2026-10-15T20:50:56.864Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 28 min; last relay ping 0s ago; last pong 9s ago (rtt 66 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:50:56.865Z] [lan] Join code for players: yvui4 (via wss://relay.lax1dude.net/, a relay stock clients know); was nnm1q via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T20:50:58.079Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 18s ago; last pong 16s ago (rtt 38 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:50:58.079Z] [lan] Join code for players: d89lw (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was yvui4 via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T20:51:00.639Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 22 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 6s.
+[2026-10-15T20:51:00.640Z] [lan] Join code for players: onvc1 (via wss://relay.webmc.fun/, players need this relay in their relay list); was d89lw via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T20:51:00.682Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: qbg6z
+[2026-10-15T20:51:00.682Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:51:00.682Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed nnm1q -> qbg6z (the relay issues a new code for every session)
+[2026-10-15T20:51:00.682Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: qbg6z
+[2026-10-15T20:51:00.682Z] [lan] Join code for players: qbg6z (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was onvc1 via wss://relay.webmc.fun/ (wss://relay.shhnowisnottheti.me/ opened)
+[2026-10-15T20:51:01.371Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: zpja3
+[2026-10-15T20:51:01.408Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:51:01.408Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed yvui4 -> zpja3 (the relay issues a new code for every session)
+[2026-10-15T20:51:01.408Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: zpja3
+[2026-10-15T20:51:07.757Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: 2k0rc
+[2026-10-15T20:51:07.757Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T20:51:07.757Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 7s after it was lost (1 attempt); its join code changed d89lw -> 2k0rc (the relay issues a new code for every session)
+[2026-10-15T20:51:07.757Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: 2k0rc
+[2026-10-15T20:51:16.559Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 5s.
+[2026-10-15T20:51:22.659Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last pong 15s ago (rtt 80 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T20:51:22.662Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 26 min; last pong 15s ago (rtt 50 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:51:23.102Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: e5z4i
+[2026-10-15T20:51:23.136Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:51:23.136Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 7s after it was lost (1 attempt); its join code changed zpja3 -> e5z4i (the relay issues a new code for every session)
+[2026-10-15T20:51:23.136Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: e5z4i
+[2026-10-15T20:51:26.743Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 1wai0
+[2026-10-15T20:51:26.743Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:51:26.744Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed onvc1 -> 1wai0 (the relay issues a new code for every session)
+[2026-10-15T20:51:26.744Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 1wai0
+[2026-10-15T20:51:27.339Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: ye767
+[2026-10-15T20:51:27.340Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:51:27.340Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 5s after it was lost (1 attempt); its join code changed nifth -> ye767 (the relay issues a new code for every session)
+[2026-10-15T20:51:27.340Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: ye767
+[2026-10-15T20:51:42.197Z] [server] [08:51:42+197][IntegratedServer/INFO][Minecraft]: <9007199254740992> 3
+[2026-10-15T20:52:47.476Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 81s; last pong 20s ago (rtt 281 ms); host event-loop delay max 25 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:52:51.152Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: sslty
+[2026-10-15T20:52:51.153Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:52:51.153Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed 1wai0 -> sslty (the relay issues a new code for every session)
+[2026-10-15T20:52:51.154Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: sslty
+[2026-10-15T20:52:52.492Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 5s ago; last pong 20s ago (rtt 160 ms); host event-loop delay max 25 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 2s.
+[2026-10-15T20:52:55.618Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: xh6vv
+[2026-10-15T20:52:55.618Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T20:52:55.618Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed 2k0rc -> xh6vv (the relay issues a new code for every session)
+[2026-10-15T20:52:55.618Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: xh6vv
+[2026-10-15T20:56:03.106Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last pong 15s ago (rtt 280 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:56:07.443Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 23guv
+[2026-10-15T20:56:07.445Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:56:07.445Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed ye767 -> 23guv (the relay issues a new code for every session)
+[2026-10-15T20:56:07.445Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 23guv
+[2026-10-15T20:57:31.284Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (31 failures in a row)
+[2026-10-15T20:58:16.816Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 0s ago; last pong 14s ago (rtt 246 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:58:16.817Z] [lan] Join code for players: e5z4i (via wss://relay.lax1dude.net/, a relay stock clients know); was qbg6z via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T20:58:19.862Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 1lijl
+[2026-10-15T20:58:19.863Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T20:58:19.863Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed qbg6z -> 1lijl (the relay issues a new code for every session)
+[2026-10-15T20:58:19.863Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 1lijl
+[2026-10-15T20:58:27.997Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 272 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:58:31.435Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: h9uee
+[2026-10-15T20:58:31.436Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:58:31.436Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed 23guv -> h9uee (the relay issues a new code for every session)
+[2026-10-15T20:58:31.436Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: h9uee
+[2026-10-15T20:58:40.232Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 0s ago; last pong 12s ago (rtt 324 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:58:40.233Z] [lan] Join code for players: 1lijl (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was e5z4i via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T20:58:43.428Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: 57za1
+[2026-10-15T20:58:43.454Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T20:58:43.454Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed e5z4i -> 57za1 (the relay issues a new code for every session)
+[2026-10-15T20:58:43.454Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: 57za1
+[2026-10-15T20:58:47.965Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 6 min; last pong 15s ago (rtt 281 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T20:58:50.922Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 8xmjj
+[2026-10-15T20:58:50.922Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T20:58:50.922Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed sslty -> 8xmjj (the relay issues a new code for every session)
+[2026-10-15T20:58:50.922Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 8xmjj
+[2026-10-15T20:58:53.085Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 6 min; last relay ping 18s ago; last pong 16s ago (rtt 162 ms); host event-loop delay max 22 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 3s.
+[2026-10-15T20:58:57.214Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: bleev
+[2026-10-15T20:58:57.214Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T20:58:57.214Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed xh6vv -> bleev (the relay issues a new code for every session)
+[2026-10-15T20:58:57.214Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: bleev
+[2026-10-15T20:59:32.007Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (31 failures in a row)
+[2026-10-15T21:00:47.438Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 7s ago; last pong 20s ago (rtt 172 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:00:50.575Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: inna7
+[2026-10-15T21:00:50.609Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:00:50.609Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed 57za1 -> inna7 (the relay issues a new code for every session)
+[2026-10-15T21:00:50.609Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: inna7
+[2026-10-15T21:01:16.874Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 0s ago; last pong 14s ago (rtt 84 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:01:16.874Z] [lan] Join code for players: bleev (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was 1lijl via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:01:20.811Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 0fv6m
+[2026-10-15T21:01:20.811Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:01:20.811Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed 1lijl -> 0fv6m (the relay issues a new code for every session)
+[2026-10-15T21:01:20.811Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 0fv6m
+[2026-10-15T21:01:32.975Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 16s ago; last pong 15s ago (rtt 215 ms); host event-loop delay max 23 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 2s.
+[2026-10-15T21:01:32.976Z] [lan] Join code for players: 0fv6m (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was bleev via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T21:01:35.869Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: g4ulc
+[2026-10-15T21:01:35.869Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:13.140.43.58:3478?transport=udp, PASSWD: turn:13.140.43.58:3478?transport=tcp, NO_PASSWD: stun:13.140.43.58:3478
+[2026-10-15T21:01:35.869Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed bleev -> g4ulc (the relay issues a new code for every session)
+[2026-10-15T21:01:35.869Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: g4ulc
+[2026-10-15T21:01:55.798Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 20s; last relay ping 0s ago; host event-loop delay max 23 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 5s.
+[2026-10-15T21:02:02.086Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: 5mjjp
+[2026-10-15T21:02:02.086Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T21:02:02.086Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 6s after it was lost (1 attempt); its join code changed g4ulc -> 5mjjp (the relay issues a new code for every session)
+[2026-10-15T21:02:02.086Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: 5mjjp
+[2026-10-15T21:03:48.902Z] [server] [09:03:48+901][IntegratedServer/INFO][Minecraft]: <9007199254740992> 3
+[2026-10-15T21:04:07.948Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 6 min; last pong 15s ago (rtt 79 ms); host event-loop delay max 26 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T21:04:10.684Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 3y7wd
+[2026-10-15T21:04:10.684Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:04:10.684Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed h9uee -> 3y7wd (the relay issues a new code for every session)
+[2026-10-15T21:04:10.684Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 3y7wd
+[2026-10-15T21:05:56.811Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last relay ping 0s ago; last pong 14s ago (rtt 258 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T21:05:56.811Z] [lan] Join code for players: inna7 (via wss://relay.lax1dude.net/, a relay stock clients know); was 0fv6m via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:05:58.045Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last relay ping 17s ago; last pong 15s ago (rtt 195 ms); host event-loop delay max 21 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 4s.
+[2026-10-15T21:06:00.738Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: f2m8t
+[2026-10-15T21:06:00.738Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:06:00.738Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed 0fv6m -> f2m8t (the relay issues a new code for every session)
+[2026-10-15T21:06:00.738Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: f2m8t
+[2026-10-15T21:06:01.966Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: 0jhm1
+[2026-10-15T21:06:02.009Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T21:06:02.009Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed 5mjjp -> 0jhm1 (the relay issues a new code for every session)
+[2026-10-15T21:06:02.010Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: 0jhm1
+[2026-10-15T21:07:07.699Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last pong 15s ago (rtt 85 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:07:07.700Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last pong 15s ago (rtt 55 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:07:10.814Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: z7t6j
+[2026-10-15T21:07:10.814Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:07:10.814Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed 8xmjj -> z7t6j (the relay issues a new code for every session)
+[2026-10-15T21:07:10.814Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: z7t6j
+[2026-10-15T21:07:11.283Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 052x2
+[2026-10-15T21:07:11.283Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:07:11.283Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed 3y7wd -> 052x2 (the relay issues a new code for every session)
+[2026-10-15T21:07:11.283Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 052x2
+[2026-10-15T21:07:12.489Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 6 min; last relay ping 12s ago; last pong 20s ago (rtt 38 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:07:12.489Z] [lan] Join code for players: f2m8t (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was inna7 via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T21:07:15.493Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: xf6iz
+[2026-10-15T21:07:15.533Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:07:15.533Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed inna7 -> xf6iz (the relay issues a new code for every session)
+[2026-10-15T21:07:15.533Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: xf6iz
+[2026-10-15T21:07:16.761Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 76s; last relay ping 0s ago; last pong 14s ago (rtt 99 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:07:16.762Z] [lan] Join code for players: xf6iz (via wss://relay.lax1dude.net/, a relay stock clients know); was f2m8t via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:07:17.963Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 76s; last relay ping 16s ago; last pong 16s ago (rtt 32 ms); host event-loop delay max 24 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 3s.
+[2026-10-15T21:07:19.723Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 72bp0
+[2026-10-15T21:07:19.723Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:07:19.723Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed f2m8t -> 72bp0 (the relay issues a new code for every session)
+[2026-10-15T21:07:19.723Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 72bp0
+[2026-10-15T21:07:21.485Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: kn6q0
+[2026-10-15T21:07:21.485Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:207.244.237.57:3478?transport=udp, PASSWD: turn:207.244.237.57:3478?transport=tcp, NO_PASSWD: stun:207.244.237.57:3478
+[2026-10-15T21:07:21.485Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed 0jhm1 -> kn6q0 (the relay issues a new code for every session)
+[2026-10-15T21:07:21.485Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: kn6q0
+[2026-10-15T21:07:26.132Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-15T21:07:32.468Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 5ycdn
+[2026-10-15T21:07:32.468Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:07:32.468Z] [lan] Relay [wss://relay.webmc.fun/] recovered 6s after it was lost (1 attempt); its join code changed z7t6j -> 5ycdn (the relay issues a new code for every session)
+[2026-10-15T21:07:32.468Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 5ycdn
+[2026-10-15T21:07:37.492Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 22s; last relay ping 17s ago; host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-15T21:07:37.493Z] [lan] Join code for players: 72bp0 (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was xf6iz via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T21:07:43.541Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: mtp4z
+[2026-10-15T21:07:43.583Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:07:43.583Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 6s after it was lost (1 attempt); its join code changed xf6iz -> mtp4z (the relay issues a new code for every session)
+[2026-10-15T21:07:43.583Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: mtp4z
+[2026-10-15T21:15:01.407Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last relay ping 0s ago; last pong 14s ago (rtt 70 ms); host event-loop delay max 22 ms over the last minute. 1 player who joined through it stays connected. Reconnecting in 2s.
+[2026-10-15T21:15:04.054Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: 8ygor
+[2026-10-15T21:15:04.095Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T21:15:04.095Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed kn6q0 -> 8ygor (the relay issues a new code for every session)
+[2026-10-15T21:15:04.095Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: 8ygor
+[2026-10-15T21:15:07.456Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 7s ago; last pong 20s ago (rtt 99 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:15:10.624Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: bpo2t
+[2026-10-15T21:15:10.661Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:15:10.661Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed mtp4z -> bpo2t (the relay issues a new code for every session)
+[2026-10-15T21:15:10.661Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: bpo2t
+[2026-10-15T21:15:17.455Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last pong 20s ago (rtt 47 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:15:20.331Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: k576u
+[2026-10-15T21:15:20.333Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:15:20.333Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed 5ycdn -> k576u (the relay issues a new code for every session)
+[2026-10-15T21:15:20.333Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: k576u
+[2026-10-15T21:15:36.809Z] [lan] [LAN 9GDI45XIVQYZY5CB] data channel closed
+[2026-10-15T21:15:36.809Z] [lan] [LAN 9GDI45XIVQYZY5CB] disconnected
+[2026-10-15T21:15:36.810Z] [lan] [LAN 9GDI45XIVQYZY5CB] connection state: closed
+[2026-10-15T21:15:36.812Z] [server] [09:15:36+812][IntegratedServer/INFO][Minecraft]: 9007199254740992 lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-15T21:15:36.813Z] [server] [09:15:36+812][IntegratedServer/INFO][Minecraft]: 9007199254740992 left the game
+[2026-10-15T21:15:36.817Z] [host] server closed player channel '9GDI45XIVQYZY5CB'
+[2026-10-15T21:17:28.253Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (41 failures in a row)
+[2026-10-15T21:17:42.581Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 19s ago; last pong 15s ago (rtt 28 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:17:45.678Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: fmtp8
+[2026-10-15T21:17:45.719Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T21:17:45.720Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed 8ygor -> fmtp8 (the relay issues a new code for every session)
+[2026-10-15T21:17:45.720Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: fmtp8
+[2026-10-15T21:17:52.482Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 12s ago; last pong 20s ago (rtt 41 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T21:17:56.484Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: ku9ev
+[2026-10-15T21:17:56.516Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:17:56.516Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed bpo2t -> ku9ev (the relay issues a new code for every session)
+[2026-10-15T21:17:56.516Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: ku9ev
+[2026-10-15T21:19:44.951Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (41 failures in a row)
+[2026-10-15T21:19:47.440Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 12 min; last relay ping 11s ago; last pong 20s ago (rtt 83 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:19:47.440Z] [lan] Join code for players: ku9ev (via wss://relay.lax1dude.net/, a relay stock clients know); was 72bp0 via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:19:51.324Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 4ak1t
+[2026-10-15T21:19:51.324Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:19:51.324Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed 72bp0 -> 4ak1t (the relay issues a new code for every session)
+[2026-10-15T21:19:51.324Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 4ak1t
+[2026-10-15T21:26:56.363Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 20s ago; last pong 4s ago (rtt 67 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:26:59.984Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: q65gc
+[2026-10-15T21:26:59.984Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:26:59.984Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed 4ak1t -> q65gc (the relay issues a new code for every session)
+[2026-10-15T21:26:59.984Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: q65gc
+[2026-10-15T21:31:13.054Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 24 min; last pong 16s ago (rtt 77 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:31:16.637Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: eh9w8
+[2026-10-15T21:31:16.637Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:31:16.637Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed 052x2 -> eh9w8 (the relay issues a new code for every session)
+[2026-10-15T21:31:16.637Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: eh9w8
+[2026-10-15T21:31:16.798Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last relay ping 0s ago; last pong 14s ago (rtt 69 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:31:19.698Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: i2xdp
+[2026-10-15T21:31:19.698Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:31:19.698Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed q65gc -> i2xdp (the relay issues a new code for every session)
+[2026-10-15T21:31:19.698Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: i2xdp
+[2026-10-15T21:36:27.475Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 19 min; last relay ping 7s ago; last pong 25s ago (rtt 108 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:36:27.476Z] [lan] Join code for players: i2xdp (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was ku9ev via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T21:36:30.318Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: t257u
+[2026-10-15T21:36:30.362Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:36:30.362Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed ku9ev -> t257u (the relay issues a new code for every session)
+[2026-10-15T21:36:30.362Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: t257u
+[2026-10-15T21:37:33.235Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (51 failures in a row)
+[2026-10-15T21:39:05.004Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (51 failures in a row)
+[2026-10-15T21:41:07.998Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 26 min; last pong 15s ago (rtt 48 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:41:11.873Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: z34w7
+[2026-10-15T21:41:11.873Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:41:11.873Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed k576u -> z34w7 (the relay issues a new code for every session)
+[2026-10-15T21:41:11.873Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: z34w7
+[2026-10-15T21:44:36.792Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 13 min; last relay ping 0s ago; last pong 9s ago (rtt 70 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:44:36.793Z] [lan] Join code for players: t257u (via wss://relay.lax1dude.net/, a relay stock clients know); was i2xdp via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:44:40.017Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: flkh5
+[2026-10-15T21:44:40.017Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:44:40.017Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed i2xdp -> flkh5 (the relay issues a new code for every session)
+[2026-10-15T21:44:40.017Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: flkh5
+[2026-10-15T21:46:05.697Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 28 min; last relay ping 0s ago; last pong 13s ago (rtt 26 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:46:08.464Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: g5wbb
+[2026-10-15T21:46:08.506Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T21:46:08.506Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed fmtp8 -> g5wbb (the relay issues a new code for every session)
+[2026-10-15T21:46:08.506Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: g5wbb
+[2026-10-15T21:46:12.509Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 12s ago; last pong 20s ago (rtt 37 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:46:12.509Z] [lan] Join code for players: flkh5 (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was t257u via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-15T21:46:15.775Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: rsy8k
+[2026-10-15T21:46:15.815Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:46:15.815Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed t257u -> rsy8k (the relay issues a new code for every session)
+[2026-10-15T21:46:15.815Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: rsy8k
+[2026-10-15T21:46:28.022Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last pong 15s ago (rtt 83 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:46:31.283Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: nbbro
+[2026-10-15T21:46:31.283Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:46:31.283Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed z34w7 -> nbbro (the relay issues a new code for every session)
+[2026-10-15T21:46:31.283Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: nbbro
+[2026-10-15T21:46:46.451Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 7s.
+[2026-10-15T21:46:53.403Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 8qsg0
+[2026-10-15T21:46:53.404Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:46:53.404Z] [lan] Relay [wss://relay.webmc.fun/] recovered 7s after it was lost (1 attempt); its join code changed nbbro -> 8qsg0 (the relay issues a new code for every session)
+[2026-10-15T21:46:53.404Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 8qsg0
+[2026-10-15T21:56:35.165Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 15s ago; last pong 18s ago (rtt 103 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T21:56:38.075Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: zfzdb
+[2026-10-15T21:56:38.110Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:56:38.111Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed rsy8k -> zfzdb (the relay issues a new code for every session)
+[2026-10-15T21:56:38.111Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: zfzdb
+[2026-10-15T21:57:00.419Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 22s; last relay ping 0s ago; host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-15T21:57:06.198Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (61 failures in a row)
+[2026-10-15T21:57:06.515Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: 3yzpn
+[2026-10-15T21:57:06.551Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T21:57:06.551Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 6s after it was lost (1 attempt); its join code changed zfzdb -> 3yzpn (the relay issues a new code for every session)
+[2026-10-15T21:57:06.551Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: 3yzpn
+[2026-10-15T21:58:39.784Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (61 failures in a row)
+[2026-10-15T21:58:57.501Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 12 min; last pong 20s ago (rtt 54 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:59:00.319Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: soao9
+[2026-10-15T21:59:00.319Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T21:59:00.319Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed 8qsg0 -> soao9 (the relay issues a new code for every session)
+[2026-10-15T21:59:00.319Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: soao9
+[2026-10-15T21:59:36.818Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15 min; last relay ping 0s ago; last pong 14s ago (rtt 80 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T21:59:36.818Z] [lan] Join code for players: g5wbb (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was flkh5 via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T21:59:40.300Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: etqpz
+[2026-10-15T21:59:40.300Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T21:59:40.300Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed flkh5 -> etqpz (the relay issues a new code for every session)
+[2026-10-15T21:59:40.300Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: etqpz
+[2026-10-15T22:02:07.527Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last relay ping 7s ago; last pong 20s ago (rtt 36 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:02:11.290Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: 1yc6i
+[2026-10-15T22:02:11.330Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:02:11.330Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed 3yzpn -> 1yc6i (the relay issues a new code for every session)
+[2026-10-15T22:02:11.330Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: 1yc6i
+[2026-10-15T22:03:08.071Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 32 min; last pong 16s ago (rtt 55 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:03:12.388Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: qvuja
+[2026-10-15T22:03:12.388Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:03:12.388Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed eh9w8 -> qvuja (the relay issues a new code for every session)
+[2026-10-15T22:03:12.388Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: qvuja
+[2026-10-15T22:03:12.649Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 61s; last relay ping 13s ago; last pong 20s ago (rtt 102 ms); host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:03:15.805Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: v5yru
+[2026-10-15T22:03:15.842Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:03:15.842Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed 1yc6i -> v5yru (the relay issues a new code for every session)
+[2026-10-15T22:03:15.842Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: v5yru
+[2026-10-15T22:03:22.655Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last pong 20s ago (rtt 46 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:03:26.616Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: l3qfp
+[2026-10-15T22:03:26.616Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:03:26.616Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed soao9 -> l3qfp (the relay issues a new code for every session)
+[2026-10-15T22:03:26.616Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: l3qfp
+[2026-10-15T22:03:52.654Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 18 min; last relay ping 4s ago; last pong 20s ago (rtt 22 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T22:03:52.654Z] [lan] Join code for players: etqpz (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was g5wbb via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T22:03:55.688Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 40s; last relay ping 16s ago; last pong 18s ago (rtt 97 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 5s.
+[2026-10-15T22:03:57.061Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: 7zx7w
+[2026-10-15T22:03:57.061Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T22:03:57.061Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed g5wbb -> 7zx7w (the relay issues a new code for every session)
+[2026-10-15T22:03:57.061Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: 7zx7w
+[2026-10-15T22:04:01.836Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: i1i29
+[2026-10-15T22:04:01.877Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:04:01.877Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 6s after it was lost (1 attempt); its join code changed v5yru -> i1i29 (the relay issues a new code for every session)
+[2026-10-15T22:04:01.877Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: i1i29
+[2026-10-15T22:13:56.890Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 0s ago; last pong 19s ago (rtt 190 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:13:58.173Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 18s ago; last pong 15s ago (rtt 329 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:14:00.592Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: zmvcn
+[2026-10-15T22:14:00.592Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-15T22:14:00.592Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed 7zx7w -> zmvcn (the relay issues a new code for every session)
+[2026-10-15T22:14:00.592Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: zmvcn
+[2026-10-15T22:14:01.096Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: arlzu
+[2026-10-15T22:14:01.136Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:14:01.136Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed i1i29 -> arlzu (the relay issues a new code for every session)
+[2026-10-15T22:14:01.136Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: arlzu
+[2026-10-15T22:14:23.262Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11 min; last pong 15s ago (rtt 275 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:14:27.108Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: gfmuv
+[2026-10-15T22:14:27.108Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:14:27.108Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed l3qfp -> gfmuv (the relay issues a new code for every session)
+[2026-10-15T22:14:27.108Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: gfmuv
+[2026-10-15T22:16:27.521Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 7s ago; last pong 25s ago (rtt 405 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:16:30.736Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: hhrv6
+[2026-10-15T22:16:30.776Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T22:16:30.776Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed zmvcn -> hhrv6 (the relay issues a new code for every session)
+[2026-10-15T22:16:30.776Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: hhrv6
+[2026-10-15T22:16:43.038Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 288 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:16:46.475Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: zusib
+[2026-10-15T22:16:46.477Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:16:46.477Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed gfmuv -> zusib (the relay issues a new code for every session)
+[2026-10-15T22:16:46.477Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: zusib
+[2026-10-15T22:16:48.158Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 14 min; last pong 15s ago (rtt 281 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:16:51.361Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 5dbd5
+[2026-10-15T22:16:51.361Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:16:51.361Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed qvuja -> 5dbd5 (the relay issues a new code for every session)
+[2026-10-15T22:16:51.361Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 5dbd5
+[2026-10-15T22:17:41.787Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (71 failures in a row)
+[2026-10-15T22:18:24.727Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (71 failures in a row)
+[2026-10-15T22:18:32.147Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 19 min; last relay ping 15s ago; last pong 25s ago (rtt 65 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:18:32.147Z] [lan] Join code for players: hhrv6 (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was etqpz via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T22:18:35.940Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 6luex
+[2026-10-15T22:18:35.940Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T22:18:35.940Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed etqpz -> 6luex (the relay issues a new code for every session)
+[2026-10-15T22:18:35.940Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 6luex
+[2026-10-15T22:18:47.986Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 17s ago; last pong 15s ago (rtt 27 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:18:47.986Z] [lan] Join code for players: 6luex (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was hhrv6 via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T22:18:47.988Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 79 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T22:18:50.679Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: y7c8q
+[2026-10-15T22:18:50.680Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:18:50.680Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed 5dbd5 -> y7c8q (the relay issues a new code for every session)
+[2026-10-15T22:18:50.680Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: y7c8q
+[2026-10-15T22:18:51.010Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: barlu
+[2026-10-15T22:18:51.010Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:207.244.237.57:3478?transport=udp, PASSWD: turn:207.244.237.57:3478?transport=tcp, NO_PASSWD: stun:207.244.237.57:3478
+[2026-10-15T22:18:51.010Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed hhrv6 -> barlu (the relay issues a new code for every session)
+[2026-10-15T22:18:51.010Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: barlu
+[2026-10-15T22:18:52.547Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last relay ping 12s ago; last pong 20s ago (rtt 38 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:18:56.355Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: k9n0u
+[2026-10-15T22:18:56.393Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:18:56.393Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed arlzu -> k9n0u (the relay issues a new code for every session)
+[2026-10-15T22:18:56.393Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: k9n0u
+[2026-10-15T22:19:07.956Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 92 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:19:11.604Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: a8fp0
+[2026-10-15T22:19:11.604Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:19:11.604Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed zusib -> a8fp0 (the relay issues a new code for every session)
+[2026-10-15T22:19:11.604Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: a8fp0
+[2026-10-15T22:25:07.870Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 6 min; last pong 15s ago (rtt 49 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:25:11.397Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: kvo4f
+[2026-10-15T22:25:11.397Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:25:11.397Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed y7c8q -> kvo4f (the relay issues a new code for every session)
+[2026-10-15T22:25:11.397Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: kvo4f
+[2026-10-15T22:25:12.990Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 16s ago; last pong 15s ago (rtt 75 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-15T22:25:12.990Z] [lan] Join code for players: barlu (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was 6luex via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T22:25:16.867Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: lx8ik
+[2026-10-15T22:25:16.868Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T22:25:16.868Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed 6luex -> lx8ik (the relay issues a new code for every session)
+[2026-10-15T22:25:16.868Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: lx8ik
+[2026-10-15T22:25:26.814Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-15T22:25:27.837Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 17s ago; last pong 15s ago (rtt 141 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T22:25:27.838Z] [lan] Join code for players: lx8ik (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was barlu via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T22:25:30.690Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: mg8jx
+[2026-10-15T22:25:30.690Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:207.244.237.57:3478?transport=udp, PASSWD: turn:207.244.237.57:3478?transport=tcp, NO_PASSWD: stun:207.244.237.57:3478
+[2026-10-15T22:25:30.690Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed barlu -> mg8jx (the relay issues a new code for every session)
+[2026-10-15T22:25:30.690Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: mg8jx
+[2026-10-15T22:25:33.367Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: iln91
+[2026-10-15T22:25:33.368Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:25:33.368Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 7s after it was lost (1 attempt); its join code changed kvo4f -> iln91 (the relay issues a new code for every session)
+[2026-10-15T22:25:33.368Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: iln91
+[2026-10-15T22:25:35.517Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last relay ping 15s ago; last pong 18s ago (rtt 101 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:25:38.700Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: zvn7b
+[2026-10-15T22:25:38.741Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:25:38.741Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed k9n0u -> zvn7b (the relay issues a new code for every session)
+[2026-10-15T22:25:38.741Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: zvn7b
+[2026-10-15T22:27:27.628Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last pong 15s ago (rtt 50 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:27:31.060Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: sh1kz
+[2026-10-15T22:27:31.061Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:27:31.061Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed a8fp0 -> sh1kz (the relay issues a new code for every session)
+[2026-10-15T22:27:31.061Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: sh1kz
+[2026-10-15T22:27:40.171Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 0s ago; last pong 18s ago (rtt 100 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:27:43.700Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: g5x1p
+[2026-10-15T22:27:43.740Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:27:43.740Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed zvn7b -> g5x1p (the relay issues a new code for every session)
+[2026-10-15T22:27:43.740Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: g5x1p
+[2026-10-15T22:28:07.582Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 37s; last pong 15s ago (rtt 50 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-15T22:28:08.093Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 3 min; last relay ping 17s ago; last pong 16s ago (rtt 69 ms); host event-loop delay max 24 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:28:11.646Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: t7i1f
+[2026-10-15T22:28:11.685Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T22:28:11.685Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed mg8jx -> t7i1f (the relay issues a new code for every session)
+[2026-10-15T22:28:11.686Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: t7i1f
+[2026-10-15T22:28:13.539Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: b7tai
+[2026-10-15T22:28:13.539Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:28:13.539Z] [lan] Relay [wss://relay.webmc.fun/] recovered 6s after it was lost (1 attempt); its join code changed sh1kz -> b7tai (the relay issues a new code for every session)
+[2026-10-15T22:28:13.539Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: b7tai
+[2026-10-15T22:37:07.850Z] [lan] New LAN client 'Y2V6YF583L3VAAHA' via wss://relay.webmc.fun/
+[2026-10-15T22:37:08.107Z] [lan] [LAN Y2V6YF583L3VAAHA] connection state: connecting
+[2026-10-15T22:37:14.271Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (81 failures in a row)
+[2026-10-15T22:37:17.231Z] [lan] [LAN Y2V6YF583L3VAAHA] client failed to connect
+[2026-10-15T22:37:17.231Z] [lan] [LAN Y2V6YF583L3VAAHA] connection state: closed
+[2026-10-15T22:37:24.919Z] [lan] New LAN client 'TZCFG7CXT01M0N1O' via wss://relay.webmc.xyz/
+[2026-10-15T22:37:25.013Z] [lan] [LAN TZCFG7CXT01M0N1O] connection state: connecting
+[2026-10-15T22:37:31.621Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 9 min; last relay ping 0s ago; last pong 19s ago (rtt 30 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:37:34.160Z] [lan] [LAN TZCFG7CXT01M0N1O] client failed to connect
+[2026-10-15T22:37:34.160Z] [lan] [LAN TZCFG7CXT01M0N1O] connection state: closed
+[2026-10-15T22:37:34.386Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: ecubh
+[2026-10-15T22:37:34.427Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T22:37:34.427Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed t7i1f -> ecubh (the relay issues a new code for every session)
+[2026-10-15T22:37:34.427Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: ecubh
+[2026-10-15T22:37:41.913Z] [lan] New LAN client '2QQKFEG0F3EQL112' via wss://relay.webmc.fun/
+[2026-10-15T22:37:42.019Z] [lan] [LAN 2QQKFEG0F3EQL112] connection state: connecting
+[2026-10-15T22:37:51.169Z] [lan] [LAN 2QQKFEG0F3EQL112] client failed to connect
+[2026-10-15T22:37:51.169Z] [lan] [LAN 2QQKFEG0F3EQL112] connection state: closed
+[2026-10-15T22:38:01.632Z] [lan] New LAN client 'A50OQPVLVD5MVF1Z' via wss://relay.webmc.xyz/
+[2026-10-15T22:38:01.715Z] [lan] [LAN A50OQPVLVD5MVF1Z] connection state: connecting
+[2026-10-15T22:38:10.829Z] [lan] [LAN A50OQPVLVD5MVF1Z] client failed to connect
+[2026-10-15T22:38:10.829Z] [lan] [LAN A50OQPVLVD5MVF1Z] connection state: closed
+[2026-10-15T22:38:28.936Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (81 failures in a row)
+[2026-10-15T22:40:53.022Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 16 min; last relay ping 16s ago; last pong 15s ago (rtt 74 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:40:53.023Z] [lan] Join code for players: ecubh (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was lx8ik via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T22:40:56.357Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: jjg24
+[2026-10-15T22:40:56.357Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T22:40:56.357Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed lx8ik -> jjg24 (the relay issues a new code for every session)
+[2026-10-15T22:40:56.357Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: jjg24
+[2026-10-15T22:44:12.208Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 16 min; last pong 15s ago (rtt 75 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:44:15.974Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: y2t6u
+[2026-10-15T22:44:15.974Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:44:15.974Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed b7tai -> y2t6u (the relay issues a new code for every session)
+[2026-10-15T22:44:15.974Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: y2t6u
+[2026-10-15T22:46:13.003Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last pong 15s ago (rtt 77 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:46:16.043Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: dc6dw
+[2026-10-15T22:46:16.044Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T22:46:16.044Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed y2t6u -> dc6dw (the relay issues a new code for every session)
+[2026-10-15T22:46:16.044Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: dc6dw
+[2026-10-15T22:49:57.542Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 9 min; last relay ping 1s ago; last pong 20s ago (rtt 90 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:50:00.299Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 22 min; last relay ping 0s ago; last pong 13s ago (rtt 33 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T22:50:00.552Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 9iy5p
+[2026-10-15T22:50:00.552Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T22:50:00.552Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed jjg24 -> 9iy5p (the relay issues a new code for every session)
+[2026-10-15T22:50:00.552Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 9iy5p
+[2026-10-15T22:50:03.292Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: yrpne
+[2026-10-15T22:50:03.344Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-15T22:50:03.344Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed g5x1p -> yrpne (the relay issues a new code for every session)
+[2026-10-15T22:50:03.344Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: yrpne
+[2026-10-15T22:56:28.199Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (91 failures in a row)
+[2026-10-15T22:58:01.778Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (91 failures in a row)
+[2026-10-15T23:02:36.832Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 13 min; last relay ping 0s ago; last pong 14s ago (rtt 112 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:02:39.946Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: wop4g
+[2026-10-15T23:02:39.946Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T23:02:39.946Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed 9iy5p -> wop4g (the relay issues a new code for every session)
+[2026-10-15T23:02:39.946Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: wop4g
+[2026-10-15T23:03:00.827Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 17 min; last pong 3s ago (rtt 81 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:03:04.407Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: x0nie
+[2026-10-15T23:03:04.409Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T23:03:04.409Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed dc6dw -> x0nie (the relay issues a new code for every session)
+[2026-10-15T23:03:04.409Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: x0nie
+[2026-10-15T23:06:16.789Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last relay ping 0s ago; last pong 14s ago (rtt 93 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:06:20.405Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: amr7u
+[2026-10-15T23:06:20.405Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T23:06:20.405Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed wop4g -> amr7u (the relay issues a new code for every session)
+[2026-10-15T23:06:20.405Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: amr7u
+[2026-10-15T23:10:20.241Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 45 min; last pong 3s ago (rtt 81 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:10:23.620Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: l84oh
+[2026-10-15T23:10:23.620Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T23:10:23.620Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed iln91 -> l84oh (the relay issues a new code for every session)
+[2026-10-15T23:10:23.620Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: l84oh
+[2026-10-15T23:16:03.866Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (101 failures in a row)
+[2026-10-15T23:17:58.931Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (101 failures in a row)
+[2026-10-15T23:28:39.567Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 26 min; last pong 7s ago (rtt 78 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:28:42.844Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: lxuu2
+[2026-10-15T23:28:42.844Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T23:28:42.844Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed x0nie -> lxuu2 (the relay issues a new code for every session)
+[2026-10-15T23:28:42.844Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: lxuu2
+[2026-10-15T23:30:52.624Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 20 min; last pong 20s ago (rtt 77 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:30:56.299Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 704qy
+[2026-10-15T23:30:56.300Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-15T23:30:56.300Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed l84oh -> 704qy (the relay issues a new code for every session)
+[2026-10-15T23:30:56.300Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 704qy
+[2026-10-15T23:31:51.861Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 26 min; last relay ping 15s ago; last pong 19s ago (rtt 96 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:31:54.906Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: j4pna
+[2026-10-15T23:31:54.906Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T23:31:54.906Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed amr7u -> j4pna (the relay issues a new code for every session)
+[2026-10-15T23:31:54.906Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: j4pna
+[2026-10-15T23:36:10.575Z] [lan] Relay [wss://relay.mcjs.link/] refused: HTTP 403 instead of a WebSocket upgrade; next try in 34 min (11 failures in a row)
+[2026-10-15T23:37:08.076Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (111 failures in a row)
+[2026-10-15T23:37:39.364Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (111 failures in a row)
+[2026-10-15T23:41:27.847Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 64 min; last relay ping 13s ago; last pong 5s ago (rtt 30 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:41:27.847Z] [lan] Join code for players: j4pna (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was ecubh via wss://relay.eaglercraft.net/ (wss://relay.eaglercraft.net/ was lost)
+[2026-10-15T23:41:31.109Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: k6jlf
+[2026-10-15T23:41:31.152Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T23:41:31.152Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed ecubh -> k6jlf (the relay issues a new code for every session)
+[2026-10-15T23:41:31.152Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: k6jlf
+[2026-10-15T23:43:51.084Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 0s ago; last pong 18s ago (rtt 27 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-15T23:43:53.741Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: uw4ee
+[2026-10-15T23:43:53.782Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T23:43:53.782Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed k6jlf -> uw4ee (the relay issues a new code for every session)
+[2026-10-15T23:43:53.782Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: uw4ee
+[2026-10-15T23:45:36.805Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 14 min; last relay ping 0s ago; last pong 9s ago (rtt 79 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:45:36.805Z] [lan] Join code for players: yrpne (via wss://relay.lax1dude.net/, a relay stock clients know); was j4pna via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-15T23:45:37.623Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 4s ago; last pong 20s ago (rtt 27 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-15T23:45:40.631Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: hjuww
+[2026-10-15T23:45:40.631Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-15T23:45:40.631Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed j4pna -> hjuww (the relay issues a new code for every session)
+[2026-10-15T23:45:40.631Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: hjuww
+[2026-10-15T23:45:40.834Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: qjy6f
+[2026-10-15T23:45:40.877Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T23:45:40.877Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed uw4ee -> qjy6f (the relay issues a new code for every session)
+[2026-10-15T23:45:40.877Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: qjy6f
+[2026-10-15T23:45:55.997Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15s; no ping or pong yet; host event-loop delay max 23 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 5s.
+[2026-10-15T23:46:01.290Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: b1ls4
+[2026-10-15T23:46:01.330Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-15T23:46:01.330Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 5s after it was lost (1 attempt); its join code changed qjy6f -> b1ls4 (the relay issues a new code for every session)
+[2026-10-15T23:46:01.330Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: b1ls4
+[2026-10-15T23:53:09.775Z] [lan] New LAN client 'TSIH72ZNW9GN1B5P' via wss://relay.webmc.xyz/
+[2026-10-15T23:53:09.991Z] [lan] [LAN TSIH72ZNW9GN1B5P] connection state: connecting
+[2026-10-15T23:53:22.819Z] [lan] [LAN TSIH72ZNW9GN1B5P] handshake timed out
+[2026-10-15T23:53:22.820Z] [lan] [LAN TSIH72ZNW9GN1B5P] connection state: closed
+[2026-10-15T23:53:24.159Z] [lan] ClientFailure for unknown client 'TSIH72ZNW9GN1B5P' from wss://relay.webmc.xyz/
+[2026-10-15T23:53:29.930Z] [lan] New LAN client 'WZJLWRZMSJH13AZX' via wss://relay.webmc.xyz/
+[2026-10-15T23:53:30.103Z] [lan] [LAN WZJLWRZMSJH13AZX] connection state: connecting
+[2026-10-15T23:53:42.957Z] [lan] [LAN WZJLWRZMSJH13AZX] handshake timed out
+[2026-10-15T23:53:42.957Z] [lan] [LAN WZJLWRZMSJH13AZX] connection state: closed
+[2026-10-15T23:53:44.276Z] [lan] ClientFailure for unknown client 'WZJLWRZMSJH13AZX' from wss://relay.webmc.xyz/
+[2026-10-15T23:56:05.308Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (121 failures in a row)
+[2026-10-15T23:57:07.454Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (121 failures in a row)
+[2026-10-16T00:01:42.779Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 16 min; last relay ping 6s ago; last pong 20s ago (rtt 93 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:01:46.217Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: 7iv11
+[2026-10-16T00:01:46.217Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:01:46.217Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed hjuww -> 7iv11 (the relay issues a new code for every session)
+[2026-10-16T00:01:46.217Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: 7iv11
+[2026-10-16T00:01:57.010Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11s; last relay ping 0s ago; host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 6s.
+[2026-10-16T00:01:58.187Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 16 min; last relay ping 17s ago; last pong 16s ago (rtt 26 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-16T00:02:01.702Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: kt793
+[2026-10-16T00:02:01.702Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:109.199.104.18:3478?transport=udp, PASSWD: turn:109.199.104.18:3478?transport=tcp, NO_PASSWD: stun:109.199.104.18:3478
+[2026-10-16T00:02:01.702Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 4s after it was lost (1 attempt); its join code changed b1ls4 -> kt793 (the relay issues a new code for every session)
+[2026-10-16T00:02:01.702Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: kt793
+[2026-10-16T00:02:02.914Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: bkc41
+[2026-10-16T00:02:02.914Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:02:02.914Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 6s after it was lost (1 attempt); its join code changed 7iv11 -> bkc41 (the relay issues a new code for every session)
+[2026-10-16T00:02:02.914Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: bkc41
+[2026-10-16T00:06:47.894Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 36 min; last pong 15s ago (rtt 51 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:06:51.171Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 404kw
+[2026-10-16T00:06:51.171Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:06:51.172Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed 704qy -> 404kw (the relay issues a new code for every session)
+[2026-10-16T00:06:51.172Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 404kw
+[2026-10-16T00:09:58.301Z] [lan] Relay [wss://relay.eaglercraft.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 8 min; last relay ping 17s ago; last pong 15s ago (rtt 252 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:10:01.430Z] [lan] Relay [wss://relay.eaglercraft.net/] connected as 'server', code: r6dgg
+[2026-10-16T00:10:01.470Z] [lan] Relay [wss://relay.eaglercraft.net/] provided ICE servers: PASSWD: turn:66.94.118.192:3478?transport=udp, PASSWD: turn:66.94.118.192:3478?transport=tcp, NO_PASSWD: stun:66.94.118.192:3478
+[2026-10-16T00:10:01.470Z] [lan] Relay [wss://relay.eaglercraft.net/] recovered 3s after it was lost (1 attempt); its join code changed kt793 -> r6dgg (the relay issues a new code for every session)
+[2026-10-16T00:10:01.470Z] [host] World LAN also open on wss://relay.eaglercraft.net/. Join code: r6dgg
+[2026-10-16T00:16:32.015Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (131 failures in a row)
+[2026-10-16T00:16:56.830Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15 min; last relay ping 0s ago; last pong 4s ago (rtt 106 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:16:59.298Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (131 failures in a row)
+[2026-10-16T00:17:00.575Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: twfld
+[2026-10-16T00:17:00.575Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:17:00.575Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed bkc41 -> twfld (the relay issues a new code for every session)
+[2026-10-16T00:17:00.575Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: twfld
+[2026-10-16T00:18:07.796Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11 min; last pong 15s ago (rtt 53 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:18:11.379Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: t23l1
+[2026-10-16T00:18:11.379Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:18:11.380Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 4s after it was lost (1 attempt); its join code changed 404kw -> t23l1 (the relay issues a new code for every session)
+[2026-10-16T00:18:11.380Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: t23l1
+[2026-10-16T00:18:32.687Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 50 min; last pong 20s ago (rtt 58 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:18:35.436Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 9fds1
+[2026-10-16T00:18:35.436Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:18:35.436Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed lxuu2 -> 9fds1 (the relay issues a new code for every session)
+[2026-10-16T00:18:35.436Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 9fds1
+[2026-10-16T00:18:36.829Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 2 min; last relay ping 0s ago; last pong 14s ago (rtt 83 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:18:40.227Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: aq9ca
+[2026-10-16T00:18:40.227Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:18:40.227Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed twfld -> aq9ca (the relay issues a new code for every session)
+[2026-10-16T00:18:40.227Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: aq9ca
+[2026-10-16T00:19:12.665Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 61s; last pong 20s ago (rtt 46 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:19:15.619Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: vb8gz
+[2026-10-16T00:19:15.619Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:19:15.619Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed t23l1 -> vb8gz (the relay issues a new code for every session)
+[2026-10-16T00:19:15.619Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: vb8gz
+[2026-10-16T00:19:17.665Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 42s; last pong 20s ago (rtt 47 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 5s.
+[2026-10-16T00:19:23.387Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: djr0y
+[2026-10-16T00:19:23.387Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:19:23.387Z] [lan] Relay [wss://relay.webmc.fun/] recovered 6s after it was lost (1 attempt); its join code changed 9fds1 -> djr0y (the relay issues a new code for every session)
+[2026-10-16T00:19:23.387Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: djr0y
+[2026-10-16T00:22:16.779Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last relay ping 0s ago; last pong 14s ago (rtt 74 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:22:20.337Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: sb33i
+[2026-10-16T00:22:20.337Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:22:20.337Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed aq9ca -> sb33i (the relay issues a new code for every session)
+[2026-10-16T00:22:20.337Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: sb33i
+[2026-10-16T00:23:38.013Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 1.6 h; last relay ping 18s ago; last pong 15s ago (rtt 33 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-16T00:23:38.014Z] [lan] Join code for players: sb33i (via wss://relay.shhnowisnottheti.me/, a relay stock clients know); was yrpne via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-16T00:23:41.781Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: 8p3f0
+[2026-10-16T00:23:41.815Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-16T00:23:41.815Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed yrpne -> 8p3f0 (the relay issues a new code for every session)
+[2026-10-16T00:23:41.815Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: 8p3f0
+[2026-10-16T00:23:43.133Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 4 min; last pong 15s ago (rtt 48 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:23:46.151Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: ivp4s
+[2026-10-16T00:23:46.151Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:23:46.151Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed djr0y -> ivp4s (the relay issues a new code for every session)
+[2026-10-16T00:23:46.151Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: ivp4s
+[2026-10-16T00:36:57.782Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 13 min; last relay ping 18s ago; last pong 15s ago (rtt 32 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:37:01.064Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: ff988
+[2026-10-16T00:37:01.102Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-16T00:37:01.102Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed 8p3f0 -> ff988 (the relay issues a new code for every session)
+[2026-10-16T00:37:01.102Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: ff988
+[2026-10-16T00:37:07.705Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 13 min; last pong 20s ago (rtt 79 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:37:10.607Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 8yo2e
+[2026-10-16T00:37:10.607Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:37:10.607Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed ivp4s -> 8yo2e (the relay issues a new code for every session)
+[2026-10-16T00:37:10.607Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 8yo2e
+[2026-10-16T00:37:16.905Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (141 failures in a row)
+[2026-10-16T00:38:17.708Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 19 min; last pong 20s ago (rtt 79 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:38:20.527Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: gocmr
+[2026-10-16T00:38:20.528Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:38:20.528Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed vb8gz -> gocmr (the relay issues a new code for every session)
+[2026-10-16T00:38:20.528Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: gocmr
+[2026-10-16T00:38:22.163Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (141 failures in a row)
+[2026-10-16T00:45:17.981Z] [lan] Relay [wss://relay.webmc.xyz/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last pong 15s ago (rtt 49 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:45:20.803Z] [lan] Relay [wss://relay.webmc.xyz/] connected as 'server', code: 0o1d7
+[2026-10-16T00:45:20.803Z] [lan] Relay [wss://relay.webmc.xyz/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:45:20.803Z] [lan] Relay [wss://relay.webmc.xyz/] recovered 3s after it was lost (1 attempt); its join code changed gocmr -> 0o1d7 (the relay issues a new code for every session)
+[2026-10-16T00:45:20.803Z] [host] World LAN also open on wss://relay.webmc.xyz/. Join code: 0o1d7
+[2026-10-16T00:51:12.820Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 14 min; last pong 15s ago (rtt 70 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:51:12.821Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 29 min; last relay ping 16s ago; last pong 15s ago (rtt 67 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:51:12.821Z] [lan] Join code for players: ff988 (via wss://relay.lax1dude.net/, a relay stock clients know); was sb33i via wss://relay.shhnowisnottheti.me/ (wss://relay.shhnowisnottheti.me/ was lost)
+[2026-10-16T00:51:15.966Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: 8k69i
+[2026-10-16T00:51:15.966Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T00:51:15.967Z] [lan] Relay [wss://relay.webmc.fun/] recovered 3s after it was lost (1 attempt); its join code changed 8yo2e -> 8k69i (the relay issues a new code for every session)
+[2026-10-16T00:51:15.967Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: 8k69i
+[2026-10-16T00:51:16.214Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: r81ox
+[2026-10-16T00:51:16.214Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:51:16.214Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed sb33i -> r81ox (the relay issues a new code for every session)
+[2026-10-16T00:51:16.214Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: r81ox
+[2026-10-16T00:51:37.907Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 15 min; last relay ping 18s ago; last pong 15s ago (rtt 31 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 4s.
+[2026-10-16T00:51:37.907Z] [lan] Join code for players: r6dgg (via wss://relay.eaglercraft.net/, players need this relay in their relay list); was ff988 via wss://relay.lax1dude.net/ (wss://relay.lax1dude.net/ was lost)
+[2026-10-16T00:51:41.899Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: espna
+[2026-10-16T00:51:41.940Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-16T00:51:41.940Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 4s after it was lost (1 attempt); its join code changed ff988 -> espna (the relay issues a new code for every session)
+[2026-10-16T00:51:41.940Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: espna
+[2026-10-16T00:56:13.794Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (151 failures in a row)
+[2026-10-16T00:56:32.779Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 5 min; last relay ping 16s ago; last pong 15s ago (rtt 73 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T00:56:35.812Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: j5l7p
+[2026-10-16T00:56:35.813Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T00:56:35.813Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed r81ox -> j5l7p (the relay issues a new code for every session)
+[2026-10-16T00:56:35.813Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: j5l7p
+[2026-10-16T00:58:33.829Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (151 failures in a row)
+[2026-10-16T01:01:38.089Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 18s ago; last pong 15s ago (rtt 101 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T01:01:40.933Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: w1ype
+[2026-10-16T01:01:40.973Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-16T01:01:40.974Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed espna -> w1ype (the relay issues a new code for every session)
+[2026-10-16T01:01:40.974Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: w1ype
+[2026-10-16T01:01:52.946Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 11 min; last pong 15s ago (rtt 61 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T01:01:57.686Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: vw6o5
+[2026-10-16T01:01:57.686Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T01:01:57.687Z] [lan] Relay [wss://relay.webmc.fun/] recovered 5s after it was lost (1 attempt); its join code changed 8k69i -> vw6o5 (the relay issues a new code for every session)
+[2026-10-16T01:01:57.687Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: vw6o5
+[2026-10-16T01:08:33.182Z] [lan] Relay [wss://relay.webmc.fun/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 7 min; last pong 15s ago (rtt 295 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T01:08:36.845Z] [lan] Relay [wss://relay.webmc.fun/] connected as 'server', code: v69b5
+[2026-10-16T01:08:36.845Z] [lan] Relay [wss://relay.webmc.fun/] provided ICE servers: NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, NO_PASSWD: stun:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turn:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined, PASSWD: turns:undefined
+[2026-10-16T01:08:36.845Z] [lan] Relay [wss://relay.webmc.fun/] recovered 4s after it was lost (1 attempt); its join code changed vw6o5 -> v69b5 (the relay issues a new code for every session)
+[2026-10-16T01:08:36.845Z] [host] World LAN also open on wss://relay.webmc.fun/. Join code: v69b5
+[2026-10-16T01:16:07.664Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (161 failures in a row)
+[2026-10-16T01:18:42.283Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (161 failures in a row)
+[2026-10-16T01:20:23.175Z] [lan] New LAN client 'B4D1V6JC1P7H1TDJ' via wss://relay.webmc.xyz/
+[2026-10-16T01:20:23.341Z] [lan] [LAN B4D1V6JC1P7H1TDJ] connection state: connecting
+[2026-10-16T01:20:36.204Z] [lan] [LAN B4D1V6JC1P7H1TDJ] handshake timed out
+[2026-10-16T01:20:36.204Z] [lan] [LAN B4D1V6JC1P7H1TDJ] connection state: closed
+[2026-10-16T01:20:37.834Z] [lan] ClientFailure for unknown client 'B4D1V6JC1P7H1TDJ' from wss://relay.webmc.xyz/
+[2026-10-16T01:27:36.803Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 31 min; last relay ping 0s ago; last pong 14s ago (rtt 67 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 2s.
+[2026-10-16T01:27:39.485Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: bxohm
+[2026-10-16T01:27:39.486Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T01:27:39.486Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 3s after it was lost (1 attempt); its join code changed j5l7p -> bxohm (the relay issues a new code for every session)
+[2026-10-16T01:27:39.486Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: bxohm
+[2026-10-16T01:35:07.757Z] [lan] Relay [wss://relay.lax1dude.net/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 33 min; last relay ping 8s ago; last pong 20s ago (rtt 34 ms); host event-loop delay max 21 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T01:35:10.913Z] [lan] Relay [wss://relay.lax1dude.net/] connected as 'server', code: lyfv1
+[2026-10-16T01:35:10.952Z] [lan] Relay [wss://relay.lax1dude.net/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302, PASSWD: stun:s1.turn.cx:80, PASSWD: stun:s2.turn.cx:80, PASSWD: stun:s1.turn.cx:443, PASSWD: stun:s2.turn.cx:443, PASSWD: turn:s1.turn.cx:80, PASSWD: turn:s2.turn.cx:80, PASSWD: turn:s1.turn.cx:80?transport=tcp, PASSWD: turn:s2.turn.cx:80?transport=tcp, PASSWD: turns:s1.turn.cx:443, PASSWD: turns:s2.turn.cx:443, PASSWD: turns:s1.turn.cx:443?transport=tcp, PASSWD: turns:s2.turn.cx:443?transport=tcp
+[2026-10-16T01:35:10.952Z] [lan] Relay [wss://relay.lax1dude.net/] recovered 3s after it was lost (1 attempt); its join code changed w1ype -> lyfv1 (the relay issues a new code for every session)
+[2026-10-16T01:35:10.952Z] [host] World LAN also open on wss://relay.lax1dude.net/. Join code: lyfv1
+[2026-10-16T01:35:44.914Z] [lan] Relay [wss://relay.deev.is/] unavailable: HTTP 502 instead of a WebSocket upgrade; next try in 2 min (171 failures in a row)
+[2026-10-16T01:37:16.795Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] lost: connection cut without a WebSocket close frame (1006), no socket error; up 10 min; last relay ping 0s ago; last pong 14s ago (rtt 65 ms); host event-loop delay max 22 ms over the last minute. 0 players who joined through it stay connected. Reconnecting in 3s.
+[2026-10-16T01:37:20.375Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] connected as 'server', code: afcpb
+[2026-10-16T01:37:20.375Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] provided ICE servers: NO_PASSWD: stun:stun.l.google.com:19302, NO_PASSWD: stun:stun1.l.google.com:19302, NO_PASSWD: stun:stun2.l.google.com:19302, NO_PASSWD: stun:stun3.l.google.com:19302, NO_PASSWD: stun:stun4.l.google.com:19302
+[2026-10-16T01:37:20.375Z] [lan] Relay [wss://relay.shhnowisnottheti.me/] recovered 4s after it was lost (1 attempt); its join code changed bxohm -> afcpb (the relay issues a new code for every session)
+[2026-10-16T01:37:20.375Z] [host] World LAN also open on wss://relay.shhnowisnottheti.me/. Join code: afcpb
+[2026-10-16T01:38:35.119Z] [lan] Relay [wss://relay.neurosama.place/] unavailable: HTTP 530 instead of a WebSocket upgrade; next try in 2 min (171 failures in a row)
+[2026-10-16T01:38:54.789Z] [host] shutting down: stop requested
+[2026-10-16T01:38:54.792Z] [server] [01:38:54+792][IntegratedServer/INFO][Minecraft]: Stopping server
+[2026-10-16T01:38:54.792Z] [server] [01:38:54+792][IntegratedServer/INFO][Minecraft]: Saving players
+[2026-10-16T01:38:54.792Z] [server] [01:38:54+792][IntegratedServer/INFO][Minecraft]: Saving worlds
+[2026-10-16T01:38:54.793Z] [server] [01:38:54+793][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/Overworld
+[2026-10-16T01:38:54.797Z] [server] [01:38:54+797][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/Nether
+[2026-10-16T01:38:54.799Z] [server] [01:38:54+799][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/The End
+[2026-10-16T01:38:54.802Z] [host] world saved and integrated server stopped cleanly
+[2026-10-16T01:38:54.843Z] [host] worker thread exited with code 1
