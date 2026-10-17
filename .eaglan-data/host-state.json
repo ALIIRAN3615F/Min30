@@ -1,7 +1,7 @@
 {
-  "pid": 2545,
-  "controlPort": 46431,
-  "startedAt": 1792223710164,
+  "pid": 2426,
+  "controlPort": 36429,
+  "startedAt": 1792255081442,
   "status": "stopped",
   "world": "Imported World",
   "mode": "existing",
@@ -12,18 +12,26 @@
   "players": [],
   "tps": [
     "TPS: 20/20",
-    "Chunks: 0/0",
-    "Entities: 0+0",
-    "R: 0, G: 0, W: 0",
-    "TU: 0, LU: 0"
+    "Chunks: 296/366",
+    "Entities: 199+32",
+    "R: 12, G: 0, W: 0",
+    "TU: 1247, LU: 0",
+    "Players: 6"
   ],
   "hidden": false,
   "lanGamemode": 0,
   "lanCheats": false,
-  "stoppedAt": 1792242969479,
+  "redundantSend": true,
+  "hostLoopDelay": {
+    "p50": 0.1,
+    "p99": 0.9,
+    "max": 4.8,
+    "at": 1792275065377
+  },
+  "stoppedAt": 1792275108398,
   "stopReason": "stop requested",
   "relays": [],
   "peers": [],
   "playerCount": 0,
-  "updatedAt": 1792242969480
+  "updatedAt": 1792275108398
 }

@@ -7,5 +7,6 @@
   "difficulty": 2,
   "viewDistance": 4,
   "maxHeapMb": 2048,
-  "uiPort": 8090
+  "uiPort": 8090,
+  "redundantSend": true
 }
