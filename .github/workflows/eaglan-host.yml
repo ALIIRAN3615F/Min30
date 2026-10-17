@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://download937.mediafire.com/0rjhq20mz8ygi7a1KRpCZKyk2JnP8PxQCiKZACjBKPR5u2yY84SEF5F0qKq08GSMK8Vp7M0NYMaqM5smLIvyZX-hSWZKJIJLQDh5nZzeSGnDQ8HOG-OnS7iztOpnSlHQjZDxmNx8U3oH7QKwhV2HQCAP9vL44HZMnYvT4Tgznu9Wb_wb/5yf2efl5duy3lgl/eaglan-host-linux.zip' \
+            'https://thoughtful-rose-tahr.myfilebase.com/ipfs/Qma5uk9VdceddHkdWGFPPRrNBrVr1pAMxisyfyGtRwiy7Q' \
             -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
           unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
