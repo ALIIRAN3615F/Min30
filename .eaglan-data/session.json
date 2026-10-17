@@ -3,6 +3,15 @@
   "world": "Imported World",
   "displayName": "Imported World",
   "config": {
+    "ownerName": "HeadlessHost",
+    "hidden": false,
+    "lanWorldName": "Survival",
+    "lanGamemode": 0,
+    "lanCheats": false,
+    "difficulty": 2,
+    "viewDistance": 4,
+    "maxHeapMb": 2048,
+    "uiPort": 8090,
     "relays": [
       "wss://relay.eaglercraft.net/",
       "wss://relay.lax1dude.net/",
@@ -13,22 +22,6 @@
       "wss://relay.neurosama.place/",
       "wss://relay.webmc.fun/"
     ],
-    "mainCode": "",
-    "ownRelay": {
-      "enabled": false,
-      "port": 8091,
-      "bind": "0.0.0.0",
-      "publicUrl": ""
-    },
-    "codeRelays": [],
-    "ownerName": "HeadlessHost",
-    "hidden": false,
-    "lanWorldName": "Survival",
-    "lanGamemode": 0,
-    "lanCheats": false,
-    "difficulty": 2,
-    "viewDistance": 4,
-    "maxHeapMb": 2048,
-    "uiPort": 8090
+    "relayWarnings": []
   }
 }

@@ -1,0 +1,12 @@
+# Eaglercraft relays for World LAN hosting, one per line (wss://...).
+# The world is registered on every working relay at the same time; each relay gives its own
+# join code. Lines starting with # are ignored. Apply changes to a running world with:
+#   node cli.js relays apply
+wss://relay.eaglercraft.net/
+wss://relay.lax1dude.net/
+wss://relay.shhnowisnottheti.me/
+wss://relay.deev.is/
+wss://relay.mcjs.link/
+wss://relay.webmc.xyz/
+wss://relay.neurosama.place/
+wss://relay.webmc.fun/

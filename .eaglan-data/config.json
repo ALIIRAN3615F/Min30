@@ -1,14 +1,4 @@
 {
-  "relays": [
-    "wss://relay.eaglercraft.net/",
-    "wss://relay.lax1dude.net/",
-    "wss://relay.shhnowisnottheti.me/",
-    "wss://relay.deev.is/",
-    "wss://relay.mcjs.link/",
-    "wss://relay.webmc.xyz/",
-    "wss://relay.neurosama.place/",
-    "wss://relay.webmc.fun/"
-  ],
   "ownerName": "HeadlessHost",
   "hidden": false,
   "lanWorldName": "Survival",
