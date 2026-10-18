@@ -1,7 +1,7 @@
 {
-  "pid": 2426,
-  "controlPort": 36429,
-  "startedAt": 1792255081442,
+  "pid": 2142,
+  "controlPort": 45613,
+  "startedAt": 1792294488153,
   "status": "stopped",
   "world": "Imported World",
   "mode": "existing",
@@ -12,26 +12,38 @@
   "players": [],
   "tps": [
     "TPS: 20/20",
-    "Chunks: 296/366",
-    "Entities: 199+32",
-    "R: 12, G: 0, W: 0",
-    "TU: 1247, LU: 0",
-    "Players: 6"
+    "Chunks: 486/559",
+    "Entities: 331+38",
+    "R: 8, G: 0, W: 8",
+    "TU: 1688, LU: 0",
+    "Players: 8"
   ],
   "hidden": false,
   "lanGamemode": 0,
   "lanCheats": false,
   "redundantSend": true,
+  "gameServer": {
+    "busy": 38,
+    "writesPerMin": 462,
+    "writeMsPerMin": 1120,
+    "maxWriteMs": 165,
+    "maxWritesQueued": 1,
+    "gcMsPerMin": 1208,
+    "maxGcMs": 8,
+    "heapMb": 341,
+    "heapLimitMb": 2096
+  },
   "hostLoopDelay": {
     "p50": 0.1,
     "p99": 0.9,
-    "max": 4.8,
-    "at": 1792275065377
+    "max": 5.2,
+    "at": 1792314471528
   },
-  "stoppedAt": 1792275108398,
+  "stoppedAt": 1792314510903,
   "stopReason": "stop requested",
   "relays": [],
   "peers": [],
   "playerCount": 0,
-  "updatedAt": 1792275108398
+  "redundantUnavailable": null,
+  "updatedAt": 1792314510903
 }

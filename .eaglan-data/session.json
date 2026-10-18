@@ -10,7 +10,8 @@
     "lanCheats": false,
     "difficulty": 2,
     "viewDistance": 4,
-    "redundantSend": false,
+    "redundantSend": true,
+    "diskSync": "full",
     "maxHeapMb": 2048,
     "uiPort": 8090,
     "relays": [
