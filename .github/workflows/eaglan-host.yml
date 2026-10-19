@@ -1,5 +1,5 @@
 
-name: Headless Eaglan Host (Tailscale + UDP)
+name: Headless Eaglan Host (Tailscale + Portwarp UDP)
 
 on:
   workflow_dispatch:
@@ -30,7 +30,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
@@ -55,7 +54,6 @@ jobs:
         run: |
           set -euo pipefail
           cd "$EAGLAN_PROJECT_DIR"
-
           npm ci --omit=dev
           node -e "require('node:sqlite'); console.log('SQLite OK')"
 
@@ -69,34 +67,40 @@ jobs:
           if ! command -v pwrp >/dev/null 2>&1; then
             if [[ -x "$HOME/.local/bin/pwrp" ]]; then
               echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+              export PATH="$HOME/.local/bin:$PATH"
             elif [[ -x "$HOME/bin/pwrp" ]]; then
               echo "$HOME/bin" >> "$GITHUB_PATH"
+              export PATH="$HOME/bin:$PATH"
             else
-              echo "Portwarp CLI installation failed."
+              echo "Portwarp CLI was not found after installation."
               exit 1
             fi
           fi
 
-      - name: Restore Portwarp login state
+          pwrp version
+
+      - name: Portwarp Login - Approve in Chrome
         shell: bash
-        env:
-          PORTWARP_STATE_B64: ${{ secrets.PORTWARP_STATE_B64 }}
+        timeout-minutes: 10
         run: |
-          set -euo pipefail
+          set -uo pipefail
 
-          if [[ -z "${PORTWARP_STATE_B64:-}" ]]; then
-            echo "Missing PORTWARP_STATE_B64 GitHub Secret."
-            echo "Add the Portwarp CLI state archive as a repository secret."
-            exit 1
+          echo "============================================"
+          echo "PORTWARP DEVICE LOGIN"
+          echo "Watch the log below for the approval URL/code."
+          echo "Open that URL in Chrome and approve the device."
+          echo "Keep this step running until login completes."
+          echo "============================================"
+
+          set +e
+          pwrp login 2>&1 | tee "$RUNNER_TEMP/portwarp-login.log"
+          LOGIN_STATUS=${PIPESTATUS[0]}
+          set -e
+
+          if [[ "$LOGIN_STATUS" -ne 0 ]]; then
+            echo "Portwarp login failed: exit code $LOGIN_STATUS"
+            exit "$LOGIN_STATUS"
           fi
-
-          printf '%s' "$PORTWARP_STATE_B64" \
-            | base64 --decode \
-            | tar -tzf - >/dev/null
-
-          printf '%s' "$PORTWARP_STATE_B64" \
-            | base64 --decode \
-            | tar -xzf - -C "$HOME"
 
           pwrp status
           pwrp tunnels
@@ -144,7 +148,6 @@ jobs:
           UI_PID=$!
 
           READY=0
-
           for _ in $(seq 1 45); do
             if curl -fsS --connect-timeout 2 --max-time 5 \
               http://127.0.0.1:8090/ >/dev/null; then
@@ -197,18 +200,15 @@ jobs:
           echo "PRIVATE_PANEL=https://$TS_DNS/"
           echo "UDP_PUBLIC_HOST=uipr6edt.free.pwrp.cc"
           echo "UDP_PUBLIC_PORT=14533"
-          echo "Panel access requires your Tailscale connection."
-          echo "Test the UDP connection from an external network."
+          echo "Panel access requires Tailscale."
+          echo "Players should test the public UDP address."
 
-          # Run for 5 hours 35 minutes, below the job timeout.
           sleep 335m
 
           echo "Stopping Eaglan to save the world..."
-
           kill -TERM "$UI_PID" 2>/dev/null || true
 
           GRACEFUL=0
-
           for _ in $(seq 1 60); do
             if ! kill -0 "$UI_PID" 2>/dev/null; then
               GRACEFUL=1
