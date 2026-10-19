@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/eaglan-download"
 
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://thoughtful-rose-tahr.myfilebase.com/ipfs/Qmbq92A2Wjg3XLAjaZQNdBF8aWdcEyX7aan9Rz1PfYDWD2' \
+            'https://thoughtful-rose-tahr.myfilebase.com/ipfs/QmXeJeA4PDTaRPjKxjaFpJZYHJNnyaxPByCoMczybsepfY' \
             -o "$RUNNER_TEMP/eaglan-host-linux.zip"
 
           unzip -q "$RUNNER_TEMP/eaglan-host-linux.zip" \
