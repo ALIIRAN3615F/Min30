@@ -1,5 +1,5 @@
 
-name: Headless Eaglan Host (Tailscale)
+name: Headless Eaglan Host (Tailscale + UDP)
 
 on:
   workflow_dispatch:
@@ -59,13 +59,55 @@ jobs:
           npm ci --omit=dev
           node -e "require('node:sqlite'); console.log('SQLite OK')"
 
+      - name: Install Portwarp CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            https://portwarp.com/install | bash
+
+          if ! command -v pwrp >/dev/null 2>&1; then
+            if [[ -x "$HOME/.local/bin/pwrp" ]]; then
+              echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+            elif [[ -x "$HOME/bin/pwrp" ]]; then
+              echo "$HOME/bin" >> "$GITHUB_PATH"
+            else
+              echo "Portwarp CLI installation failed."
+              exit 1
+            fi
+          fi
+
+      - name: Restore Portwarp login state
+        shell: bash
+        env:
+          PORTWARP_STATE_B64: ${{ secrets.PORTWARP_STATE_B64 }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${PORTWARP_STATE_B64:-}" ]]; then
+            echo "Missing PORTWARP_STATE_B64 GitHub Secret."
+            echo "Add the Portwarp CLI state archive as a repository secret."
+            exit 1
+          fi
+
+          printf '%s' "$PORTWARP_STATE_B64" \
+            | base64 --decode \
+            | tar -tzf - >/dev/null
+
+          printf '%s' "$PORTWARP_STATE_B64" \
+            | base64 --decode \
+            | tar -xzf - -C "$HOME"
+
+          pwrp status
+          pwrp tunnels
+
       - name: Connect to Tailscale
         uses: tailscale/github-action@v3
         with:
           authkey: ${{ secrets.TS_AUTHKEY }}
           statedir: /tmp/tailscale-state
 
-      - name: Start host, save world, and restart workflow
+      - name: Start host, UDP tunnel, save world, and restart workflow
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -81,8 +123,13 @@ jobs:
           mkdir -p "$EAGLAN_DATA"
 
           UI_PID=""
+          TUNNEL_STARTED=0
 
           cleanup() {
+            if [[ "$TUNNEL_STARTED" == 1 ]]; then
+              pwrp stop "Eaglan UDP" >/dev/null 2>&1 || true
+            fi
+
             if [[ -n "$UI_PID" ]]; then
               kill -TERM "$UI_PID" 2>/dev/null || true
               wait "$UI_PID" 2>/dev/null || true
@@ -119,6 +166,13 @@ jobs:
             exit 1
           fi
 
+          echo "Starting Portwarp UDP tunnel..."
+          pwrp connect "Eaglan UDP" --detach
+          TUNNEL_STARTED=1
+
+          sleep 5
+          pwrp ps --once
+
           TS_DNS="$(tailscale status --json | node -e '
             let s = "";
             process.stdin.on("data", d => s += d);
@@ -140,10 +194,11 @@ jobs:
           sudo tailscale serve --bg http://127.0.0.1:8090
 
           echo "========== EAGLAN HOST READY =========="
-          echo "HTTPS_URL=https://$TS_DNS/"
-          echo "Open this address while the workflow is running."
-          echo "Tailscale must be connected on your client device."
-          echo "Select or import your world, then click Host."
+          echo "PRIVATE_PANEL=https://$TS_DNS/"
+          echo "UDP_PUBLIC_HOST=uipr6edt.free.pwrp.cc"
+          echo "UDP_PUBLIC_PORT=14533"
+          echo "Panel access requires your Tailscale connection."
+          echo "Test the UDP connection from an external network."
 
           # Run for 5 hours 35 minutes, below the job timeout.
           sleep 335m
@@ -170,6 +225,11 @@ jobs:
 
           wait "$UI_PID" || true
           UI_PID=""
+
+          if [[ "$TUNNEL_STARTED" == 1 ]]; then
+            pwrp stop "Eaglan UDP" || true
+            TUNNEL_STARTED=0
+          fi
 
           sudo tailscale serve reset >/dev/null 2>&1 || true
 
