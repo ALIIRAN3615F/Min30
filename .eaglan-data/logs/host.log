@@ -17290,3 +17290,214 @@
 [2026-10-18T09:08:30.797Z] [server] [09:08:30+797][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/The End
 [2026-10-18T09:08:30.799Z] [host] world saved and integrated server stopped cleanly
 [2026-10-18T09:08:30.903Z] [host] worker thread exited with code 1
+[2026-10-19T08:06:02.587Z] [host] daemon pid 2267 starting (mode=existing, world='Imported World')
+[2026-10-19T08:06:03.794Z] [server] WorkerMain: [INFO] eaglercraftx worker thread is starting...
+[2026-10-19T08:06:03.794Z] [runtime] [runtime] classes.js loaded, worker main() invoked
+[2026-10-19T08:06:03.796Z] [server] WorkerMain: [INFO] reading configuration
+[2026-10-19T08:06:03.817Z] [server] WorkerMain: [INFO] initializing server runtime
+[2026-10-19T08:06:03.820Z] [server] [08:06:03+819][main/INFO][ServerPlatformSingleplayer]: ES6 Shim Status: Disabled
+[2026-10-19T08:06:03.821Z] [server] [08:06:03+821][main/WARN][TeaVMBlobURLManager]: Warning: Same-origin fetch support detected as false, client will use data: urls instead of blob: urls
+[2026-10-19T08:06:03.837Z] [server] WorkerMain: [INFO] starting worker thread
+[2026-10-19T08:06:03.838Z] [server] [08:06:03+838][IntegratedServer/INFO][EaglerIntegratedServer]: Starting EaglercraftX integrated server worker...
+[2026-10-19T08:06:03.838Z] [host] integrated server worker is up
+[2026-10-19T08:06:03.915Z] [host] sent en_US locale (3066 strings) to integrated server
+[2026-10-19T08:06:03.915Z] [host] status -> loading-world
+[2026-10-19T08:06:05.806Z] [server] [08:06:05+806][IntegratedServer/INFO][EaglerIntegratedServer]: server owner: HeadlessHost
+[2026-10-19T08:06:05.807Z] [server] [08:06:05+806][IntegratedServer/INFO][EaglerIntegratedServer]: Starting integrated eaglercraft server version 1.8.8
+[2026-10-19T08:06:05.867Z] [host] world loaded
+[2026-10-19T08:06:05.873Z] [console] OP list (world start): nobody
+[2026-10-19T08:06:05.874Z] [lan] send twice is on: small packets to players are sent twice (UDP port 25792: allow it in the server's firewall, and forward it to this server if it is behind NAT)
+[2026-10-19T08:06:05.874Z] [lan] LAN game mode for joiners: Survival; cheats off
+[2026-10-19T08:06:05.874Z] [lan] registering the world on 8 relays in parallel
+[2026-10-19T08:06:05.874Z] [host] status -> waiting-for-relay
+[2026-10-19T08:06:05.903Z] [lan] No relay is active (8 configured): new players cannot join until one connects; connected players are not affected
+[2026-10-19T08:06:06.059Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T08:06:06.133Z] [lan] Relay [relay.lax1dude.net] ACTIVE, join code jh210 (17 ICE servers, TURN available)
+[2026-10-19T08:06:06.133Z] [lan] World reachable via 1/8 relays: relay.lax1dude.net=jh210
+[2026-10-19T08:06:06.143Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 1 in 4s
+[2026-10-19T08:06:06.150Z] [lan] Relay [relay.eaglercraft.net] ACTIVE, join code 96izx (3 ICE servers, TURN available)
+[2026-10-19T08:06:06.150Z] [lan] World reachable via 2/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=jh210
+[2026-10-19T08:06:06.187Z] [lan] Relay [relay.shhnowisnottheti.me] ACTIVE, join code 4f248 (5 ICE servers, no TURN)
+[2026-10-19T08:06:06.187Z] [lan] World reachable via 3/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=jh210, relay.shhnowisnottheti.me=4f248
+[2026-10-19T08:06:06.272Z] [lan] Relay [relay.webmc.xyz] ACTIVE, join code 2pxpw (13 ICE servers, TURN available)
+[2026-10-19T08:06:06.272Z] [lan] World reachable via 4/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=jh210, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=2pxpw
+[2026-10-19T08:06:06.284Z] [lan] Relay [relay.webmc.fun] ACTIVE, join code ykdif (13 ICE servers, TURN available)
+[2026-10-19T08:06:06.284Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=jh210, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=2pxpw, relay.webmc.fun=ykdif
+[2026-10-19T08:06:06.310Z] [host] status -> hosting
+[2026-10-19T08:06:06.415Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 1 in 4s
+[2026-10-19T08:06:09.918Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 2 in 9s
+[2026-10-19T08:06:10.502Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 2 in 9s
+[2026-10-19T08:06:18.760Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 3 in 11s
+[2026-10-19T08:06:19.898Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 3 in 12s
+[2026-10-19T08:06:20.868Z] [lan] [LAN r1-24U2DXPCN8YJA63T] new client via relay.eaglercraft.net
+[2026-10-19T08:06:26.427Z] [lan] [LAN r1-24U2DXPCN8YJA63T] connection state: connecting
+[2026-10-19T08:06:28.468Z] [lan] [LAN r1-24U2DXPCN8YJA63T] connection state: connected
+[2026-10-19T08:06:31.008Z] [lan] [LAN r1-24U2DXPCN8YJA63T] connected via relay.eaglercraft.net after 10.1s, player channel opened (send twice not used: nothing from this player reached UDP port 25792)
+[2026-10-19T08:06:31.949Z] [server] [08:06:31+948][IntegratedServer/INFO][Minecraft]: DeevVigg[channel:r1-24U2DXPCN8YJA63T] logged in with entity id 1 at (-17.30000001192093, 67.0, -90.15355855586242)
+[2026-10-19T08:06:31.956Z] [server] [08:06:31+956][IntegratedServer/INFO][Minecraft]: DeevVigg joined the game
+[2026-10-19T08:10:19.659Z] [server] [08:10:19+659][IntegratedServer/INFO][Minecraft]: DeevVigg was slain by Zombie
+[2026-10-19T08:10:25.181Z] [console] > /list
+[2026-10-19T08:10:25.206Z] [console] There are 1/100 players online:
+[2026-10-19T08:10:25.206Z] [console] DeevVigg
+[2026-10-19T08:10:34.566Z] [lan] [LAN r6-V1V3QDKHBWC1TJ3S] new client via relay.webmc.xyz
+[2026-10-19T08:10:34.951Z] [lan] [LAN r6-V1V3QDKHBWC1TJ3S] connection state: connecting
+[2026-10-19T08:10:38.951Z] [lan] send twice is on, but it cannot be used on this server: this server has no public address on its network interfaces, and STUN reported none. Players connect as before. It needs the server's public IP on a network interface, or a UDP port for it that is forwarded to this server (see README "Send small packets twice")
+[2026-10-19T08:10:44.268Z] [lan] [LAN r6-V1V3QDKHBWC1TJ3S] client reported that it could not connect
+[2026-10-19T08:10:44.268Z] [lan] [LAN] r6-V1V3QDKHBWC1TJ3S did not get in after 10s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T08:10:44.268Z] [lan] [LAN r6-V1V3QDKHBWC1TJ3S] connection state: closed
+[2026-10-19T08:10:47.889Z] [lan] [LAN r8-ILNQGUNM0AS0MBCZ] new client via relay.webmc.fun
+[2026-10-19T08:10:48.161Z] [lan] [LAN r8-ILNQGUNM0AS0MBCZ] connection state: connecting
+[2026-10-19T08:10:54.438Z] [lan] [LAN r8-JMPFF7909XYQOBQY] new client via relay.webmc.fun
+[2026-10-19T08:10:54.668Z] [lan] [LAN r8-JMPFF7909XYQOBQY] connection state: connecting
+[2026-10-19T08:10:57.424Z] [lan] [LAN r8-ILNQGUNM0AS0MBCZ] client reported that it could not connect
+[2026-10-19T08:10:57.424Z] [lan] [LAN] r8-ILNQGUNM0AS0MBCZ did not get in after 10s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T08:10:57.424Z] [lan] [LAN r8-ILNQGUNM0AS0MBCZ] connection state: closed
+[2026-10-19T08:11:09.005Z] [lan] [LAN r8-JMPFF7909XYQOBQY] client reported that it could not connect
+[2026-10-19T08:11:09.005Z] [lan] [LAN] r8-JMPFF7909XYQOBQY did not get in after 15s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T08:11:09.005Z] [lan] [LAN r8-JMPFF7909XYQOBQY] connection state: closed
+[2026-10-19T08:17:17.799Z] [lan] [LAN r1-24U2DXPCN8YJA63T] connection state: closed
+[2026-10-19T08:17:17.799Z] [lan] [LAN r1-24U2DXPCN8YJA63T] data channel closed
+[2026-10-19T08:17:17.800Z] [lan] [LAN r1-24U2DXPCN8YJA63T] disconnected
+[2026-10-19T08:17:17.800Z] [lan] [LAN] DeevVigg (r1-24U2DXPCN8YJA63T) left after 10m47s: the player's connection went silent 27s before it closed (their network dropped, or their tab/browser was closed, crashed or frozen) | last data from player 26.8s before | received 96 KB, sent 1.2 MB | path direct/direct (via NAT) IPv4 | rtt 283 ms median (min 257, max 361) | send twice not used for this connection | via relay.eaglercraft.net
+[2026-10-19T08:17:17.802Z] [server] [08:17:17+801][IntegratedServer/INFO][Minecraft]: DeevVigg lost connection: TextComponent{text='End of stream', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[2026-10-19T08:17:17.802Z] [server] [08:17:17+802][IntegratedServer/INFO][Minecraft]: DeevVigg left the game
+[2026-10-19T08:17:17.842Z] [host] server closed player channel 'r1-24U2DXPCN8YJA63T'
+[2026-10-19T08:19:30.882Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 10 in 246s (same error x10)
+[2026-10-19T08:22:27.433Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 10 in 256s (same error x10)
+[2026-10-19T08:28:43.095Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=null, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=2pxpw, relay.webmc.fun=ykdif
+[2026-10-19T08:28:43.095Z] [lan] Relay [relay.lax1dude.net] lost (connection closed (1006)); join code jh210 is no longer valid; retry 1 in 4s
+[2026-10-19T08:28:52.694Z] [lan] Relay [relay.lax1dude.net] ACTIVE, join code e4sp6 (17 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T08:28:52.694Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=2pxpw, relay.webmc.fun=ykdif
+[2026-10-19T08:35:49.967Z] [lan] [LAN r6-JO6Y4ZH5MLWM86CV] new client via relay.webmc.xyz
+[2026-10-19T08:35:50.173Z] [lan] [LAN r6-JO6Y4ZH5MLWM86CV] connection state: connecting
+[2026-10-19T08:36:04.391Z] [lan] [LAN r6-JO6Y4ZH5MLWM86CV] client reported that it could not connect
+[2026-10-19T08:36:04.391Z] [lan] [LAN] r6-JO6Y4ZH5MLWM86CV did not get in after 14s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden; 1 host (TCP), 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T08:36:04.391Z] [lan] [LAN r6-JO6Y4ZH5MLWM86CV] connection state: closed
+[2026-10-19T08:36:06.141Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T08:36:18.101Z] [lan] [LAN r8-T4FBDEUMWH78C3N6] new client via relay.webmc.fun
+[2026-10-19T08:36:18.288Z] [lan] [LAN r8-T4FBDEUMWH78C3N6] connection state: connecting
+[2026-10-19T08:36:32.489Z] [lan] [LAN r8-T4FBDEUMWH78C3N6] client reported that it could not connect
+[2026-10-19T08:36:32.490Z] [lan] [LAN] r8-T4FBDEUMWH78C3N6 did not get in after 14s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden; 1 host (TCP), 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T08:36:32.490Z] [lan] [LAN r8-T4FBDEUMWH78C3N6] connection state: closed
+[2026-10-19T08:43:27.464Z] [lan] [LAN r8-EGM4OX2HLSV89D6S] new client via relay.webmc.fun
+[2026-10-19T08:43:27.645Z] [lan] [LAN r8-EGM4OX2HLSV89D6S] connection state: connecting
+[2026-10-19T08:43:41.835Z] [lan] [LAN r8-EGM4OX2HLSV89D6S] client reported that it could not connect
+[2026-10-19T08:43:41.835Z] [lan] [LAN] r8-EGM4OX2HLSV89D6S did not get in after 14s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden; 1 host (TCP), 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T08:43:41.835Z] [lan] [LAN r8-EGM4OX2HLSV89D6S] connection state: closed
+[2026-10-19T08:57:56.465Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 20 in 152s (same error x20)
+[2026-10-19T09:00:53.598Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 20 in 256s (same error x20)
+[2026-10-19T09:06:06.209Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T09:27:24.678Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=null, relay.webmc.fun=ykdif
+[2026-10-19T09:27:24.678Z] [lan] Relay [relay.webmc.xyz] lost (connection closed (1006)); join code 2pxpw is no longer valid; retry 1 in 4s
+[2026-10-19T09:27:29.410Z] [lan] Relay [relay.webmc.xyz] ACTIVE, join code yqcyj (13 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T09:27:29.410Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=96izx, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=yqcyj, relay.webmc.fun=ykdif
+[2026-10-19T09:29:11.398Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=null, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=yqcyj, relay.webmc.fun=ykdif
+[2026-10-19T09:29:11.398Z] [lan] Relay [relay.eaglercraft.net] lost (connection closed (1006)); join code 96izx is no longer valid; retry 1 in 4s
+[2026-10-19T09:29:15.620Z] [lan] Relay [relay.eaglercraft.net] ACTIVE, join code wwgaw (3 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T09:29:15.620Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=4f248, relay.webmc.xyz=yqcyj, relay.webmc.fun=ykdif
+[2026-10-19T09:34:49.172Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 30 in 208s (same error x30)
+[2026-10-19T09:36:06.286Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T09:37:59.718Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=null, relay.webmc.xyz=yqcyj, relay.webmc.fun=ykdif
+[2026-10-19T09:37:59.718Z] [lan] Relay [relay.shhnowisnottheti.me] lost (connection closed (1006)); join code 4f248 is no longer valid; retry 1 in 5s
+[2026-10-19T09:38:04.508Z] [lan] Relay [relay.shhnowisnottheti.me] ACTIVE, join code bs5nv (5 ICE servers, no TURN) (recovered after 1 failed attempt)
+[2026-10-19T09:38:04.508Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=bs5nv, relay.webmc.xyz=yqcyj, relay.webmc.fun=ykdif
+[2026-10-19T09:38:04.925Z] [lan] [LAN r8-9MRISY5MEN85VRRW] new client via relay.webmc.fun
+[2026-10-19T09:38:06.734Z] [lan] [LAN r8-9MRISY5MEN85VRRW] connection state: connecting
+[2026-10-19T09:38:15.998Z] [lan] [LAN r8-9MRISY5MEN85VRRW] client reported that it could not connect
+[2026-10-19T09:38:15.998Z] [lan] [LAN] r8-9MRISY5MEN85VRRW did not get in after 11s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T09:38:15.998Z] [lan] [LAN r8-9MRISY5MEN85VRRW] connection state: closed
+[2026-10-19T09:38:20.662Z] [lan] [LAN r6-NI4QHEVV5HQD0N8P] new client via relay.webmc.xyz
+[2026-10-19T09:38:20.962Z] [lan] [LAN r6-NI4QHEVV5HQD0N8P] connection state: connecting
+[2026-10-19T09:38:25.768Z] [lan] [LAN r6-NI4QHEVV5HQD0N8P] relay: client disconnected (255: End of stream)
+[2026-10-19T09:38:25.768Z] [lan] [LAN] r6-NI4QHEVV5HQD0N8P did not get in after 5s: the relay ended the join: End of stream | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T09:38:25.768Z] [lan] [LAN r6-NI4QHEVV5HQD0N8P] connection state: closed
+[2026-10-19T09:39:30.781Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 30 in 221s (same error x30)
+[2026-10-19T09:46:06.347Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=bs5nv, relay.webmc.xyz=yqcyj, relay.webmc.fun=null
+[2026-10-19T09:46:06.347Z] [lan] Relay [relay.webmc.fun] lost (connection closed (1001 CloudFlare WebSocket proxy restarting)); join code ykdif is no longer valid; retry 1 in 4s
+[2026-10-19T09:46:10.579Z] [lan] Relay [relay.webmc.fun] ACTIVE, join code keg9e (13 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T09:46:10.579Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=bs5nv, relay.webmc.xyz=yqcyj, relay.webmc.fun=keg9e
+[2026-10-19T10:06:06.359Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T10:11:27.049Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=null, relay.webmc.xyz=yqcyj, relay.webmc.fun=keg9e
+[2026-10-19T10:11:27.049Z] [lan] Relay [relay.shhnowisnottheti.me] lost (connection closed (1006)); join code bs5nv is no longer valid; retry 1 in 4s
+[2026-10-19T10:11:31.601Z] [lan] Relay [relay.shhnowisnottheti.me] ACTIVE, join code mahbr (5 ICE servers, no TURN) (recovered after 1 failed attempt)
+[2026-10-19T10:11:31.601Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=e4sp6, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=yqcyj, relay.webmc.fun=keg9e
+[2026-10-19T10:14:01.344Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 40 in 197s (same error x40)
+[2026-10-19T10:16:08.878Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 40 in 253s (same error x40)
+[2026-10-19T10:28:48.732Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=null, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=yqcyj, relay.webmc.fun=keg9e
+[2026-10-19T10:28:48.732Z] [lan] Relay [relay.lax1dude.net] lost (connection closed (1006)); join code e4sp6 is no longer valid; retry 1 in 3s
+[2026-10-19T10:28:52.404Z] [lan] Relay [relay.lax1dude.net] ACTIVE, join code ojhv9 (17 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T10:28:52.404Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=ojhv9, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=yqcyj, relay.webmc.fun=keg9e
+[2026-10-19T10:36:06.437Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T10:51:41.698Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 50 in 238s (same error x50)
+[2026-10-19T10:52:53.351Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 50 in 236s (same error x50)
+[2026-10-19T11:06:06.510Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T11:27:57.837Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 60 in 202s (same error x60)
+[2026-10-19T11:29:21.265Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 60 in 269s (same error x60)
+[2026-10-19T11:36:06.591Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T11:51:34.925Z] [lan] [LAN r8-MQTD11KF27VF1PTL] new client via relay.webmc.fun
+[2026-10-19T11:51:35.309Z] [lan] [LAN r8-MQTD11KF27VF1PTL] connection state: connecting
+[2026-10-19T11:51:49.645Z] [lan] [LAN r8-MQTD11KF27VF1PTL] client reported that it could not connect
+[2026-10-19T11:51:49.645Z] [lan] [LAN] r8-MQTD11KF27VF1PTL did not get in after 15s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T11:51:49.645Z] [lan] [LAN r8-MQTD11KF27VF1PTL] connection state: closed
+[2026-10-19T11:59:19.980Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 70 in 214s (same error x70)
+[2026-10-19T12:06:06.651Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T12:06:53.808Z] [lan] [LAN r8-TK12CI6FQHES42MB] new client via relay.webmc.fun
+[2026-10-19T12:06:54.044Z] [lan] [LAN r8-TK12CI6FQHES42MB] connection state: connecting
+[2026-10-19T12:07:00.104Z] [lan] [LAN r8-TK12CI6FQHES42MB] relay: client disconnected (255: End of stream)
+[2026-10-19T12:07:00.104Z] [lan] [LAN] r8-TK12CI6FQHES42MB did not get in after 6s: the relay ended the join: End of stream | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T12:07:00.104Z] [lan] [LAN r8-TK12CI6FQHES42MB] connection state: closed
+[2026-10-19T12:07:33.855Z] [lan] [LAN r6-9PTK3PQ82ONEVNYX] new client via relay.webmc.xyz
+[2026-10-19T12:07:34.168Z] [lan] [LAN r6-9PTK3PQ82ONEVNYX] connection state: connecting
+[2026-10-19T12:07:43.488Z] [lan] [LAN r6-9PTK3PQ82ONEVNYX] client reported that it could not connect
+[2026-10-19T12:07:43.488Z] [lan] [LAN] r6-9PTK3PQ82ONEVNYX did not get in after 10s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T12:07:43.488Z] [lan] [LAN r6-9PTK3PQ82ONEVNYX] connection state: closed
+[2026-10-19T12:08:43.110Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 70 in 300s (same error x70)
+[2026-10-19T12:34:50.870Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 80 in 170s (same error x80)
+[2026-10-19T12:36:06.741Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T12:43:34.149Z] [lan] [LAN r8-7FUYTR1SAQWMQ1GL] new client via relay.webmc.fun
+[2026-10-19T12:43:34.337Z] [lan] [LAN r8-7FUYTR1SAQWMQ1GL] connection state: connecting
+[2026-10-19T12:43:48.485Z] [lan] [LAN r8-7FUYTR1SAQWMQ1GL] client reported that it could not connect
+[2026-10-19T12:43:48.485Z] [lan] [LAN] r8-7FUYTR1SAQWMQ1GL did not get in after 14s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 2 host, 2 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T12:43:48.485Z] [lan] [LAN r8-7FUYTR1SAQWMQ1GL] connection state: closed
+[2026-10-19T12:44:16.690Z] [lan] [LAN r6-SN1RJWY22SRWC0GA] new client via relay.webmc.xyz
+[2026-10-19T12:44:16.806Z] [lan] [LAN r6-SN1RJWY22SRWC0GA] connection state: connecting
+[2026-10-19T12:44:30.934Z] [lan] [LAN r6-SN1RJWY22SRWC0GA] client reported that it could not connect
+[2026-10-19T12:44:30.934Z] [lan] [LAN] r6-SN1RJWY22SRWC0GA did not get in after 14s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 2 host, 2 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T12:44:30.934Z] [lan] [LAN r6-SN1RJWY22SRWC0GA] connection state: closed
+[2026-10-19T12:45:48.504Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 80 in 299s (same error x80)
+[2026-10-19T12:53:11.792Z] [lan] [LAN r8-CFSABQTTQR89WF2W] new client via relay.webmc.fun
+[2026-10-19T12:53:12.166Z] [lan] [LAN r8-CFSABQTTQR89WF2W] connection state: connecting
+[2026-10-19T12:53:21.280Z] [lan] [LAN r8-CFSABQTTQR89WF2W] client reported that it could not connect
+[2026-10-19T12:53:21.280Z] [lan] [LAN] r8-CFSABQTTQR89WF2W did not get in after 9s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T12:53:21.280Z] [lan] [LAN r8-CFSABQTTQR89WF2W] connection state: closed
+[2026-10-19T12:54:31.215Z] [lan] [LAN r8-X3E3Z238DLOZ4LWK] new client via relay.webmc.fun
+[2026-10-19T12:54:31.402Z] [lan] [LAN r8-X3E3Z238DLOZ4LWK] connection state: connecting
+[2026-10-19T12:54:40.589Z] [lan] [LAN r8-X3E3Z238DLOZ4LWK] client reported that it could not connect
+[2026-10-19T12:54:40.589Z] [lan] [LAN] r8-X3E3Z238DLOZ4LWK did not get in after 9s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.fun
+[2026-10-19T12:54:40.589Z] [lan] [LAN r8-X3E3Z238DLOZ4LWK] connection state: closed
+[2026-10-19T12:54:44.220Z] [lan] [LAN r6-ZU09Q2V7QVXYXGHR] new client via relay.webmc.xyz
+[2026-10-19T12:54:44.368Z] [lan] [LAN r6-ZU09Q2V7QVXYXGHR] connection state: connecting
+[2026-10-19T12:54:53.482Z] [lan] [LAN r6-ZU09Q2V7QVXYXGHR] client reported that it could not connect
+[2026-10-19T12:54:53.482Z] [lan] [LAN] r6-ZU09Q2V7QVXYXGHR did not get in after 9s: the player's client gave up: it found no working network path to this server | connection reached 'connecting' | player's candidates: 1 host, 1 hidden | ours: 3 host, 1 IPv6 | via relay.webmc.xyz
+[2026-10-19T12:54:53.482Z] [lan] [LAN r6-ZU09Q2V7QVXYXGHR] connection state: closed
+[2026-10-19T13:02:29.462Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=ojhv9, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=null, relay.webmc.fun=keg9e
+[2026-10-19T13:02:29.462Z] [lan] Relay [relay.webmc.xyz] lost (connection closed (1006)); join code yqcyj is no longer valid; retry 1 in 5s
+[2026-10-19T13:02:34.395Z] [lan] Relay [relay.webmc.xyz] ACTIVE, join code ofj61 (13 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T13:02:34.395Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=ojhv9, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=ofj61, relay.webmc.fun=keg9e
+[2026-10-19T13:02:40.517Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=null, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=ofj61, relay.webmc.fun=keg9e
+[2026-10-19T13:02:40.517Z] [lan] Relay [relay.lax1dude.net] lost (connection closed (1006)); join code ojhv9 is no longer valid; retry 1 in 3s
+[2026-10-19T13:02:43.585Z] [lan] Relay [relay.lax1dude.net] ACTIVE, join code 3xq4m (17 ICE servers, TURN available) (recovered after 1 failed attempt)
+[2026-10-19T13:02:43.585Z] [lan] World reachable via 5/8 relays: relay.eaglercraft.net=wwgaw, relay.lax1dude.net=3xq4m, relay.shhnowisnottheti.me=mahbr, relay.webmc.xyz=ofj61, relay.webmc.fun=keg9e
+[2026-10-19T13:06:06.808Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T13:13:58.168Z] [lan] Relay [relay.deev.is] failed: HTTP 502 from relay; retry 90 in 179s (same error x90)
+[2026-10-19T13:26:38.203Z] [lan] Relay [relay.neurosama.place] failed: HTTP 530 from relay; retry 90 in 180s (same error x90)
+[2026-10-19T13:36:06.901Z] [lan] Relay [relay.mcjs.link] INCOMPATIBLE: HTTP 403 instead of a WebSocket upgrade (relay refused this client); re-checking in 30 min
+[2026-10-19T13:39:36.821Z] [host] shutting down: stop requested
+[2026-10-19T13:39:36.822Z] [server] [01:39:36+822][IntegratedServer/INFO][Minecraft]: Stopping server
+[2026-10-19T13:39:36.822Z] [server] [01:39:36+822][IntegratedServer/INFO][Minecraft]: Saving players
+[2026-10-19T13:39:36.823Z] [server] [01:39:36+823][IntegratedServer/INFO][Minecraft]: Saving worlds
+[2026-10-19T13:39:36.823Z] [server] [01:39:36+823][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/Overworld
+[2026-10-19T13:39:36.830Z] [server] [01:39:36+830][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/Nether
+[2026-10-19T13:39:36.831Z] [server] [01:39:36+831][IntegratedServer/INFO][Minecraft]: Saving chunks for level 'Imported World'/The End
+[2026-10-19T13:39:36.833Z] [host] world saved and integrated server stopped cleanly
+[2026-10-19T13:39:36.867Z] [host] worker thread exited with code 1

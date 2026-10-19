@@ -1,7 +1,7 @@
 {
-  "pid": 2142,
-  "controlPort": 45613,
-  "startedAt": 1792294488153,
+  "pid": 2267,
+  "controlPort": 41403,
+  "startedAt": 1792397162584,
   "status": "stopped",
   "world": "Imported World",
   "mode": "existing",
@@ -12,38 +12,61 @@
   "players": [],
   "tps": [
     "TPS: 20/20",
-    "Chunks: 486/559",
-    "Entities: 331+38",
-    "R: 8, G: 0, W: 8",
-    "TU: 1688, LU: 0",
-    "Players: 8"
+    "Chunks: 0/0",
+    "Entities: 0+0",
+    "R: 0, G: 0, W: 0",
+    "TU: 0, LU: 0"
   ],
   "hidden": false,
   "lanGamemode": 0,
   "lanCheats": false,
   "redundantSend": true,
+  "redundantPort": 25792,
+  "ops": [],
+  "gameRules": {
+    "enabled": false,
+    "live": 1,
+    "appliedAt": null,
+    "error": null,
+    "pending": false,
+    "switches": null
+  },
+  "hostLoad": {
+    "cpu": 2.2,
+    "netBusy": 0.1,
+    "gameBusy": 1,
+    "other": 1.1,
+    "msgsPerSec": 0,
+    "rssMb": 549,
+    "hostHeapMb": 16,
+    "hostExternalMb": 3,
+    "gameHeapMb": 258,
+    "gameExternalMb": 45
+  },
   "gameServer": {
-    "busy": 38,
-    "writesPerMin": 462,
-    "writeMsPerMin": 1120,
-    "maxWriteMs": 165,
+    "busy": 1,
+    "writesPerMin": 21,
+    "writeMsPerMin": 112,
+    "maxWriteMs": 108,
     "maxWritesQueued": 1,
-    "gcMsPerMin": 1208,
-    "maxGcMs": 8,
-    "heapMb": 341,
+    "gcMsPerMin": 14,
+    "maxGcMs": 1,
+    "heapMb": 225,
+    "heapPhysMb": 258,
+    "extMb": 45,
     "heapLimitMb": 2096
   },
   "hostLoopDelay": {
     "p50": 0.1,
-    "p99": 0.9,
-    "max": 5.2,
-    "at": 1792314471528
+    "p99": 0.3,
+    "max": 1.3,
+    "at": 1792417145934
   },
-  "stoppedAt": 1792314510903,
+  "stoppedAt": 1792417176867,
   "stopReason": "stop requested",
   "relays": [],
   "peers": [],
   "playerCount": 0,
   "redundantUnavailable": null,
-  "updatedAt": 1792314510903
+  "updatedAt": 1792417176867
 }
